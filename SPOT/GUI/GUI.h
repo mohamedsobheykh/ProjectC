@@ -39,7 +39,7 @@ class GUI
 	color FillColor = YELLOW;		//Filling color (for courses)
 	color HiColor = RED;			//Highlighting color
 	color ConnColor = GREEN;		//Connector color
-	color MsgColor = BLUE;			//Messages color
+	color MsgColor = BLACK;			//Messages color
 	color BkGrndColor = LIGHTGRAY;	//Background color
 	color StatusBarColor = DARKGRAY;//statusbar color
 	string WindTitle = "Study-Plan Organizational Tool (SPOT)";

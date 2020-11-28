@@ -107,10 +107,53 @@ void GUI::DrawAcademicYear(const AcademicYear* pY)
 {
 	graphicsInfo gInfo = pY->getGfxInfo();
 
-	///TODO: compelete this function to:
-	//		1- Draw a rectangle for the academic year 
-	//		2- Draw a sub-rectangle for each semester
-	//Then each course should be drawn inside rect of its year/sem
+	static int addd = 0;
+	static int num = 0;
+	pWind->SetPen(DrawColor, 2);
+
+	pWind->DrawRectangle(0 + addd, 80, 260 + addd, 640, FRAME);
+
+	pWind->SetBrush(LIGHTGRAY);
+	pWind->DrawRectangle(0 + addd, 80, 260 + addd, 130);
+
+	int YearX = 80 + addd;
+	int YearY = 95;
+
+	int Sem1X = 30 + addd;
+	int Sem1Y = 130;
+	int Sem2X = 110 + addd;
+	int Sem2Y = 130;
+	int Sem3X = 190 + addd;
+	int Sem3Y = 130;
+
+
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->SetPen(BLACK);
+
+	pWind->DrawString(YearX, YearY, " Year no. ");
+	pWind->DrawInteger(YearX + 70, YearY, 1 + num);
+
+	pWind->SetPen(DrawColor, 1);
+	pWind->DrawLine(86.6 + addd, 130, 86.6 + addd, 640);
+	pWind->DrawLine(173.3 + addd, 130, 173.3 + addd, 640);
+
+	pWind->DrawLine(20 + addd, 150, 250 + addd, 150);
+
+
+	pWind->SetFont(15, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(Sem1X, Sem1Y, " Fall ");
+	pWind->DrawString(Sem2X, Sem2Y, " Spring ");
+	pWind->DrawString(Sem3X, Sem3Y, " Summer ");
+
+	addd = addd + 260;
+	num = num + 1;
+	if (num > 4) {
+		num = 0;
+	}
+	if (addd > 1040) {
+		addd = 0;
+
+	}
 	
 }
 
