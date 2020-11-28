@@ -51,9 +51,9 @@ Action* Registrar::CreateRequiredAction()
 
 	//TODO: Add case for each action
 	
-	case EXIT:
+	/*case EXIT:
 		break;
-		
+		*/
 	}
 	return RequiredAction;
 }
@@ -80,8 +80,6 @@ void Registrar::Run()
 			if (ExecuteAction(pAct))	//if action is not cancelled
 				UpdateInterface();
 		}
-		else
-			break;
 		
 	}
 }
