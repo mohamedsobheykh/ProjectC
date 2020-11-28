@@ -8,6 +8,6 @@ int main()
 	Registrar Reg;
 	Reg.Run();
 	
-
+	//comment 2
 	return 0;
 }
