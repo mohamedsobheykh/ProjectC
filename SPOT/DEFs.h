@@ -25,6 +25,8 @@ enum ActionType
 
 	SAVE,		//Save a study plan to file
 	LOAD,		//Load a study plan from a file
+	ADD_Notes,   //Add notes 
+	Replace_CRS,  //replace a course
 
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled

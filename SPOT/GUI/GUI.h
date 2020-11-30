@@ -19,6 +19,10 @@ class GUI
 
 						//TODO: Add more items names here
 
+		//TODO: Add more items names here
+		ITM_Delete,			//Delete item 'abedal 	
+		ITM_Notes,			//Add notes 'abedal
+		ITM_Replace_CRS,
 
 		ITM_EXIT,		//Exit item
 
