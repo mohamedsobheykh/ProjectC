@@ -1,4 +1,4 @@
-#pragma once
+#pragma once	
 #include "GUI\GUI.h"
 #include "Actions\Action.h"
 #include "Rules.h"
