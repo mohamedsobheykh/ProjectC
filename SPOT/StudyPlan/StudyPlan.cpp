@@ -32,8 +32,7 @@ void StudyPlan::SaveMe(fstream* pFile)
 {
 	for (int i = 0; i < plan.size(); i++)
 	{
-		plan[i]->SaveMe(pFile);
-		(*pFile) << "\y";
+		plan[i]->SaveMe(pFile,i+1);
 	}
 	
 }

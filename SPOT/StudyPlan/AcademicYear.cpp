@@ -39,16 +39,19 @@ void AcademicYear::DrawMe(GUI* pGUI) const
 		}
 }
 
-void AcademicYear::SaveMe(fstream* pFile)
+void AcademicYear::SaveMe(fstream* pFile , int yearNumber)
 {
+	string semesterNames[3] = { "Fall", "Spring", "Summer" };
 	for (int sem = FALL; sem < SEM_CNT; sem++)
 	{
+		
+		(*pFile) << "Year " << yearNumber << "," << semesterNames[sem] << ",";
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			(*it)->SaveMe(pFile);	//call SaveMe for each course in this semester
-			(*pFile) << "\c";
+			(*pFile) << ",";
 		}
-		(*pFile) << "\s";
+		(*pFile) << endl;
 	}
 		
 }

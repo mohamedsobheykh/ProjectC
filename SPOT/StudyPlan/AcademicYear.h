@@ -26,6 +26,6 @@ public:
 	
 
 	void virtual DrawMe(GUI*) const;
-	void SaveMe(fstream*);
+	void SaveMe(fstream*, int);
 };
 
