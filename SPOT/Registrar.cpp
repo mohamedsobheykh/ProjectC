@@ -4,6 +4,7 @@
 #include "Actions/ActionDeleteCourse.h"
 #include "Actions/ActionAddNotes.h"
 #include "Actions/ActionExit.h"
+#include "Actions/ActionSavePlan.h"
 
 Registrar::Registrar()
 {
@@ -23,7 +24,7 @@ StudyPlan* Registrar::getStudyPlay() const
 	return pSPlan;
 }
 
-bool Registrar::saveStudyPlan(string name)
+/* bool Registrar::saveStudyPlan(string name)
 {
 	string directory = "savedplans\\" + name + ".txt";
 	fstream* pFile = new fstream (directory, ios::out);
@@ -38,7 +39,7 @@ bool Registrar::saveStudyPlan(string name)
 	(*pFile).close();
 	delete pFile;
 	return true;
-}
+} */
 
 Action* Registrar::CreateRequiredAction() 
 {	
@@ -56,9 +57,14 @@ Action* Registrar::CreateRequiredAction()
 	case ADD_Notes:
 		RequiredAction = new ActionAddNotes(this);
 		break;
+	case SAVE:
+		RequiredAction = new ActionSavePlan(this);
+		break;
+
 	case EXIT:
 		RequiredAction = new ActionExit(this);
 		break;
+
 
 	//TODO: Add case for each action
 	
