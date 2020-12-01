@@ -3,8 +3,7 @@
 #include "Actions\Action.h"
 #include "Rules.h"
 #include "StudyPlan/StudyPlan.h"
-#include <string>
-#include <fstream>
+
 
 
 //The maestro class for the application

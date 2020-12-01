@@ -44,6 +44,7 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Delete] = "GUI\\Images\\Menu\\Menu_Delete.jpg"; //'abedal
 	MenuItemImages[ITM_Notes] = "GUI\\Images\\Menu\\Menu_Add_Notes.jpg";
 	MenuItemImages[ITM_Replace_CRS] = "GUI\\Images\\Menu\\Menu_Replace.jpg";
+	MenuItemImages[ITM_Save] = "GUI\\Images\\Menu\\Menu_Save.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list
 
@@ -207,6 +208,7 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_Delete: return ActionData{ DEL_CRS };   //abedal delete a course
 				case ITM_Notes: return ActionData{ ADD_Notes };  //abedal delete a course
 				case ITM_Replace_CRS: return ActionData{ Replace_CRS };//abedal delete a course
+				case ITM_Save: return ActionData { SAVE }; // save course
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}

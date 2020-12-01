@@ -23,6 +23,7 @@ class GUI
 		ITM_Delete,			//Delete item 'abedal 	
 		ITM_Notes,			//Add notes 'abedal
 		ITM_Replace_CRS,
+		ITM_Save,
 
 		ITM_EXIT,		//Exit item
 
