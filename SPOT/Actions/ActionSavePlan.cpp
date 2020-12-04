@@ -11,7 +11,9 @@ ActionSavePlan::ActionSavePlan(Registrar* p) : Action(p)
 bool ActionSavePlan::Execute()
 {
 	StudyPlan* currentPlan = pReg->getStudyPlay();
-	
+
+	/////////////////////////
+
 	GUI* pGUI = pReg->getGUI();
 	pGUI->PrintMsg("Enter the study plan name: ");
 	name = pGUI->GetSrting();
@@ -20,6 +22,8 @@ bool ActionSavePlan::Execute()
 	directory = "savedplans\\" + name + ".txt";
 
 	pFile = new fstream(directory, ios::out);
+
+	/////////////////////////////////
 
 	if (!(*pFile)) // checks that the file is opened successfully
 	{

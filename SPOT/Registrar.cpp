@@ -5,6 +5,7 @@
 #include "Actions/ActionAddNotes.h"
 #include "Actions/ActionExit.h"
 #include "Actions/ActionSavePlan.h"
+#include "Actions/ActionImportPlan.h"
 
 Registrar::Registrar()
 {
@@ -59,6 +60,9 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case SAVE:
 		RequiredAction = new ActionSavePlan(this);
+		break;
+	case LOAD:
+		RequiredAction = new ActionImportPlan(this);
 		break;
 
 	case EXIT:
