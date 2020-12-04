@@ -2,13 +2,14 @@
 #include <string>
 using namespace std;
 
+
 #include "..\DEFs.h"
 #include "CMUgraphicsLib\CMUgraphics.h"
 
 class Course;
 class AcademicYear;
 //user interface class
-class GUI
+class GUI 
 {
 
 	enum MENU_ITEM //The items of the menu (you should add more items)

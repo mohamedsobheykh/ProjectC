@@ -36,6 +36,7 @@ void AcademicYear::DrawMe(GUI* pGUI) const
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			(*it)->DrawMe(pGUI);	//call DrawMe for each course in this semester
+
 		}
 }
 

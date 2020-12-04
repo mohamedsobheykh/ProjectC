@@ -17,7 +17,7 @@ bool ActionDeleteCourse::Execute()
 	//TODO: add input validation
 
 
-	ActionData actData = pGUI->GetUserAction("Select a year to delete coures from:(To be implemented in phase1) we will just draw coures where user clicks");
+	ActionData actData = pGUI->GetUserAction("Select a year to delete coures from:");
 	//TODO: add input validation
 
 	int x, y;
@@ -28,16 +28,13 @@ bool ActionDeleteCourse::Execute()
 		y = actData.y;
 
 		graphicsInfo gInfo{ x, y };
+		
+		//TODO:
 
+
+		return true;
 	}
-
-
-	//TODO:
-
-
-	return true;
 }
-
 
 ActionDeleteCourse::~ActionDeleteCourse()
 {
