@@ -24,6 +24,7 @@ class GUI
 		ITM_Notes,			//Add notes 'abedal
 		ITM_Replace_CRS,
 		ITM_Save,
+		ITM_Load,
 
 		ITM_EXIT,		//Exit item
 

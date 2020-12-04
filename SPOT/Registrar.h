@@ -20,7 +20,6 @@ public:
 	bool ExecuteAction(Action*);
 	void UpdateInterface();
 	StudyPlan* getStudyPlay() const;
-	bool saveStudyPlan(string name);
 
 	void Run();
 

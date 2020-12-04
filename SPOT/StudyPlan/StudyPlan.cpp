@@ -1,7 +1,6 @@
 #include "StudyPlan.h"
 
 
-
 StudyPlan::StudyPlan()
 {
 	//By default, the study plan starts with 5 years
@@ -32,8 +31,16 @@ void StudyPlan::SaveMe(fstream* pFile)
 {
 	for (int i = 0; i < plan.size(); i++)
 	{
-		plan[i]->SaveMe(pFile);
-		(*pFile) << "\y";
+		plan[i]->SaveMe(pFile,i+1);
+	}
+	
+}
+
+void StudyPlan::ImportMe(fstream* pFile)
+{
+	for (int i = 0; i < plan.size(); i++)
+	{
+		plan[i]->ImportMe(pFile , i + 1);
 	}
 	
 }

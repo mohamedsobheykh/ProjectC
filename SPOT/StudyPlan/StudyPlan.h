@@ -18,7 +18,8 @@ public:
 	StudyPlan();
 	bool AddCourse(Course*, int year, SEMESTER);
 	void virtual DrawMe(GUI*) const;
-	void SaveMe(fstream*);
+	virtual void SaveMe(fstream*);
+	virtual void ImportMe(fstream*);
 	virtual ~StudyPlan();
 };
 
