@@ -4,6 +4,7 @@
 AcademicYear::AcademicYear()
 {
 	//TODO: make all necessary initializations
+	
 }
 
 
@@ -17,12 +18,37 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 	//TODO:
 	//This function still needs many checks to be compelete
 	YearCourses[sem].push_back(pC);
+	
+	//setting the y graphics info to be as the order of the course in the semester
+	graphicsInfo course = pC->getGfxInfo();
+	int courseOrder = YearCourses[sem].size();
+	course.y = 150 + (courseOrder-1)*50;
+	pC->setGfxInfo(course);
+	/////////
+
 	TotalCredits += pC->getCredits();
 
 	//TODO: acording to course type incremenet corrsponding toatl hours for that year
 
 
 	return true;
+}
+
+Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
+{
+	
+	int counter = 0;
+	//loop over the semester courses to get the required course
+	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
+	{
+		if (counter == courseIndex)
+		{
+			//choicedCourse = 
+			return (*it);
+		}
+		counter++;
+	}
+	
 }
 
 
@@ -36,6 +62,7 @@ void AcademicYear::DrawMe(GUI* pGUI) const
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			(*it)->DrawMe(pGUI);	//call DrawMe for each course in this semester
+
 		}
 }
 
@@ -101,6 +128,10 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
 			string Title = "Test101";
 			int crd = 0;
 			Course* pC = new Course(courseCode[i], Title, crd);
+			//setting the x graphic info for the course 
+			graphicsInfo courseCoordinates;
+			courseCoordinates.x = (yearNumber-1) * 260 + sem*86;
+			pC->setGfxInfo(courseCoordinates);
 			// and finall add the course to the academic year
 			this->AddCourse(pC, SEMESTER(sem));
 		}

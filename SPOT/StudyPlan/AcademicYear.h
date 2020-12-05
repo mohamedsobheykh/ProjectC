@@ -24,6 +24,7 @@ public:
 
 	bool AddCourse(Course*, SEMESTER );
 	
+	Course* getCourse(SEMESTER, int);
 
 	void virtual DrawMe(GUI*) const;
 	void SaveMe(fstream*, int);

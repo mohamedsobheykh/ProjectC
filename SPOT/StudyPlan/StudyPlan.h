@@ -20,6 +20,7 @@ public:
 	void virtual DrawMe(GUI*) const;
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);
+	virtual Course* getCourse(int, SEMESTER, int);
 	virtual ~StudyPlan();
 };
 
