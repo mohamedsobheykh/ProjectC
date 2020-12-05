@@ -22,8 +22,8 @@ public:
 	AcademicYear();
 	virtual ~AcademicYear();
 
-	bool AddCourse(Course*, SEMESTER );
-	
+	bool AddCourse(Course*, SEMESTER);
+	bool DeleteCourse(int, SEMESTER);  // to delete a course from a specific year and demester
 
 	void virtual DrawMe(GUI*) const;
 	void SaveMe(fstream*, int);

@@ -20,6 +20,13 @@ bool StudyPlan::AddCourse(Course* pC, int year, SEMESTER sem)
 	return true;
 }
 
+bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
+{
+
+	plan[year-1]->DeleteCourse(courseOrder, sem);
+	return true;
+}
+
 void StudyPlan::DrawMe(GUI* pGUI) const
 {
 	//Plan draws all year inside it.
