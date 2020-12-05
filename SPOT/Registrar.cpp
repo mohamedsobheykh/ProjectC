@@ -7,6 +7,8 @@
 #include "Actions/ActionSavePlan.h"
 #include "Actions/ActionImportPlan.h"
 
+
+
 Registrar::Registrar()
 {
 	pGUI = new GUI;	//create interface object
@@ -89,6 +91,7 @@ bool Registrar::ExecuteAction(Action* pAct)
 
 void Registrar::Run()
 {
+
 	while (true)
 	{
 		//update interface here as CMU Lib doesn't refresh itself
