@@ -26,7 +26,7 @@ class GUI
 		ITM_Replace_CRS,
 		ITM_Save,
 		ITM_Load,
-
+		ITM_ProgRec,
 		ITM_EXIT,		//Exit item
 
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
