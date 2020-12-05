@@ -1,3 +1,5 @@
 savedplans\CIE-StudyPlan.txt
-savedplans\g.txt
-savedplans\á.txt
+savedplans\ENV-StudyPlan.txt
+savedplans\NAN-StudyPlan.txt
+savedplans\REE-StudyPlan.txt
+savedplans\SPC-StudyPlan.txt

@@ -8,6 +8,8 @@
 #include "Actions/ActionImportPlan.h"
 #include "Actions/ActionImportReq.h"
 #include <iostream>
+#include "Actions/ActionDisplayInfo.h"
+
 using namespace std;
 
 Registrar::Registrar()
@@ -70,9 +72,11 @@ Action* Registrar::CreateRequiredAction()
 	case ImportReq:
 		RequiredAction = new ActionImportReq(this);
 		break;
-
 	case EXIT:
 		RequiredAction = new ActionExit(this);
+		break;
+	case DRAW_AREA:
+		RequiredAction = new ActionDisplayInfo(this);
 		break;
 
 
@@ -95,6 +99,7 @@ bool Registrar::ExecuteAction(Action* pAct)
 
 void Registrar::Run()
 {
+
 	while (true)
 	{
 		//update interface here as CMU Lib doesn't refresh itself

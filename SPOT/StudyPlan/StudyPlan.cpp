@@ -20,6 +20,13 @@ bool StudyPlan::AddCourse(Course* pC, int year, SEMESTER sem)
 	return true;
 }
 
+bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
+{
+
+	plan[year-1]->DeleteCourse(courseOrder, sem);
+	return true;
+}
+
 void StudyPlan::DrawMe(GUI* pGUI) const
 {
 	//Plan draws all year inside it.
@@ -43,6 +50,12 @@ void StudyPlan::ImportMe(fstream* pFile)
 		plan[i]->ImportMe(pFile , i + 1);
 	}
 	
+}
+
+Course* StudyPlan::getCourse(int year, SEMESTER sem, int courseIndex)
+{
+	Course* choicedCourse = plan[year - 1]->getCourse(sem, courseIndex);
+	return choicedCourse;
 }
 
 StudyPlan::~StudyPlan()
