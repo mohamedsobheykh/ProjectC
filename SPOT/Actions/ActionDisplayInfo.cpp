@@ -40,7 +40,7 @@ bool ActionDisplayInfo::Execute()
 		char CR = char( pC->getCredits() );
 		string Code = pC->getCode();
 		string Title = pC->getTitle();
-		pGUI->PrintMsg("Code: " + Code + ", Title: " + Title + ", CR: " + CR);
+		pGUI->GetUserAction("Code: " + Code + ", Title: " + Title + ", CR: " + CR);
 
 		return true;
 	}
