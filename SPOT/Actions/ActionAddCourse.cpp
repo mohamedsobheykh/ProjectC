@@ -19,15 +19,20 @@ bool ActionAddCourse::Execute()
 
 	ActionData actData = pGUI->GetUserAction("Select a year to add coures to:");
 	//TODO: add input validation done
-
+	
 	int x, y;
 	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
 	{
 		//get coord where user clicked
 		x = actData.x;
 		y = actData.y;
-		
-		
+		int yearWidth = 260 ;
+		int semWidth = 86;
+		//int semWidth = 80;
+		//int courseHight = 50;
+		int choicedYear = (x / yearWidth) + 1;
+		int choicedSemester = ((x % yearWidth) / semWidth) + 1;
+	
 		
 		graphicsInfo gInfo{ x, y };
 		//TODO: given course code, get course title, crd hours from registrar
@@ -36,8 +41,12 @@ bool ActionAddCourse::Execute()
 		int crd = 0;
 		Course* pC = new Course(code, Title, crd);
 		pC->setGfxInfo(gInfo);
+
+		StudyPlan* pS = pReg->getStudyPlay();
+		pS->AddCourse(pC, choicedYear, SEMESTER(choicedSemester-1));
+
 		//FOR THE FIRST YEAR
-		if(x < 80)
+		/* if(x < 80)
 		{
 			StudyPlan* pS = pReg->getStudyPlay();
 			pS->AddCourse(pC, 1, FALL);
@@ -135,7 +144,7 @@ bool ActionAddCourse::Execute()
 			StudyPlan* pS = pReg->getStudyPlay();
 			pS->AddCourse(pC, 5, SUMMER);	
 			
-		}
+		} */
 		//END YEARS
 		
 		//TODO: Ask registrar to add course to the year selected by the user  done

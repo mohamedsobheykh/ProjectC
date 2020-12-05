@@ -17,6 +17,14 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 	//TODO:
 	//This function still needs many checks to be compelete
 	YearCourses[sem].push_back(pC);
+	
+	//setting the y graphics info to be as the order of the course in the semester
+	graphicsInfo course = pC->getGfxInfo();
+	int courseOrder = YearCourses[sem].size();
+	course.y = 150 + (courseOrder-1)*50;
+	pC->setGfxInfo(course);
+	/////////
+
 	TotalCredits += pC->getCredits();
 
 	//TODO: acording to course type incremenet corrsponding toatl hours for that year
