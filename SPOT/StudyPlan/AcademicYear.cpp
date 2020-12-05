@@ -4,6 +4,7 @@
 AcademicYear::AcademicYear()
 {
 	//TODO: make all necessary initializations
+	
 }
 
 
@@ -32,6 +33,7 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 
 	return true;
 }
+// faeture#2Complete
 //function to delete a course abedal
 bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 {
@@ -49,6 +51,25 @@ bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 	return false;
 }
 //
+
+Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
+{
+	
+	int counter = 0;
+	//loop over the semester courses to get the required course
+	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
+	{
+		if (counter == courseIndex)
+		{
+			//choicedCourse = 
+			return (*it);
+		}
+		counter++;
+	}
+	
+}
+
+
 void AcademicYear::DrawMe(GUI* pGUI) const
 {
 	pGUI->DrawAcademicYear(this);
@@ -125,6 +146,10 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
 			string Title = "Test101";
 			int crd = 0;
 			Course* pC = new Course(courseCode[i], Title, crd);
+			//setting the x graphic info for the course 
+			graphicsInfo courseCoordinates;
+			courseCoordinates.x = (yearNumber-1) * 260 + sem*86;
+			pC->setGfxInfo(courseCoordinates);
 			// and finall add the course to the academic year
 			this->AddCourse(pC, SEMESTER(sem));
 		}

@@ -52,6 +52,12 @@ void StudyPlan::ImportMe(fstream* pFile)
 	
 }
 
+Course* StudyPlan::getCourse(int year, SEMESTER sem, int courseIndex)
+{
+	Course* choicedCourse = plan[year - 1]->getCourse(sem, courseIndex);
+	return choicedCourse;
+}
+
 StudyPlan::~StudyPlan()
 {
 }

@@ -6,6 +6,7 @@
 #include "Actions/ActionExit.h"
 #include "Actions/ActionSavePlan.h"
 #include "Actions/ActionImportPlan.h"
+#include "Actions/ActionDisplayInfo.h"
 
 
 
@@ -66,9 +67,11 @@ Action* Registrar::CreateRequiredAction()
 	case LOAD:
 		RequiredAction = new ActionImportPlan(this);
 		break;
-
 	case EXIT:
 		RequiredAction = new ActionExit(this);
+		break;
+	case DRAW_AREA:
+		RequiredAction = new ActionDisplayInfo(this);
 		break;
 
 
