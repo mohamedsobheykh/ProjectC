@@ -1,1 +1,3 @@
 savedplans\CIE-StudyPlan.txt
+savedplans\g.txt
+savedplans\á.txt

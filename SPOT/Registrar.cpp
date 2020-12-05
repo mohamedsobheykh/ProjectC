@@ -1,11 +1,14 @@
 #include "Registrar.h"
-
+#include "GUI/GUI.h"
 #include "Actions/ActionAddCourse.h"
 #include "Actions/ActionDeleteCourse.h"
 #include "Actions/ActionAddNotes.h"
 #include "Actions/ActionExit.h"
 #include "Actions/ActionSavePlan.h"
 #include "Actions/ActionImportPlan.h"
+#include "Actions/ActionImportReq.h"
+#include <iostream>
+using namespace std;
 
 Registrar::Registrar()
 {
@@ -64,6 +67,9 @@ Action* Registrar::CreateRequiredAction()
 	case LOAD:
 		RequiredAction = new ActionImportPlan(this);
 		break;
+	case ImportReq:
+		RequiredAction = new ActionImportReq(this);
+		break;
 
 	case EXIT:
 		RequiredAction = new ActionExit(this);
@@ -101,6 +107,7 @@ void Registrar::Run()
 			if (ExecuteAction(pAct))	//if action is not cancelled
 				UpdateInterface();
 		}
+		//cout << ActionImportReq.Rule1.
 		
 	}
 }
