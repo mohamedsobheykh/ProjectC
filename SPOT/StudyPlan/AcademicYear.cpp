@@ -15,7 +15,7 @@ AcademicYear::~AcademicYear()
 //Adds a course to this year in the spesified semester
 bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 {
-	//TODO:
+	
 	//This function still needs many checks to be compelete
 	YearCourses[sem].push_back(pC);
 	
@@ -33,6 +33,24 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 
 	return true;
 }
+// faeture#2Complete
+//function to delete a course abedal
+bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
+{
+	int counter = 0;
+	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
+	{
+		if (counter == courseOrder)
+		{
+			YearCourses[sem].erase(it);
+			return true;
+		}
+		counter++;
+	}
+	//earCourses[sem].erase(YearCourses[sem].begin() + courseOrder , YearCourses[sem].begin() + courseOrder+1);
+	return false;
+}
+//
 
 Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 {

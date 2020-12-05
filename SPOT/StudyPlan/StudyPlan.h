@@ -17,6 +17,8 @@ class StudyPlan:public Drawable
 public:
 	StudyPlan();
 	bool AddCourse(Course*, int year, SEMESTER);
+	bool DeleteCourse(int courseOrder, int year, SEMESTER); //delete a course abedal
+
 	void virtual DrawMe(GUI*) const;
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);

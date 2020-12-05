@@ -22,7 +22,10 @@ public:
 	AcademicYear();
 	virtual ~AcademicYear();
 
-	bool AddCourse(Course*, SEMESTER );
+
+	bool AddCourse(Course*, SEMESTER);
+	bool DeleteCourse(int, SEMESTER);  // to delete a course from a specific year and demester
+
 	
 	Course* getCourse(SEMESTER, int);
 
