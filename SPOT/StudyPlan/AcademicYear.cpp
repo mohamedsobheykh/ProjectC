@@ -110,6 +110,10 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
 			string Title = "Test101";
 			int crd = 0;
 			Course* pC = new Course(courseCode[i], Title, crd);
+			//setting the x graphic info for the course 
+			graphicsInfo courseCoordinates;
+			courseCoordinates.x = (yearNumber-1) * 260 + sem*86;
+			pC->setGfxInfo(courseCoordinates);
 			// and finall add the course to the academic year
 			this->AddCourse(pC, SEMESTER(sem));
 		}
