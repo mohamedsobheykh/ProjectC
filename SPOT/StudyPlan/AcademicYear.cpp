@@ -4,6 +4,7 @@
 AcademicYear::AcademicYear()
 {
 	//TODO: make all necessary initializations
+	
 }
 
 
@@ -31,6 +32,23 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 
 
 	return true;
+}
+
+Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
+{
+	
+	int counter = 0;
+	//loop over the semester courses to get the required course
+	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
+	{
+		if (counter == courseIndex)
+		{
+			//choicedCourse = 
+			return (*it);
+		}
+		counter++;
+	}
+	
 }
 
 
