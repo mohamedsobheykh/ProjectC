@@ -26,14 +26,8 @@ bool ActionAddNotes::Execute()
 	}
 
 	notes.close();
-	//TODO: add input validation
-
-
-
-
-
-	//TODO:
-
+	
+	
 
 	return true;
 }

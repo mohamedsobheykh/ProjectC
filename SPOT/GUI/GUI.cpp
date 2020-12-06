@@ -52,6 +52,7 @@ void GUI::CreateMenu() const
     MenuItemImages[ITM_EXIT] = "GUI\\Images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_Delete] = "GUI\\Images\\Menu\\Menu_Delete.jpg"; //'abedal
 	MenuItemImages[ITM_Notes] = "GUI\\Images\\Menu\\Menu_Add_Notes.jpg";
+	MenuItemImages[ITM_DesplayNotes] = "GUI\\Images\\Menu\\Menu_Desplay_Notes.jpg";
 	MenuItemImages[ITM_Replace_CRS] = "GUI\\Images\\Menu\\Menu_Replace.jpg";
 	MenuItemImages[ITM_Save] = "GUI\\Images\\Menu\\Menu_Save.jpg";
 	MenuItemImages[ITM_Load] = "GUI\\Images\\Menu\\Menu_Load.jpg";
@@ -381,6 +382,8 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_EXIT: return ActionData{ EXIT };		//Exit
 				case ITM_Delete: return ActionData{ DEL_CRS };   //abedal delete a course
 				case ITM_Notes: return ActionData{ ADD_Notes };  //abedal delete a course
+				case ITM_DesplayNotes: return ActionData{ Despaly_Notes };
+
 				case ITM_Replace_CRS: return ActionData{ Replace_CRS };//abedal delete a course
 				case ITM_Save: return ActionData { SAVE }; // save course sobhey
 				case ITM_Load: return ActionData{ LOAD }; // Load course sobhey

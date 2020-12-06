@@ -9,7 +9,12 @@
 #include "Actions/ActionImportReq.h"
 #include <iostream>
 #include "Actions/ActionDisplayInfo.h"
+#include "Actions/ActionDesplayNotes.h"
+#include "Actions/ActionreplaceCourse.h"
+
+
 #include "Actions/ActionReorderCourses.h"
+
 
 using namespace std;
 
@@ -61,8 +66,14 @@ Action* Registrar::CreateRequiredAction()
 	case DEL_CRS:   // delete_course action 'abedal
 		RequiredAction = new ActionDeleteCourse(this);
 		break;
+	case Replace_CRS:   // replace_course action 'abedal
+		RequiredAction = new ActionreplaceCourse(this);
+		break;
 	case ADD_Notes:
 		RequiredAction = new ActionAddNotes(this);
+		break;
+	case Despaly_Notes:
+		RequiredAction = new ActionDesplayNotes(this);
 		break;
 	case SAVE:
 		RequiredAction = new ActionSavePlan(this);

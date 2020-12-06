@@ -30,11 +30,17 @@ bool StudyPlan::AddCourse(Course* pC, int year, SEMESTER sem)
 bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 {
 
+
+	plan[year-1]->DeleteCourse(courseOrder, sem);
+	return true;
+	
+
 	if (plan[year - 1]->DeleteCourse(courseOrder, sem))
 	{
 		return true;
 	}
 	return false;
+
 }
 
 void StudyPlan::DrawMe(GUI* pGUI) const
