@@ -28,10 +28,12 @@ enum ActionType
 	ADD_Notes,   //Add notes 
 	Despaly_Notes,
 	Replace_CRS,  //replace a course
+	REORDER, //reorder the course to another sem or year
 
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled
 
+	ImportReq, //import prog req
 	EXIT,		//Exit the application
 
 	STATUS_BAR,	//A click on the status bar
