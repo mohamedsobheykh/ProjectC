@@ -162,6 +162,8 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionImportReq.cpp">
+		<Filter>Actions</Filter>
+	</ClCompile>
     <ClCompile Include="Actions\ActionReorderCourses.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -267,6 +269,8 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionImportReq.h">
+		<Filter>Actions</Filter>
+	</ClInclude>
     <ClInclude Include="Actions\ActionReorderCourses.h">
       <Filter>Actions</Filter>
     </ClInclude>
