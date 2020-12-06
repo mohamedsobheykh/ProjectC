@@ -26,6 +26,7 @@ class GUI
 		ITM_Replace_CRS,
 		ITM_Save,
 		ITM_Load,
+		ITM_Reorder,
 		ITM_ProgRec,
 		ITM_EXIT,		//Exit item
 
@@ -54,6 +55,8 @@ class GUI
 	window* pWind;
 public:
 	GUI();
+	void setFillColor(const color);
+
 	void CreateMenu() const;
 	void ClearDrawingArea() const;
 	void ClearStatusBar() const;	//Clears the status bar

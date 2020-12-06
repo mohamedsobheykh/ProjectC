@@ -9,6 +9,7 @@
 #include "Actions/ActionImportReq.h"
 #include <iostream>
 #include "Actions/ActionDisplayInfo.h"
+#include "Actions/ActionReorderCourses.h"
 
 using namespace std;
 
@@ -76,7 +77,10 @@ Action* Registrar::CreateRequiredAction()
 		RequiredAction = new ActionExit(this);
 		break;
 	case DRAW_AREA:
-		RequiredAction = new ActionDisplayInfo(this);
+		RequiredAction = new ActionDisplayInfo(this , actData);
+		break;
+	case REORDER:
+		RequiredAction = new ActionReorderCourses(this);
 		break;
 
 

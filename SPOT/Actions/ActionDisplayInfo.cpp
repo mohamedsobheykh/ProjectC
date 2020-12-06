@@ -1,12 +1,14 @@
 #include "ActionDisplayInfo.h"
 #include "..\Registrar.h"
 #include "../Courses/UnivCourse.h"
-
+using namespace std;
 #include <iostream>
 
-ActionDisplayInfo::ActionDisplayInfo(Registrar* p) : Action(p)
+ActionDisplayInfo::ActionDisplayInfo(Registrar* p , ActionData actData_) : Action(p)
 {
+	actData = actData_;
 }
+
 
 bool ActionDisplayInfo::Execute()
 {
@@ -16,11 +18,13 @@ bool ActionDisplayInfo::Execute()
 	//TODO: add input validation
 
 
-	ActionData actData = pGUI->GetUserAction("double click on any course to get it's information ..");
+	//ActionData actData = pGUI->GetUserAction("double click on any course to get it's information ..");
 	//TODO: add input validation done
 
 	int x, y;
-	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
+	Course* pC;
+	//if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
+	do
 	{
 		//get coord where user clicked
 		x = actData.x;
@@ -35,15 +39,29 @@ bool ActionDisplayInfo::Execute()
 
 		StudyPlan* pSPlan = pReg->getStudyPlay();
 		//get the choiced course from the study plan function getcourse()
-		Course* pC = pSPlan->getCourse(choicedYear, choicedSemester, choicedCourse);
-		
+		pC = pSPlan->getCourse(choicedYear, choicedSemester, choicedCourse);
+
+		if (!pC) 
+		{
+			return false;
+		}
+		//select the course
+		pC->setSelected(true);
+		pGUI->DrawCourse(pC);
+
 		char CR = char( pC->getCredits() );
 		string Code = pC->getCode();
 		string Title = pC->getTitle();
-		pGUI->GetUserAction("Code: " + Code + ", Title: " + Title + ", CR: " + CR);
+		actData = pGUI->GetUserAction("Code: " + Code + ", Title: " + Title + ", CR: " + CR);
+		
+		//unselect
+		pC->setSelected(false);
+		pGUI->DrawCourse(pC);
 
-		return true;
-	}
+	} while (pC);
+
+	return true;
+
 }
 
 ActionDisplayInfo::~ActionDisplayInfo()

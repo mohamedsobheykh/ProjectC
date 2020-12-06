@@ -14,6 +14,11 @@ GUI::GUI()
 	CreateMenu();
 }
 
+void GUI::setFillColor(const color newFillColor)
+{
+	FillColor = newFillColor;
+}
+
 
 
 
@@ -51,7 +56,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Save] = "GUI\\Images\\Menu\\Menu_Save.jpg";
 	MenuItemImages[ITM_Load] = "GUI\\Images\\Menu\\Menu_Load.jpg";
 	MenuItemImages[ITM_ProgRec] = "GUI\\Images\\Menu\\Menu_ProgRec.jpg"; ////////////////////
-	//MenuItemImages[ITM_EXIT] = "GUI\\Images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
+
 
 	//TODO: Prepare image for each menu item and add it to the list
 
@@ -379,6 +385,7 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_Save: return ActionData { SAVE }; // save course sobhey
 				case ITM_Load: return ActionData{ LOAD }; // Load course sobhey
 				case ITM_ProgRec: return ActionData{ ImportReq }; // import program req
+				case ITM_Reorder: return ActionData{ REORDER };
 				
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar

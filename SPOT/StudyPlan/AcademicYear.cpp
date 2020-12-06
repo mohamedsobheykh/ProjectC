@@ -16,15 +16,21 @@ AcademicYear::~AcademicYear()
 bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 {
 	
-	//This function still needs many checks to be compelete
-	YearCourses[sem].push_back(pC);
-	
 	//setting the y graphics info to be as the order of the course in the semester
 	graphicsInfo course = pC->getGfxInfo();
-	int courseOrder = YearCourses[sem].size();
+	int courseOrder = YearCourses[sem].size() + 1;
 	course.y = 150 + (courseOrder-1)*50;
 	pC->setGfxInfo(course);
 	/////////
+
+	if (!pC)
+	{
+		return false;
+	}
+
+	YearCourses[sem].push_back(pC);
+	
+	
 
 	TotalCredits += pC->getCredits();
 
@@ -47,7 +53,7 @@ bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 		}
 		counter++;
 	}
-	//earCourses[sem].erase(YearCourses[sem].begin() + courseOrder , YearCourses[sem].begin() + courseOrder+1);
+
 	return false;
 }
 //
@@ -66,6 +72,7 @@ Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 		}
 		counter++;
 	}
+	return nullptr;
 	
 }
 

@@ -27,6 +27,7 @@ enum ActionType
 	LOAD,		//Load a study plan from a file
 	ADD_Notes,   //Add notes 
 	Replace_CRS,  //replace a course
+	REORDER, //reorder the course to another sem or year
 
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled
