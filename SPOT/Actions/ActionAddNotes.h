@@ -1,6 +1,6 @@
 #pragma once
 #include "Action.h"
-//Class responsible for adding course action
+
 class ActionAddNotes :
 	public Action
 {

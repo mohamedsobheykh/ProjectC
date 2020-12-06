@@ -47,6 +47,7 @@ bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 		}
 		counter++;
 	}
+	
 	//earCourses[sem].erase(YearCourses[sem].begin() + courseOrder , YearCourses[sem].begin() + courseOrder+1);
 	return false;
 }

@@ -18,7 +18,7 @@ bool ActionAddCourse::Execute()
 
 
 	ActionData actData = pGUI->GetUserAction("Select a year to add coures to:");
-	//TODO: add input validation done
+	
 	
 	int x, y;
 	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area

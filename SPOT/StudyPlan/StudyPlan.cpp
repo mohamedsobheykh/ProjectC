@@ -25,6 +25,7 @@ bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 
 	plan[year-1]->DeleteCourse(courseOrder, sem);
 	return true;
+	
 }
 
 void StudyPlan::DrawMe(GUI* pGUI) const
