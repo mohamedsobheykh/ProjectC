@@ -28,7 +28,7 @@ bool ActionDeleteCourse::Execute()
 		int choicedCourse = (y - 150) / 50;
 		StudyPlan* pSPlan = pReg->getStudyPlay();
 		pSPlan->DeleteCourse(choicedCourse, choicedYear, SEMESTER(choicedSemester));
-
+		
 		
 
 		graphicsInfo gInfo{ x, y };
@@ -49,8 +49,8 @@ bool ActionDeleteCourse::Execute()
 		
 			//TODO:
 
-
-			return true;
+		//pReg->UpdateInterface();
+		return true;
 		
 	}
 }

@@ -14,6 +14,14 @@ GUI::GUI()
 	CreateMenu();
 }
 
+
+void GUI::CreateNewWindow()
+{
+	pWind2 = new window(400, 300, 50, 50);
+	pWind2->DrawCircle(20, 20, 20);
+	ClearDrawingArea();
+}
+
 void GUI::setFillColor(const color newFillColor)
 {
 	FillColor = newFillColor;
@@ -60,7 +68,7 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
 
 
-	//TODO: Prepare image for each menu item and add it to the list
+	//TODO: Prepare image for each menu item and add it to the list done
 
 	//Draw menu items one image at a time
 	for (int i = 0; i<ITM_CNT; i++)
@@ -82,6 +90,22 @@ void GUI::PrintMsg(string msg) const
 	pWind->SetPen(MsgColor);
 	pWind->DrawString(MsgX, WindHeight - MsgY, msg);
 }
+
+void GUI::PrintNotes(string msg) const
+{
+	//ClearStatusBar();	//Clear Status bar to print message on it
+						// Set the Message offset from the Status Bar
+	int MsgX = 780;
+	int MsgY = 10;
+
+	// printting the note
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->SetPen(MsgColor);
+	pWind->DrawString(MsgX,MsgY, msg);
+
+	
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 void GUI::UpdateInterface() const
@@ -126,7 +150,8 @@ void GUI::DrawCourse(const Course* pCrs)
 		else if ((gInfo.x > 86.7)& (gInfo.x < 166))
 		{
 			
-			
+
+
 			gInfo.x = 86.7;
 		}
 		else if ((gInfo.x > 166)& (gInfo.x < 253))
@@ -218,7 +243,7 @@ void GUI::DrawCourse(const Course* pCrs)
 		}
 		//y cordinate
 
-		if (gInfo.y < 190)
+		/*if (gInfo.y < 190)
 		{
 			gInfo.y = 150;
 		}
@@ -257,7 +282,7 @@ void GUI::DrawCourse(const Course* pCrs)
 		else if ((gInfo.y > 600)& (gInfo.y < 680))
 		{
 			gInfo.y = 580;
-		}
+		}*/
 		/*else if ((gInfo.y >= 620))
 		{
 			gInfo.y = -1;
