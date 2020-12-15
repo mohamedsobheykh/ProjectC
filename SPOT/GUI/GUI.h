@@ -54,17 +54,18 @@ class GUI
 	string WindTitle = "Study-Plan Organizational Tool (SPOT)";
 
 	window* pWind;
+	window* pWind2;
 public:
 	GUI();
 	void setFillColor(const color);
-
+	void CreateNewWindow();
 	void CreateMenu() const;
 	void ClearDrawingArea() const;
 	void ClearStatusBar() const;	//Clears the status bar
-
+	
 	//output functions
 	void PrintMsg(string msg) const;		//prints a message on status bar
-
+	void PrintNotes(string msg) const;
 	//Drawing functions
 	void DrawCourse(const Course* );
 	void DrawAcademicYear(const AcademicYear*);

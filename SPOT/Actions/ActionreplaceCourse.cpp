@@ -10,13 +10,12 @@ bool ActionreplaceCourse::Execute()
 {
 	GUI* pGUI = pReg->getGUI();
 
-	pGUI->PrintMsg("select the Substituter course u wanna replace with: ");
-	string Substituter = pGUI->GetSrting();   //I used Notes after I defined it as a data type "string" to save the notes in it 
+	
 
 	//updated instrad of report#2
-	ActionData actData = pGUI->GetUserAction("Select a the replaced coures to:");
-
-
+	ActionData actData = pGUI->GetUserAction("Select the replaced coures to:");
+	
+	
 	int x, y;
 	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
 	{
@@ -32,26 +31,24 @@ bool ActionreplaceCourse::Execute()
 
 
 		graphicsInfo gInfo{ x, y };
-		//TODO: given course code, get course title, crd hours from registrar
-		//For now, we will add any dummy values
+		
 		string Title = "Test101";
 		int crd = 0;
+		pGUI->PrintMsg("Enter the code of Substituter course u wanna replace with: ");
+		string Substituter = pGUI->GetSrting();
 		Course* pC = new Course(Substituter, Title, crd);
+	
 		pC->setGfxInfo(gInfo);
-
+		bool a = true;
 		StudyPlan* pS = pReg->getStudyPlay();
-		if (pS->DeleteCourse((y - 150) / 50, choicedYear, SEMESTER(choicedSemester - 1)))
+		
+		if ( pS->DeleteCourse((y - 150) / 50, choicedYear, SEMESTER(choicedSemester - 1)))
 		{
-			
 			pS->AddCourse(pC, choicedYear, SEMESTER(choicedSemester - 1));
+			return false;
 		}
 		
-
-
-
-
-
-		//TODO:
+		
 
 
 		return true;
