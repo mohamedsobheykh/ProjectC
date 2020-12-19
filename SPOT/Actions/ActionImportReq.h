@@ -7,7 +7,7 @@ class ActionImportReq :
 	public Action
 {
 	fstream majorrules;
-	Rules* Rule1 = new Rules;
+	Rules* Rule1;
 public:
 	ActionImportReq(Registrar*);
 	bool virtual Execute();

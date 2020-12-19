@@ -22,6 +22,7 @@ Registrar::Registrar()
 {
 	pGUI = new GUI;	//create interface object
 	pSPlan = new StudyPlan;	//create a study plan.
+	pRules = new Rules;
 }
 
 //returns a pointer to GUI
@@ -36,22 +37,11 @@ StudyPlan* Registrar::getStudyPlay() const
 	return pSPlan;
 }
 
-/* bool Registrar::saveStudyPlan(string name)
+Rules* Registrar::getRules() const
 {
-	string directory = "savedplans\\" + name + ".txt";
-	fstream* pFile = new fstream (directory, ios::out);
+	return pRules;
+}
 
-	if (!*pFile) // checks that the file is opened successfully
-	{
-		return false;
-	}
-
-	pSPlan->SaveMe(pFile);
-
-	(*pFile).close();
-	delete pFile;
-	return true;
-} */
 
 Action* Registrar::CreateRequiredAction() 
 {	
@@ -125,7 +115,10 @@ void Registrar::Run()
 		if (pAct)	//if user doesn't cancel
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
+			{
 				UpdateInterface();
+				checkRules();
+			}
 		}
 		//cout << ActionImportReq.Rule1.
 		
@@ -137,6 +130,23 @@ void Registrar::UpdateInterface()
 {
 	pGUI->UpdateInterface();	//update interface items
 	pSPlan->DrawMe(pGUI);		//make study plan draw itself
+}
+
+void Registrar::checkRules()
+{
+	pRules->Issues = new Issues;
+
+	if (!pSPlan->checkRules(pRules))
+	{
+		//TODO
+		for (int i = 0; i < pRules->Issues->planIssues.size(); i++)
+		{
+			pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+		}
+	}
+
+	delete pRules->Issues;
+		
 }
 
 Registrar::~Registrar()

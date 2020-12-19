@@ -10,7 +10,7 @@
 class Registrar
 {
 	GUI *pGUI;	//pointer to GUI 
-	Rules RegRules;	//Registration rules
+	Rules* pRules;	//Registration rules
 	StudyPlan *pSPlan;
 
 public:
@@ -20,6 +20,10 @@ public:
 	bool ExecuteAction(Action*);
 	void UpdateInterface();
 	StudyPlan* getStudyPlay() const;
+
+	Rules* getRules() const;
+
+	void checkRules();
 
 	void Run();
 

@@ -167,3 +167,39 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
 	}
 	delete line;
 }
+
+bool AcademicYear::checkCredits(Rules* pRules)
+{
+	int semCrCount = 0;
+	bool issuesStatus = true;
+	for (int sem = FALL; sem < SUMMER; sem++)
+	{
+		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
+		{
+			semCrCount += (*it)->getCredits();	//call DrawMe for each course in this semester
+
+		}
+
+		if (semCrCount < pRules->SemMinCredit)
+		{
+			Issue minCredit;
+			minCredit.issueLabel = MODERATE;
+			minCredit.issueInfo = "Semesters minimum credits are unvalid";
+			pRules->Issues->planIssues.push_back(minCredit);
+
+			issuesStatus = false;
+		}
+
+		if (semCrCount > pRules->SemMaxCredit)
+		{
+			Issue maxCredit;
+			maxCredit.issueLabel = MODERATE;
+			maxCredit.issueInfo = "Semester maximum credits unvalid";
+			pRules->Issues->planIssues.push_back(maxCredit);
+
+			issuesStatus = false;
+		}
+	}
+		
+	return issuesStatus;
+}
