@@ -141,7 +141,7 @@ void Registrar::checkRules()
 		//TODO
 		for (int i = 0; i < pRules->Issues->planIssues.size(); i++)
 		{
-			pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+			//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
 		}
 	}
 
