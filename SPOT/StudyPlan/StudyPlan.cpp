@@ -78,6 +78,20 @@ Course* StudyPlan::getCourse(int year, SEMESTER sem, int courseIndex)
 	return choicedCourse;
 }
 
+bool StudyPlan::checkRules(Rules* pRules)
+{
+	bool issuesStatus = true;
+	//Check Credits
+	for (int i = 0; i < plan.size(); i++)
+	{
+		if (!plan[i]->checkCredits(pRules))
+			issuesStatus = false;
+	}
+	///////////////
+
+	return issuesStatus;
+}
+
 StudyPlan::~StudyPlan()
 {
 }

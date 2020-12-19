@@ -3,7 +3,8 @@
 
 #include "..\Courses\Course.h"
 #include "../GUI/Drawable.h"
-
+#include "../Rules.h"
+using namespace std;
 //Represent one year in the student's study plan
 class AcademicYear:public Drawable
 {
@@ -32,5 +33,7 @@ public:
 	void virtual DrawMe(GUI*) const;
 	void SaveMe(fstream*, int);
 	virtual void ImportMe(fstream*, int);
+
+	bool checkCredits(Rules* pRules);
 };
 

@@ -54,4 +54,15 @@ struct ActionData
 	
 };
 
+enum IssueLabel
+{
+	CRITICAL,
+	MODERATE
+};
+struct Issue
+{
+	IssueLabel issueLabel;
+	string issueInfo;
+};
+
 

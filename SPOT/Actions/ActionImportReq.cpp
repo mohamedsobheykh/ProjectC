@@ -15,7 +15,7 @@ ActionImportReq::ActionImportReq(Registrar* p) :Action(p)
 bool ActionImportReq::Execute()
 {
 	GUI* pGUI = pReg->getGUI();
-
+    Rule1 = pReg->getRules();
 	//ActionData actData = pGUI->GetUserAction("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ] ");
 	pGUI->PrintMsg("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ]");
 	string majorrec = pGUI->GetSrting();
@@ -234,6 +234,8 @@ bool ActionImportReq::Execute()
     }
     Rule1->ReqMajorCredits = Rule1->Major_compulsory_cr + Rule1->Major_elective_cr;
     (majorrules).close();
+    Rule1->SemMinCredit = 12;
+    Rule1->SemMaxCredit = 18;
     pGUI->PrintMsg(" \\*o*/ ");
    // pGUI->PrintMsg(" imported ! ");
 	return true;

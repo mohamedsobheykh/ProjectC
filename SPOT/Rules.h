@@ -33,6 +33,11 @@ struct AcademicYearOfferings
 	vector<Course_Code> Offerings[SEM_CNT];
 };
 
+struct Issues
+{
+	vector<Issue> planIssues;
+};
+
 struct Rules	//contains all objects for registrations rules
 {
 	//TODO: add more fields if needed
@@ -76,9 +81,10 @@ struct Rules	//contains all objects for registrations rules
 	vector<Course_Code> consentration4_com;	//consentration 4 courses comp
 	vector<Course_Code> consentration4_ele;	//consentration 4 courses electives
 
-
 	
+	Issues* Issues;
 };
+
 /* format of the txt file:
 * 
 total cr

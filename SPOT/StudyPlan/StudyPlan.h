@@ -3,6 +3,7 @@
 #include "AcademicYear.h"
 #include "../GUI/Drawable.h"
 
+
 //A full study plan for as student
 class StudyPlan:public Drawable
 {
@@ -23,6 +24,8 @@ public:
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);
 	virtual Course* getCourse(int, SEMESTER, int);
+
+	bool checkRules(Rules* pRules);
 	virtual ~StudyPlan();
 };
 
