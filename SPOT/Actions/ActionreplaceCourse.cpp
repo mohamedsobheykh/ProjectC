@@ -1,20 +1,19 @@
 #include "ActionreplaceCourse.h"
 #include "..\Registrar.h"
 
-
-ActionreplaceCourse::ActionreplaceCourse(Registrar* p) :Action(p)
+//, ActionData actData
+ActionreplaceCourse::ActionreplaceCourse(Registrar* p ) : Action(p)
 {
+	//this->actData = actData;
 }
 
 bool ActionreplaceCourse::Execute()
 {
 	GUI* pGUI = pReg->getGUI();
 
-	
+	ActionData actData = pGUI->GetUserAction("Select a  course to be replaced :");
 
 	//updated instrad of report#2
-	ActionData actData = pGUI->GetUserAction("Select the replaced coures to:");
-	
 	
 	int x, y;
 	if (actData.actType == DRAW_AREA)	//user clicked inside drawing area
@@ -28,8 +27,8 @@ bool ActionreplaceCourse::Execute()
 		//int courseHight = 50;
 		int choicedYear = (x / yearWidth) + 1;
 		int choicedSemester = ((x % yearWidth) / semWidth) + 1;
-
-
+		
+		
 		graphicsInfo gInfo{ x, y };
 		
 		string Title = "Test101";
@@ -37,15 +36,17 @@ bool ActionreplaceCourse::Execute()
 		pGUI->PrintMsg("Enter the code of Substituter course u wanna replace with: ");
 		string Substituter = pGUI->GetSrting();
 		Course* pC = new Course(Substituter, Title, crd);
-	
+	    
 		pC->setGfxInfo(gInfo);
-		bool a = true;
+		//bool a = true;
 		StudyPlan* pS = pReg->getStudyPlay();
+		
+		AcademicYear* c;
 		
 		if ( pS->DeleteCourse((y - 150) / 50, choicedYear, SEMESTER(choicedSemester - 1)))
 		{
 			pS->AddCourse(pC, choicedYear, SEMESTER(choicedSemester - 1));
-			return false;
+			//return false;
 		}
 		
 		

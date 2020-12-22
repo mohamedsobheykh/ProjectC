@@ -18,8 +18,14 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 	
 	//setting the y graphics info to be as the order of the course in the semester
 	graphicsInfo course = pC->getGfxInfo();
+	//to get the x and y cordinates of that course 
 	int courseOrder = YearCourses[sem].size() + 1;
+	//course order is calculated by adding 1 to the size of the list of the courses so it checks
+	//the size if the list then add anew course to it 
 	course.y = 150 + (courseOrder-1)*50;
+	//here 150 it the place which we begin to draw courses 
+	// 50 is the height of the rectangle of the course
+	//(courseOrder-1) after deduction by one it put the 1st item for example on y = 150 
 	pC->setGfxInfo(course);
 	/////////
 
@@ -43,22 +49,32 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 //function to delete a course abedal
 bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 {
+	//counter here to enable us to move over all courses till we find the choiced course
 	int counter = 0;
+	//keyword auto to create an iterator of the same type  the list's elements
 	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 	{
 		if (counter == courseOrder)
 		{
 			YearCourses[sem].erase(it);
+			//removing the item which a specific order in the list of courses
 			return true;
 		}
 		counter++;
+		//increament to get the second item of the list 
 	}
 
-	
+		
 
 	return false;
 }
 //
+
+//int AcademicYear::size(Course* pC, SEMESTER sem)
+//{
+//	int s = YearCourses[sem].size();
+//	return s;
+//}
 
 Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 {
