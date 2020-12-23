@@ -26,7 +26,7 @@ public:
 
 	bool AddCourse(Course*, SEMESTER);
 	bool DeleteCourse(int, SEMESTER);  // to delete a course from a specific year and demester
-
+	//int size(Course*, SEMESTER);
 	
 	Course* getCourse(SEMESTER, int);
 

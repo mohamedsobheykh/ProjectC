@@ -125,6 +125,7 @@
     <ClCompile Include="Actions\ActionDesplayNotes.cpp" />
     <ClCompile Include="Actions\ActionDisplayInfo.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
+    <ClCompile Include="Actions\ActionImportCat.cpp" />
     <ClCompile Include="Actions\ActionImportPlan.cpp" />
     <ClCompile Include="Actions\ActionReorderCourses.cpp" />
     <ClCompile Include="Actions\ActionreplaceCourse.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Actions\ActionDesplayNotes.h" />
     <ClInclude Include="Actions\ActionDisplayInfo.h" />
     <ClInclude Include="Actions\ActionExit.h" />
+    <ClInclude Include="Actions\ActionImportCat.h" />
     <ClInclude Include="Actions\ActionImportPlan.h" />
     <ClInclude Include="Actions\ActionReorderCourses.h" />
     <ClInclude Include="Actions\ActionreplaceCourse.h" />
