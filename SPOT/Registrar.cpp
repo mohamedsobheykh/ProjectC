@@ -1,4 +1,4 @@
-#include "Registrar.h"
+﻿#include "Registrar.h"
 #include "GUI/GUI.h"
 #include "Actions/ActionAddCourse.h"
 #include "Actions/ActionDeleteCourse.h"
@@ -22,9 +22,113 @@ Registrar::Registrar()
 {
 	pGUI = new GUI;	//create interface object
 	pSPlan = new StudyPlan;	//create a study plan.
+<<<<<<< Updated upstream
 	pRules = new Rules;
+=======
+	ImportCourseCat();
+>>>>>>> Stashed changes
 }
+void Registrar::ImportCourseCat()
+{
+	ifstream myfile("Catalog.txt");
+	if (!myfile.is_open())
+	{
+		cout << "there is an error! " << endl;
+	}
+	else
+	{
+		char* cutting;
+		char* context = nullptr;
+		const int size = 100;
+		char line[size];
+		CourseInfo s;
+		while (myfile.getline(line, size))
+		{
+			string a, b, c, d, e;
+			cutting = strtok_s(line, ",", &context);
+			int counter = 0;
+			while (cutting != NULL)
+			{
+				a = cutting;
+				//cout << cutting << " ";
+				s.Code = cutting;
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//CourseInfo* s = new CourseInfo;
+				//if (counter == 0)
+				//{
+				a = cutting;
+				//cout << a << " ";
+				s.Title = cutting;
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//}
+				//else if (counter == 1)
+				//{
+				b = cutting;
+				//cout << b << " ";
+				s.Credits = stoi(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//}
+				//else if (counter == 2)
+				//{
+				c = cutting;
+				//cout << c << " "; deleted forever 
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//}
+				//else if (counter == 3)
+				//{
+				d = cutting;
+				//cout << d << " ";
+				s.CoReqList.push_back(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//}
+				//else if (counter == 4)
+				//{
+				e = cutting;
+				//cout << e << " "; deldeted forever
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//}
+				//f
+				//cout << cutting << " ";
+				s.PreReqList.push_back(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				//g
+				//cout << cutting << " ";
+				s.PreReqList.push_back(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
 
+				//cout << cutting << " ";
+				s.PreReqList.push_back(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				counter++;
+
+				//else if (counter == 5)
+				//{
+				//    //e = cutting;
+				//    cout << cutting << " ";
+				cutting = strtok_s(NULL, ",", &context);
+				//    counter++;
+				//}
+				//s->Code = cutting;
+				//cout << "gfd";
+			}
+			
+			cout << endl;
+			RegRules.CourseCatalog.push_back(s);
+		}
+		
+
+	}
+	
+    
+}
 //returns a pointer to GUI
 GUI* Registrar::getGUI() const
 {
@@ -153,3 +257,55 @@ Registrar::~Registrar()
 {
 	delete pGUI;
 }
+// here
+////cutting = strtok_s(NULL, ",", &context);
+//				/*a = cutting;
+//				cout << cutting << " ";
+//				cutting = strtok_s(NULL, ",", &context);
+//				counter++;*/
+//				//CourseInfo* s = new CourseInfo;
+//
+//if (counter == 0)
+//{
+//	//s.Code = cutting;
+//	cout << cutting << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+//else if (counter == 1)
+//{
+//	//s.Title = cutting;
+//	cout << cutting << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+//else if (counter == 2)
+//{
+//	//s.Credits = stoi(cutting);
+//	cout << cutting << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+//else if (counter == 3)
+//{
+//	//s.CoReqList.push_back(cutting);
+//	cout << cutting << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+//else if (counter == 4)
+//{
+//	e = cutting;
+//	cout << e << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+//else if (counter == 5)
+//{
+//	//e = cutting;
+//	cout << cutting << " ";
+//	cutting = strtok_s(NULL, ",", &context);
+//	counter++;
+//}
+////s->Code = cutting;
+////cout << "gfd";
