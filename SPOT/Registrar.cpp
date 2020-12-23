@@ -22,11 +22,8 @@ Registrar::Registrar()
 {
 	pGUI = new GUI;	//create interface object
 	pSPlan = new StudyPlan;	//create a study plan.
-<<<<<<< Updated upstream
 	pRules = new Rules;
-=======
 	ImportCourseCat();
->>>>>>> Stashed changes
 }
 void Registrar::ImportCourseCat()
 {
@@ -121,7 +118,7 @@ void Registrar::ImportCourseCat()
 			}
 			
 			cout << endl;
-			RegRules.CourseCatalog.push_back(s);
+			pRules->CourseCatalog.push_back(s);
 		}
 		
 

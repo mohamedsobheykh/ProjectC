@@ -20,15 +20,12 @@ public:
 	bool ExecuteAction(Action*);
 	void UpdateInterface();
 	StudyPlan* getStudyPlay() const;
-<<<<<<< Updated upstream
 
 	Rules* getRules() const;
 
 	void checkRules();
 
-=======
 	void ImportCourseCat();
->>>>>>> Stashed changes
 	void Run();
 
 	~Registrar();
