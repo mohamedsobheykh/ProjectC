@@ -89,6 +89,98 @@ bool StudyPlan::checkRules(Rules* pRules)
 	}
 	///////////////
 
+	//Check pre/co-requisities
+	for (int year = 0; year < plan.size(); year++)
+	{
+		for (int sem = FALL; sem < SEM_CNT; sem++)
+		{
+			int counter = 0;
+			Course* pC = plan[year]->getCourse((SEMESTER)sem, counter); //the course that we will check
+
+			while (pC) {
+				vector<Course_Code> PreReq = pC->getInfo()->PreReqList;
+				//could be changed anytime for the right getter and the loop would remain the same
+				
+				for (Course_Code PreCode : PreReq) //loop each pre requisite for the course
+				{
+					bool found = false;
+					// check if the pre requisite course found
+					for (int preYear = year; preYear >= 0 && !found; preYear--)
+					{
+						int preSem;
+
+						if (preYear == year)
+							preSem = sem - 1;
+
+						else
+							preSem = SUMMER;
+
+						for (preSem; preSem >= 0 && !found; preSem--)
+						{
+							int preCounter = 0;
+							Course* preC = plan[preYear]->getCourse((SEMESTER)preSem, preCounter);
+							while (preC)
+							{
+								if (PreCode == preC->getCode())
+								{
+									found = true;
+									break;
+								}
+								preCounter++;
+								preC = plan[preYear]->getCourse((SEMESTER)preSem, preCounter);
+							}
+
+						}
+					}
+
+					if (!found)
+					{
+						Issue preReqIssue;
+						preReqIssue.issueLabel = CRITICAL;
+						preReqIssue.issueInfo = PreCode + " is a missing Pre-Requisite for " + pC->getCode();
+						pRules->Issues->planIssues.push_back(preReqIssue);
+
+						issuesStatus = false;
+					}
+				}
+
+				vector<Course_Code> CoReq = pC->getInfo()->CoReqList;
+
+				for (Course_Code CoReqCode : CoReq) //loop each pre requisite for the course
+				{
+					bool found = false;
+					// check if the pre requisite course found
+					int CoCounter = 0;
+					Course* coC = plan[year]->getCourse((SEMESTER)sem, CoCounter);
+					while (coC)
+					{
+						if (CoReqCode == coC->getCode())
+						{
+							found = true;
+							break;
+						}
+						CoCounter++;
+						coC = plan[year]->getCourse((SEMESTER)sem, CoCounter);
+					}
+
+					if (!found)
+					{
+						Issue CoReqIssue;
+						CoReqIssue.issueLabel = CRITICAL;
+						CoReqIssue.issueInfo = CoReqCode + " is a missing Co-Requisite for " + pC->getCode();
+						pRules->Issues->planIssues.push_back(CoReqIssue);
+
+						issuesStatus = false;
+					}
+				}
+
+				counter++;
+				pC = plan[year]->getCourse((SEMESTER)sem, counter);
+			}
+		}
+	}
+	///////////
+
 	return issuesStatus;
 }
 

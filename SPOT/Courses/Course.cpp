@@ -26,6 +26,12 @@ int Course::getCredits() const
 	return credits;
 }
 
+CourseInfo* Course::getInfo()
+{
+	CourseInfo* pInfo = &Info;
+	return pInfo;
+}
+
 void Course::DrawMe(GUI* pG) const
 {
 	pG->DrawCourse(this);

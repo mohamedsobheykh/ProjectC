@@ -62,19 +62,13 @@ bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 
 Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 {
-	
-	int counter = 0;
-	//loop over the semester courses to get the required course
-	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
-	{
-		if (counter == courseIndex)
-		{
-			//choicedCourse = 
-			return (*it);
-		}
-		counter++;
-	}
-	return nullptr;
+	if (courseIndex >= YearCourses[sem].size())
+		return nullptr;
+
+	auto it = YearCourses[sem].begin();
+	advance(it, courseIndex);
+
+	return *it;
 	
 }
 
@@ -203,3 +197,4 @@ bool AcademicYear::checkCredits(Rules* pRules)
 		
 	return issuesStatus;
 }
+
