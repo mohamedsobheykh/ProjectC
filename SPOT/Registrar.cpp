@@ -46,15 +46,16 @@ void Registrar::ImportCourseCat()
 			int counter = 0;
 			while (cutting != NULL)
 			{
+				//CourseInfo s;
 				a = cutting;
-				//cout << cutting << " ";
+			    //cout << cutting << " ";
 				s.Code = cutting;
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				//CourseInfo* s = new CourseInfo;
 				//if (counter == 0)
 				//{
-				a = cutting;
+				//a = cutting;
 				//cout << a << " ";
 				s.Title = cutting;
 				cutting = strtok_s(NULL, ",", &context);
@@ -62,7 +63,7 @@ void Registrar::ImportCourseCat()
 				//}
 				//else if (counter == 1)
 				//{
-				b = cutting;
+				//b = cutting;
 				//cout << b << " ";
 				s.Credits = stoi(cutting);
 				cutting = strtok_s(NULL, ",", &context);
@@ -79,7 +80,10 @@ void Registrar::ImportCourseCat()
 				//{
 				d = cutting;
 				//cout << d << " ";
-				s.CoReqList.push_back(cutting);
+				if (d != " ")
+				{
+					s.CoReqList.push_back(cutting);
+				}
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				//}
@@ -92,17 +96,26 @@ void Registrar::ImportCourseCat()
 				//}
 				//f
 				//cout << cutting << " ";
-				s.PreReqList.push_back(cutting);
+				if (cutting != " ")
+				{
+					s.PreReqList.push_back(cutting);
+				}
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				//g
 				//cout << cutting << " ";
-				s.PreReqList.push_back(cutting);
+				if (cutting != " ")
+				{
+					s.PreReqList.push_back(cutting);
+				}
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 
 				//cout << cutting << " ";
-				s.PreReqList.push_back(cutting);
+				if (cutting != " ")
+				{
+					s.PreReqList.push_back(cutting);
+				}
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 
@@ -115,17 +128,45 @@ void Registrar::ImportCourseCat()
 				//}
 				//s->Code = cutting;
 				//cout << "gfd";
+				//pRules->CourseCatalog.push_back(s);
 			}
 			
-			cout << endl;
+			//cout << endl;
+			//RegRules.CourseCatalog.push_back(s);
 			pRules->CourseCatalog.push_back(s);
+			//cout << "abd";
 		}
-		
+	} 
+}
 
+void Registrar::ImportCourseOfferings()
+{
+}
+
+//getting course data abedal
+CourseInfo* Registrar::GetCourseInfo(Course_Code code)
+{
+	//cout << "HI " << pRules->CourseCatalog.size();
+	//while (1);
+
+	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
+	{
+		//cout << pRules->CourseCatalog[2].Code;
+		if (pRules->CourseCatalog[i].Code == code)
+		{
+			
+			return &pRules->CourseCatalog[i];
+		}
+
+		else
+		{
+			//cout << i;
+			//return NULL;
+		}
 	}
 	
-    
 }
+
 //returns a pointer to GUI
 GUI* Registrar::getGUI() const
 {
