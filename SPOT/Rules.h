@@ -32,7 +32,7 @@ struct AcademicYearOfferings
 	//So Offerings[SUMMER] is a vector of courses offered in SUMMER in THAT year
 	vector<Course_Code> Offerings[SEM_CNT];
 };
-
+ 
 struct Issues
 {
 	vector<Issue> planIssues;

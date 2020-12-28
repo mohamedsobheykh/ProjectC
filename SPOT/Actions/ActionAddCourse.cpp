@@ -14,9 +14,12 @@ bool ActionAddCourse::Execute()
 	pGUI->PrintMsg("Add Course to plan: Enter course Code(e.g. CIE202):");
 
 	//using the function printmsg to print a message on the status bar
-	Course_Code code = pGUI->GetSrting();
 	//wating the user to enable him to enter the code for that course
 
+	Course_Code code = pGUI->GetSrting();
+
+	CourseInfo* CourseData = pReg->GetCourseInfo(code); //added new to get the information of the courses 
+	
 	//TODO: add input validation
 
 
@@ -43,15 +46,18 @@ bool ActionAddCourse::Execute()
 		graphicsInfo gInfo{ x, y };
 		//TODO: given course code, get course title, crd hours from registrar
 		//For now, we will add any dummy values
-		string Title = "Test101";
-		int crd = 0;
+		//string Title = "Test101";
+		//int crd = 0;
+		
+	
+        string Title = CourseData->Title;// added 
+		int crd = CourseData->Credits;// added 
+
 		Course* pC = new Course(code, Title, crd);
 		pC->setGfxInfo(gInfo);
 
 		StudyPlan* pS = pReg->getStudyPlay();
 		pS->AddCourse(pC, choicedYear, SEMESTER(choicedSemester));
-
-		
 		//: Ask registrar to add course to the year selected by the user  done
 		//: add the course to the correct year obtained from registrar   done
 

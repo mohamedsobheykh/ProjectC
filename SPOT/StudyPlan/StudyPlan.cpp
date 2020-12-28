@@ -38,7 +38,7 @@ bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 	plan[year-1]->DeleteCourse(courseOrder, sem);
 	//useing the function delete to remove that course from the selcted year
 	// -1 as it starts with 0 so 1st itemm its oreder is 0
-	return true;
+    return true;
 	
 
 	if (plan[year - 1]->DeleteCourse(courseOrder, sem))
@@ -46,8 +46,14 @@ bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 	{
 		return true;
 	}
-	return false;
-
+	
+		return false;
+	
+	
+	//else //added
+	//{
+		//return false;
+	//}
 }
 
 void StudyPlan::DrawMe(GUI* pGUI) const

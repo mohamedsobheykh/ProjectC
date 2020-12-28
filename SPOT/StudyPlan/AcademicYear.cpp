@@ -60,6 +60,7 @@ bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 			//removing the item which a specific order in the list of courses
 			return true;
 		}
+		
 		counter++;
 		//increament to get the second item of the list 
 	}
