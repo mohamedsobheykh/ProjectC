@@ -36,7 +36,7 @@ bool ActionAddCourse::Execute()
 		//the width of the academic year
 		int semWidth = 86;
 		//the width of semester
-		//drwan area Width = 80;
+		//drawn area Width = 80;
 		//int courseHight = 50;
 		int choicedYear = (x / yearWidth) + 1;
 		// devide x ordinate by 260 and return an int to get the number of year

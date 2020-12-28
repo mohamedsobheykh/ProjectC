@@ -26,7 +26,7 @@ enum ActionType
 	SAVE,		//Save a study plan to file
 	LOAD,		//Load a study plan from a file
 	ADD_Notes,   //Add notes 
-	Despaly_Notes,
+	Display_Notes,
 	Replace_CRS,  //replace a course
 	REORDER, //reorder the course to another sem or year
 
@@ -39,7 +39,7 @@ enum ActionType
 	STATUS_BAR,	//A click on the status bar
 	MENU_BAR,	//A click on an empty place in the menu bar
 	DRAW_AREA,	//A click in the drawing area
-
+	CalculateGPA,
 	CANCEL,		//ESC key is pressed
 
 	//TODO: Add more action types
