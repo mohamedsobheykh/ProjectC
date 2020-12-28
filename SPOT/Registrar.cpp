@@ -11,7 +11,7 @@
 #include "Actions/ActionDisplayInfo.h"
 #include "Actions/ActionDesplayNotes.h"
 #include "Actions/ActionreplaceCourse.h"
-
+#include"ActionCalculateGPA.h"
 
 #include "Actions/ActionReorderCourses.h"
 
@@ -204,7 +204,7 @@ Action* Registrar::CreateRequiredAction()
 	case ADD_Notes:
 		RequiredAction = new ActionAddNotes(this);
 		break;
-	case Despaly_Notes:
+	case Display_Notes:
 		RequiredAction = new ActionDesplayNotes(this);
 		break;
 	case SAVE:
@@ -221,9 +221,12 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case DRAW_AREA:
 		RequiredAction = new ActionDisplayInfo(this , actData);
+		//RequiredAction = new ActionCalculateGPA(this,actData);
 		break;
 	case REORDER:
 		RequiredAction = new ActionReorderCourses(this);
+	case CalculateGPA:
+		RequiredAction = new ActionCalculateGPA(this);
 		break;
 
 
