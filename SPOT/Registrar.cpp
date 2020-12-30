@@ -157,14 +157,18 @@ CourseInfo* Registrar::GetCourseInfo(Course_Code code)
 			
 			return &pRules->CourseCatalog[i];
 		}
+	}
+//here when the user enter a course that does not exist in the catalog
 
-		else
+	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
+	{
+		//cout << pRules->CourseCatalog[2].Code;
+		if (pRules->CourseCatalog[i].Code != code)
 		{
-			//cout << i;
-			//return NULL;
+
+			return NULL;
 		}
 	}
-	
 }
 
 //returns a pointer to GUI
