@@ -66,7 +66,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Load] = "GUI\\Images\\Menu\\Menu_Load.jpg";
 	MenuItemImages[ITM_ProgRec] = "GUI\\Images\\Menu\\Menu_ProgRec.jpg"; ////////////////////
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
-
+	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
+	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list done
 
@@ -407,14 +408,14 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_EXIT: return ActionData{ EXIT };		//Exit
 				case ITM_Delete: return ActionData{ DEL_CRS };   //abedal delete a course
 				case ITM_Notes: return ActionData{ ADD_Notes };  //abedal delete a course
-				case ITM_DesplayNotes: return ActionData{ Despaly_Notes };
-
+				case ITM_DesplayNotes: return ActionData{ Display_Notes };
+									 
 				case ITM_Replace_CRS: return ActionData{ Replace_CRS };//abedal delete a course
 				case ITM_Save: return ActionData { SAVE }; // save course sobhey
 				case ITM_Load: return ActionData{ LOAD }; // Load course sobhey
 				case ITM_ProgRec: return ActionData{ ImportReq }; // import program req
 				case ITM_Reorder: return ActionData{ REORDER };
-				
+				case ITM_GPA:return ActionData{ CalculateGPA };
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}

@@ -29,6 +29,8 @@ class GUI
 		ITM_Load,
 		ITM_Reorder,
 		ITM_ProgRec,
+		ITM_GPA,
+		ITM_STATUS,
 		ITM_EXIT,		//Exit item
 
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
@@ -55,6 +57,8 @@ class GUI
 
 	window* pWind;
 	window* pWind2;
+	
+
 public:
 	GUI();
 	void setFillColor(const color);
@@ -75,7 +79,9 @@ public:
 	ActionData GUI::GetUserAction(string msg = "") const;
 	string GetSrting() const;
 
+	void DrawCourseGrade(const Course* pCrs);
 
+	
 	
 	
 
