@@ -228,6 +228,7 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case REORDER:
 		RequiredAction = new ActionReorderCourses(this);
+		break;
 	case CalculateGPA:
 		RequiredAction = new ActionCalculateGPA(this);
 		break;
