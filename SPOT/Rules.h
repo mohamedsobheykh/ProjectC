@@ -23,7 +23,7 @@ struct CourseInfo
 struct AcademicYearOfferings
 {
 	string Year; //academic year of the offerings e.g. 2019-2020
-
+	int semester;   //added to use the number of the semester
 
 	//Each year has an array of of 3 vectors of courses CODE. 
 	//Each vector cossrsponds to a semester
