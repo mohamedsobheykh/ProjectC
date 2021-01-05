@@ -180,6 +180,7 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="ActionCalculateGPA.cpp" />
+    <ClCompile Include="ActionSelectCourseStatus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI\GUI.h">
@@ -295,6 +296,11 @@
     </ClInclude>
     <ClInclude Include="Actions\ActionImportCat.h" />
     <ClInclude Include="ActionCalculateGPA.h" />
+    <ClInclude Include="ActionSelectCourseStatus.h" />
+    <ClInclude Include="ActionDisplayStudentLevel.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayStudentLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GUI\CMUgraphicsLib\Manual.txt">

@@ -39,7 +39,8 @@ enum ActionType
 	STATUS_BAR,	//A click on the status bar
 	MENU_BAR,	//A click on an empty place in the menu bar
 	DRAW_AREA,	//A click in the drawing area
-	CalculateGPA,
+	CalculateGPA, // enter the letter grade to each course and calculate the weighted gpa
+	CourseStatus,// choose the course status ( done / pending / in progress )
 	CANCEL,		//ESC key is pressed
 
 	//TODO: Add more action types
