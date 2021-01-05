@@ -416,6 +416,7 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_ProgRec: return ActionData{ ImportReq }; // import program req
 				case ITM_Reorder: return ActionData{ REORDER };
 				case ITM_GPA:return ActionData{ CalculateGPA };
+				case ITM_STATUS:return ActionData{ CourseStatus };
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}
