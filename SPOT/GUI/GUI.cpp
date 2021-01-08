@@ -107,6 +107,40 @@ void GUI::PrintNotes(string msg) const
 	
 }
 
+void GUI::PrintIssue(int Moderate, int Critical)
+{
+	if (Critical > -1)
+	{
+		int MsgX = 1000;
+		int MsgY = 10;
+		
+		pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+		pWind->SetPen(StatusBarColor);
+		pWind->SetBrush(RED);
+		pWind->DrawRectangle(MsgX, MsgY, MsgX + 200, MsgY + 20 ,FILLED);
+		pWind->SetPen(WHITE);
+
+		ostringstream msg;
+		msg << Critical << " CRITICAL ISSUE";
+		pWind->DrawString(MsgX+10, MsgY, msg.str());
+	}
+	if (Moderate > 0)
+	{
+		int MsgX = 1000;
+		int MsgY = 30;
+		
+		pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+		pWind->SetPen(StatusBarColor);
+		pWind->SetBrush(ORANGE);
+		pWind->DrawRectangle(MsgX, MsgY, MsgX + 200, MsgY + 20);
+		pWind->SetPen(WHITE);
+
+		ostringstream msg;
+		msg << Moderate << " MODERATE ISSUE";
+		pWind->DrawString(MsgX + 10, MsgY, msg.str());
+	}
+	
+}
 
 //////////////////////////////////////////////////////////////////////////
 void GUI::UpdateInterface() const
