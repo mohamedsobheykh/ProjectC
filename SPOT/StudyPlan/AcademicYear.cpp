@@ -123,7 +123,7 @@ void AcademicYear::SaveMe(fstream* pFile , int yearNumber)
 
 
 
-void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
+void AcademicYear::ImportMe(fstream* pFile, int yearNumber )
 {
 	string* line = new string;
 	for (int sem = FALL; sem < SEM_CNT; sem++)

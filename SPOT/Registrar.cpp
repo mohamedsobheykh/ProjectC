@@ -353,8 +353,12 @@ void Registrar::checkRules()
 		{
 			if (pRules->Issues->planIssues[i].issueLabel == MODERATE)
 				MOD++;
-			else
+			else if (pRules->Issues->planIssues[i].issueLabel == CRITICAL)
+			{
 				CRI++;
+				//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+			}
+				
 		}
 		pGUI->PrintIssue(MOD,CRI);
 	}

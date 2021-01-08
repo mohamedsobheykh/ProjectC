@@ -41,10 +41,66 @@ bool ActionImportPlan::Execute()
 		return false;
 	}
 
-	importedPlan->ImportMe(pFile);
+	//importedPlan->ImportMe(pFile);
+
+	for (int yearNumber = 1; yearNumber <= 5; yearNumber++)
+	{
+		string* line = new string;
+		for (int sem = FALL; sem < SEM_CNT; sem++)
+		{
+			// getting one semester which represented by a line
+			getline(*pFile, *line);
+
+			// getting every course in the semester
+			// first create the array which will get the course codes
+			int NOFCounter = 0;
+			for (char s : *line)
+			{
+				if (s == ',')
+					NOFCounter++;
+			}
+			NOFCounter++;
+			string* courseCode = new string[NOFCounter];
+
+			// it loops on the line string and turn it into and array of course codes
+			courseCode[0] = "";
+			int Counter = 0;
+			for (char s : *line)
+			{
+				if (s == ',')
+				{
+					Counter++;
+					courseCode[Counter] = "";
+				}
+				else
+				{
+					courseCode[Counter] += s;
+				}
+			}
+
+			// we take the array of the course codes and turn it into objects of courses in the academic semester
+			// we start the loop from i=2 because the year name is in i=0 and the sem name is in i=1
+			for (int i = 2; i < NOFCounter; i++)
+			{
+
+				Course* pC = pReg->NewCourse(courseCode[i]);
+				//setting the x graphic info for the course 
+				if (!pC)
+					continue;
+				graphicsInfo courseCoordinates;
+				courseCoordinates.x = (yearNumber - 1) * 260 + sem * 86;
+				pC->setGfxInfo(courseCoordinates);
+				// and finall add the course to the academic year
+				importedPlan->AddCourse(pC, yearNumber, SEMESTER(sem));
+			}
+
+			delete[] courseCode;
+		}
+		delete line;
+	}
 	//change the current study plan at the registrar into the imported plan
 	*(pReg->getStudyPlay()) = *importedPlan;
-
+	
 	pGUI->PrintMsg("Imported ..");
 	
 	return true;

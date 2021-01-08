@@ -45,8 +45,8 @@ struct Rules	//contains all objects for registrations rules
 	vector<CourseInfo> CourseCatalog;	//List of ALL courses with full info
 	vector<AcademicYearOfferings> OffringsList;	//all offerings for all acedmic years
 
-	int SemMinCredit;		//min no. of credit hours per semester
-	int SemMaxCredit;		//max no. of credit hours per semester
+	int SemMinCredit = 12;		//min no. of credit hours per semester
+	int SemMaxCredit = 18;		//max no. of credit hours per semester
 
 	int ReqUnivCredits;		 //total no. of credits req by Univ courses
 	int Uni_compulsory_cr;   //credits req by Univ compulsory courses

@@ -116,6 +116,7 @@ bool StudyPlan::checkRules(Rules* pRules)
 				
 				for (Course_Code PreCode : PreReq) //loop each pre requisite for the course
 				{
+					cout << PreCode << "for" << pC->getCode() << endl;
 					bool found = false;
 					// check if the pre requisite course found
 					for (int preYear = year; preYear >= 0 && !found; preYear--)
