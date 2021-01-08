@@ -12,7 +12,7 @@ class Registrar
 	GUI* pGUI;	//pointer to GUI 
 	Rules* pRules;	//Registration rules
 	StudyPlan* pSPlan;
-	//Rules RegRules;
+	Rules RegRules;
 public:
 	Registrar();
 	GUI* getGUI() const;

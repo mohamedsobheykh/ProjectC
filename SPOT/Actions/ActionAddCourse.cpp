@@ -66,7 +66,7 @@ bool ActionAddCourse::Execute()
 			//: Ask registrar to add course to the year selected by the user  done
 			//: add the course to the correct year obtained from registrar   done
 
-			//For the seke of demo, we will add the course to the 1st year, 1st semester
+			
 		
 		}
 
