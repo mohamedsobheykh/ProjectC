@@ -21,6 +21,7 @@ public:
 	void UpdateInterface();
 	StudyPlan* getStudyPlay() const;
 	CourseInfo* GetCourseInfo(Course_Code code);
+	Course* NewCourse(Course_Code code);
 	Rules* getRules() const;
 	
 	void checkRules();

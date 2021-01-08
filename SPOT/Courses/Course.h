@@ -17,13 +17,15 @@ class Course : public Drawable
 	bool Done;		//Done or not yet?
 	list<Course_Code> PreReq;	//list of prerequisites
 	list<Course_Code> CoReq;	//list of prerequisites
-	CourseInfo Info;
+
+	CourseInfo* Info;
 public:
 	Course(Course_Code r_code,string r_title, int crd);
 	string getTitle() const;
 	string getCode() const;
 	int getCredits() const;
 	CourseInfo* getInfo();
+	void setInfo(CourseInfo* Info);
 	void DrawMe(GUI*) const;
 	void SaveMe(fstream*);
 	virtual ~Course();

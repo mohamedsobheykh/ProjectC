@@ -4,6 +4,7 @@
 Course::Course(Course_Code r_code, string r_title, int crd):code(r_code),Title(r_title)
 {
 	credits = crd;
+	Info = new CourseInfo;
 }
 
 Course::~Course()
@@ -28,9 +29,15 @@ int Course::getCredits() const
 
 CourseInfo* Course::getInfo()
 {
-	CourseInfo* pInfo = &Info;
+	CourseInfo* pInfo = Info;
 	return pInfo;
 }
+
+void Course::setInfo(CourseInfo* Info)
+{
+	this -> Info = Info;
+}
+
 
 void Course::DrawMe(GUI* pG) const
 {

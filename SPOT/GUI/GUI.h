@@ -70,6 +70,7 @@ public:
 	//output functions
 	void PrintMsg(string msg) const;		//prints a message on status bar
 	void PrintNotes(string msg) const;
+	void PrintIssue(int Moderate, int Critical);
 	//Drawing functions
 	void DrawCourse(const Course* );
 	void DrawAcademicYear(const AcademicYear*);

@@ -212,6 +212,24 @@ CourseInfo* Registrar::GetCourseInfo(Course_Code code)
 	}
 }
 
+Course* Registrar::NewCourse(Course_Code code)
+{
+	CourseInfo* info = nullptr;
+	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
+	{
+		//cout << pRules->CourseCatalog[2].Code;
+		if (pRules->CourseCatalog[i].Code == code)
+		{
+			info = &pRules->CourseCatalog[i];
+		}
+	}
+	if (!info)
+		return nullptr;
+
+	Course* pC = new Course(info->Code, info->Title, info->Credits);
+	pC->setInfo(info);
+	return pC;
+}
 //returns a pointer to GUI
 GUI* Registrar::getGUI() const
 {
@@ -302,14 +320,13 @@ void Registrar::Run()
 		//update interface here as CMU Lib doesn't refresh itself
 		//when window is minimized then restored
 		UpdateInterface();
-
+		checkRules();
 		Action* pAct = CreateRequiredAction();
 		if (pAct)	//if user doesn't cancel
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
 			{
 				UpdateInterface();
-				checkRules();
 			}
 		}
 		//cout << ActionImportReq.Rule1.
@@ -330,11 +347,16 @@ void Registrar::checkRules()
 
 	if (!pSPlan->checkRules(pRules))
 	{
-		//TODO
+		
+		int MOD = 0; int CRI = 0;
 		for (int i = 0; i < pRules->Issues->planIssues.size(); i++)
 		{
-			//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+			if (pRules->Issues->planIssues[i].issueLabel == MODERATE)
+				MOD++;
+			else
+				CRI++;
 		}
+		pGUI->PrintIssue(MOD,CRI);
 	}
 
 	delete pRules->Issues;
