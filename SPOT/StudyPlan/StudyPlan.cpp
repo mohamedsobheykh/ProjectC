@@ -91,9 +91,173 @@ Course* StudyPlan::getCourse(int year, SEMESTER sem, int courseIndex)
 	return choicedCourse;
 }
 
-bool StudyPlan::checkRules(Rules* pRules)
+//progreq...........................................
+vector<Course*> StudyPlan::getAllCourses() {
+	vector<Course*> ALLcourses;
+	for (int i = 0; i < plan.size(); i++)
+	{
+
+		vector<Course*>AllCourses = plan[i]->getAllCourses();
+		for (int i = 0; i < AllCourses.size(); i++)
+		{
+			ALLcourses.push_back(*(AllCourses.begin()+i));
+		}
+	}
+	return ALLcourses;
+}
+
+bool StudyPlan::checkRules(Rules* pRules )
 {
 	bool issuesStatus = true;
+
+	// check for total cr of the studyplan
+	vector<Course*> ALL = getAllCourses();
+	int TOTALCR = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		//int TOTALCR = 0;
+		TOTALCR = (*(ALL.begin()+i))->getCredits() + TOTALCR;
+		int r = pRules->ReqUnivCredits;
+		if (TOTALCR >= r) {
+			issuesStatus = true;
+		}
+		else {
+			issuesStatus = false;
+			Issue total_cr;
+			total_cr.issueLabel = CRITICAL;
+			total_cr.issueInfo = "there are a missing courses of the total cr of the studyplan ";
+			pRules->Issues->planIssues.push_back(total_cr);
+		
+		}
+	}
+	//..................................................................................................
+	//check for UnivCompulsory 
+	int cUnivCompulsory = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->UnivCompulsory.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->UnivCompulsory.at(j);
+			if (a == b ) {
+				cUnivCompulsory++;
+			}
+		}
+	}
+	if (cUnivCompulsory == pRules->UnivCompulsory.size()) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue UnivCompulsoryy;
+		UnivCompulsoryy.issueLabel = CRITICAL;
+		UnivCompulsoryy.issueInfo = "there are a missing courses of the Univ Compulsory courses ";
+		pRules->Issues->planIssues.push_back(UnivCompulsoryy);
+	
+	}
+	//..................................................................................................
+	//check for UnivElective cr
+	int cUnivElective = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->UnivElective.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->UnivElective[j];
+			if (a == b) {
+				cUnivElective = (*(ALL.begin() + i))->getCredits() + cUnivElective;
+				
+			}
+		}
+	}
+	if (cUnivElective >= pRules->Uni_elective_cr) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue UnivElectivee;
+		UnivElectivee.issueLabel = CRITICAL;
+		UnivElectivee.issueInfo = "there are a missing courses of the Univ Electivee courses ";
+		pRules->Issues->planIssues.push_back(UnivElectivee);
+	
+	}
+	//..................................................................................................
+	//check TrackCompulsory
+	int cTrackCompulsory = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->TrackCompulsory.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->TrackCompulsory[j];
+			if (a == b) {
+				cTrackCompulsory++;
+			}
+		}
+	}
+	if (cTrackCompulsory == pRules->TrackCompulsory.size()) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue TrackCompulsoryy;
+		TrackCompulsoryy.issueLabel = CRITICAL;
+		TrackCompulsoryy.issueInfo = "there are a missing courses of the Track Compulsory courses ";
+		pRules->Issues->planIssues.push_back(TrackCompulsoryy);
+	
+		
+	}
+	//..................................................................................................
+	//check MajorCompulsory
+	int cMajorCompulsory = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->MajorCompulsory.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->MajorCompulsory[j];
+			if (a == b) {
+				cMajorCompulsory++;
+			}
+		}
+	}
+	if (cMajorCompulsory == pRules->MajorCompulsory.size()) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue MajorCompulsoryy;
+		MajorCompulsoryy.issueLabel = CRITICAL;
+		MajorCompulsoryy.issueInfo = "there are a missing courses of the Major Compulsory courses ";
+		pRules->Issues->planIssues.push_back(MajorCompulsoryy);
+	}
+	//..................................................................................................
+	//check for MajorElective cr
+	int cMajorElective = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->MajorElective.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->MajorElective[j];
+			if (a == b) {
+				cMajorElective = (*(ALL.begin() + i))->getCredits() + cMajorElective;
+
+			}
+		}
+	}
+	if (cMajorElective >= pRules->Major_elective_cr) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue MajorElectivee;
+		MajorElectivee.issueLabel = CRITICAL;
+		MajorElectivee.issueInfo = "there are a missing courses of the Major Electives " ;
+		pRules->Issues->planIssues.push_back(MajorElectivee);
+	}
+	//..................................................................................................
+	
+
+
+
+
+
 	//Check Credits
 	for (int i = 0; i < plan.size(); i++)
 	{

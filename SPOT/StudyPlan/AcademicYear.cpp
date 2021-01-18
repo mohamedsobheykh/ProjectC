@@ -1,5 +1,7 @@
 #include "AcademicYear.h"
 #include "../GUI/GUI.h"
+#include <string>
+#include <iterator>
 
 AcademicYear::AcademicYear()
 {
@@ -88,6 +90,35 @@ Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 	return *it;
 	
 }
+
+//progreq................................................................................................................
+vector<Course*>  AcademicYear::getAllCourses() {
+	vector<Course*>AllCourses;
+	//Course* allCourses;
+	/*for (int sem = FALL; sem < SEM_CNT; sem++) {
+		for (int i = 0; i <= YearCourses[sem].size(); i++) {
+			//Course* a = YearCourses[sem].begin();
+			//AllCourses.erase(AllCourses.begin() + i);
+			//for (auto allCourses = YearCourses[sem].begin(); allCourses == YearCourses[sem].end(); ++allCourses) {
+			AllCourses.insert(AllCourses.begin() + i, 0);
+		}
+	}*/
+
+	for (int sem = FALL; sem < SEM_CNT; sem++) {
+		for (int i = 0; i < YearCourses[sem].size(); i++) {
+		    list<Course*> ::iterator allCourses = YearCourses[sem].begin();
+			advance(allCourses, i);
+			//AllCourses.push_back(*(YearCourses[sem].begin()));
+			//AllCourses.push_back(*allCourses);
+			//for (auto allCourses  = YearCourses[sem].begin(); allCourses == YearCourses[sem].end(); ++allCourses) {
+				AllCourses.push_back(*allCourses);
+			//}
+		}
+	}
+	return AllCourses;
+	
+}
+//progreq................................................................................................................
 
 
 void AcademicYear::DrawMe(GUI* pGUI) const
