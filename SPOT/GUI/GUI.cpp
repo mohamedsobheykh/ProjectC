@@ -163,6 +163,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
 	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
 	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
+	MenuItemImages[ITM_DoubleConcentration] = "GUI\\Images\\Menu\\Menu_DoubleCocentration.jpg";
+	MenuItemImages[ITM_Minor] = "GUI\\Images\\Menu\\Menu_Minor.jpg";
 	MenuItemImages[ITM_DoubleMajor] = "GUI\\Images\\Menu\\Menu_double_major.jpg";
 	MenuItemImages[ITM_Filter] = "GUI\\Images\\Menu\\Menu_filter.jpg";
 	MenuItemImages[ITM_Report] = "GUI\\Images\\Menu\\Menu_Report.jpg";
@@ -194,8 +196,8 @@ void GUI::PrintNotes(string msg) const
 {
 	//ClearStatusBar();	//Clear Status bar to print message on it
 						// Set the Message offset from the Status Bar
-	int MsgX = 780;
-	int MsgY = 10;
+	int MsgX = 980;
+	int MsgY = 50;
 
 	// printting the note
 	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
@@ -688,6 +690,8 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_Reorder: return ActionData{ REORDER };
 				case ITM_GPA:return ActionData{ CalculateGPA };
 				case ITM_STATUS:return ActionData{ CourseStatus };
+				case ITM_DoubleConcentration:return ActionData{ DoubleConcentration };
+				case ITM_Minor:return ActionData{ Minor };
 				case ITM_DoubleMajor:return ActionData{ DoubleMajor};
 				case ITM_Filter:return ActionData{ Filter };
 				case ITM_Report: return ActionData{ Report };

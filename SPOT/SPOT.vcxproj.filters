@@ -182,10 +182,11 @@
     <ClCompile Include="ActionCalculateGPA.cpp" />
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionDoubleConcentration.cpp" />
+    <ClCompile Include="Actions\ActionMinor.cpp" />
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
       <Filter>Actions</Filter>
     </ClCompile>
-
     <ClCompile Include="ActionDoubleMajor.cpp" />
       <Filter>Actions</Filter>
     </ClCompile>
@@ -314,6 +315,8 @@
     <ClInclude Include="ActionDisplayStudentLevel.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\ActionDoubleConcentration.h" />
+    <ClInclude Include="Actions\ActionMinor.h" />
     <ClInclude Include="DisplayStudentLevel.h" />
     <ClInclude Include="ActionDoubleMajor.h" />
      <Filter>Actions</Filter>
