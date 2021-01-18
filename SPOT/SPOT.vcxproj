@@ -119,21 +119,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActionCalculateGPA.cpp" />
-    <ClCompile Include="ActionDisplayFilter.cpp" />
-    <ClCompile Include="ActionDoubleMajor.cpp" />
-    <ClCompile Include="ActionSelectCourseStatus.cpp" />
     <ClCompile Include="Actions\ActionAddCourse.cpp" />
     <ClCompile Include="Actions\ActionAddNotes.cpp" />
     <ClCompile Include="Actions\ActionDeleteCourse.cpp" />
     <ClCompile Include="Actions\ActionDesplayNotes.cpp" />
     <ClCompile Include="Actions\ActionDisplayInfo.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
-    <ClCompile Include="Actions\ActionImportCat.cpp" />
     <ClCompile Include="Actions\ActionImportPlan.cpp" />
     <ClCompile Include="Actions\ActionReorderCourses.cpp" />
     <ClCompile Include="Actions\ActionreplaceCourse.cpp" />
-    <ClCompile Include="Actions\ActionReport.cpp" />
     <ClCompile Include="Actions\ActionSavePlan.cpp" />
     <ClCompile Include="Actions\ActionImportReq.cpp" />
     <ClCompile Include="Courses\Course.cpp" />
@@ -180,11 +174,6 @@
     <ClCompile Include="StudyPlan\StudyPlan.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActionCalculateGPA.h" />
-    <ClInclude Include="ActionDisplayFilter.h" />
-    <ClInclude Include="ActionDisplayStudentLevel.h" />
-    <ClInclude Include="ActionDoubleMajor.h" />
-    <ClInclude Include="ActionSelectCourseStatus.h" />
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddCourse.h" />
     <ClInclude Include="Actions\ActionAddNotes.h" />
@@ -192,11 +181,9 @@
     <ClInclude Include="Actions\ActionDesplayNotes.h" />
     <ClInclude Include="Actions\ActionDisplayInfo.h" />
     <ClInclude Include="Actions\ActionExit.h" />
-    <ClInclude Include="Actions\ActionImportCat.h" />
     <ClInclude Include="Actions\ActionImportPlan.h" />
     <ClInclude Include="Actions\ActionReorderCourses.h" />
     <ClInclude Include="Actions\ActionreplaceCourse.h" />
-    <ClInclude Include="Actions\ActionReport.h" />
     <ClInclude Include="Actions\ActionSavePlan.h" />
     <ClInclude Include="Actions\ActionImportReq.h" />
     <ClInclude Include="Courses\Course.h" />
@@ -222,7 +209,6 @@
     <ClInclude Include="GUI\Drawable.h" />
     <ClInclude Include="GUI\GUI.h" />
     <ClInclude Include="DEFs.h" />
-    <ClInclude Include="DisplayStudentLevel.h" />
     <ClInclude Include="Registrar.h" />
     <ClInclude Include="Rules.h" />
     <ClInclude Include="StudyPlan\AcademicYear.h" />

@@ -1,10 +1,9 @@
 #include "GUI.h"
-//#include "..\Rules.h"
 #include "../Courses/Course.h"
 #include "../StudyPlan/AcademicYear.h"
 #include <sstream>
 #include <iostream>
-//#include "../Registrar.h"
+
 
 GUI::GUI()
 { 
@@ -13,100 +12,6 @@ GUI::GUI()
 	ClearDrawingArea();
 	ClearStatusBar();
 	CreateMenu();
-}
-/*
-void GUI::PrintIssueReport(Issues* planIssues)
-{
-	int Xi = 600;
-	int Yi = 100;
-	int width = 600;
-	int hight = 600;
-	window* pWind2;
-	pWind2 = new window(width, hight, Xi, Yi);
-	pWind2->ChangeTitle("StudyPlan Validity Report - ESC to close");
-	//clear drawing area
-	keytype ktInput;
-	clicktype ctInput;
-	char cKeyData;
-	
-	// Flush out the input queues before beginning
-	pWind2->FlushMouseQueue();
-	pWind2->FlushKeyQueue();
-	while (true)
-	{
-		int x, y;
-		//ctInput = pWind2->GetMouseClick(x, y);//Get the coordinates of the user click
-		ktInput = pWind2->GetKeyPress(cKeyData);
-		if (ktInput == ESCAPE)
-			break;  
-
-		//pWind2->UpdateBuffer();
-		//Redraw everything
-		pWind2->SetBrush(BkGrndColor);
-		pWind2->SetPen(BkGrndColor);
-		pWind2->DrawRectangle(Xi, Yi, Xi + width, Yi + hight);
-
-
-		pWind2->SetFont(20, BOLD, BY_NAME, "Arial");
-		pWind2->SetPen(MsgColor);
-		pWind2->DrawString(Xi + 50, Yi + 50,"comeon jalksj;sf ljadsljf ");
-		cout << "reachedhere";
-
-		
-
-	}
-	 
-	delete pWind2;
-}
-*/
-void GUI::PrintIssueReport(Issues* planIssues)
-{
-	window* temp = pWind;
-	pWind = new window(WindWidth, WindHeight, wx, wy);
-	pWind->ChangeTitle("StudyPlan Validity Report - ESC to close");
-	ClearDrawingArea();
-	//ClearStatusBar();
-	//CreateMenu();
-	pWind->SetFont(30, BOLD, BY_NAME, "Arial");
-	pWind->SetPen(BLUE);
-	pWind->DrawString(wx, wy, "The Issues list: ");
-
-	while (true)
-	{
-		pWind->SetBuffering(true);
-		//Redraw everything
-		//CreateMenu();
-		//ClearStatusBar();
-		ClearDrawingArea();
-		pWind->UpdateBuffer();
-		pWind->SetBuffering(false);
-		// start writing
-		int lineCount = 0;
-		int colCount = 0;
-		pWind->SetFont(30, BOLD, BY_NAME, "Arial");
-		pWind->SetPen(BLUE);
-		pWind->DrawString(wx, wy, "The Issues list: ");
-
-		pWind->SetFont(15, BOLD, BY_NAME, "Arial");
-		pWind->SetPen(MsgColor);
-		for (int i = 0; i < planIssues->planIssues.size(); i++)
-		{
-			ostringstream msg;
-			msg << i +1 << "- " << planIssues->planIssues[i].issueInfo;
-			pWind->DrawString(wx + colCount*(WindWidth/3), wy + 70 + 20 * lineCount++, msg.str());
-
-			if (lineCount == 28)
-			{
-				lineCount = 0;
-				colCount++;
-			}
-		}
-
-		if (this->GetUserAction().actType == CANCEL)
-			break;
-	}
-	delete pWind;
-	pWind = temp;
 }
 
 
@@ -161,11 +66,7 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Load] = "GUI\\Images\\Menu\\Menu_Load.jpg";
 	MenuItemImages[ITM_ProgRec] = "GUI\\Images\\Menu\\Menu_ProgRec.jpg"; ////////////////////
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
-	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
-	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
-	MenuItemImages[ITM_Report] = "GUI\\Images\\Menu\\Menu_Report.jpg";
-	MenuItemImages[ITM_DoubleMajor] = "GUI\\Images\\Menu\\Menu_double_major.jpg";
-	MenuItemImages[ITM_Filter] = "GUI\\Images\\Menu\\Menu_filter.jpg";
+
 
 	//TODO: Prepare image for each menu item and add it to the list done
 
@@ -205,42 +106,6 @@ void GUI::PrintNotes(string msg) const
 	
 }
 
-void GUI::PrintIssue(int Moderate, int Critical)
-{
-	if (Critical > -1)
-	{
-		int MsgX = 1000;
-		int MsgY = 10;
-		
-		pWind->SetFont(20, BOLD, BY_NAME, "Arial");
-		pWind->SetPen(StatusBarColor);
-		pWind->SetBrush(RED);
-		pWind->DrawRectangle(MsgX, MsgY, MsgX + 200, MsgY + 20 ,FILLED);
-		pWind->SetPen(WHITE);
-
-		ostringstream msg;
-		msg << Critical << " CRITICAL ISSUE";
-		pWind->DrawString(MsgX+10, MsgY, msg.str());
-	}
-	if (Moderate > 0)
-	{
-		int MsgX = 1000;
-		int MsgY = 30;
-		
-		pWind->SetFont(20, BOLD, BY_NAME, "Arial");
-		pWind->SetPen(StatusBarColor);
-		pWind->SetBrush(ORANGE);
-		pWind->DrawRectangle(MsgX, MsgY, MsgX + 200, MsgY + 20);
-		pWind->SetPen(WHITE);
-
-		ostringstream msg;
-		msg << Moderate << " MODERATE ISSUE";
-		pWind->DrawString(MsgX + 10, MsgY, msg.str());
-	}
-	
-}
-
-
 
 //////////////////////////////////////////////////////////////////////////
 void GUI::UpdateInterface() const
@@ -256,47 +121,13 @@ void GUI::UpdateInterface() const
 
 }
 
-
-//int typenum = coursetypeindecate(Rules * pRules, const Course * pCrs);
-
 ////////////////////////    Drawing functions    ///////////////////
 void GUI::DrawCourse(const Course* pCrs)
 {
 	if (pCrs->isSelected())
 		pWind->SetPen(HiColor, 2);
-	else if (pCrs->getIssueState() != CLEAN)
-	{
-		pCrs->getIssueState() == CRITICAL ? pWind->SetPen(RED, 2) : pWind->SetPen(ORANGE, 2);
-	}
-	else  {
-		//pWind->SetPen(DrawColor, 2);
-		//pWind->SetBrush(FillColor);
-		if (pCrs->gettype() == "UnivCompulsory" ) {
-			pWind->SetPen(VIOLET, 2);
-			pWind->SetBrush(FillColor);
-		}
-		 else if (pCrs->gettype() == "TrackCompulsory") {
-			pWind->SetPen(GREEN, 2);
-			pWind->SetBrush(FillColor);
-		}
-		 else if (pCrs->gettype() == "MajorCompulsory") {
-			pWind->SetPen(YELLOW, 2);
-			pWind->SetBrush(FillColor);
-		}
-		 else if (pCrs->gettype() == "Tconsentration_com") {
-			pWind->SetPen(PINK, 2);
-			pWind->SetBrush(FillColor);
-		}
-		 else {
-			pWind->SetPen(BLACK, 2);
-			pWind->SetBrush(FillColor);
-		
-		}
-
-		
-		
-	}
-
+	else
+	pWind->SetPen(DrawColor, 2);
 	pWind->SetBrush(FillColor);
 	graphicsInfo gInfo = pCrs->getGfxInfo();
 	
@@ -410,19 +241,58 @@ void GUI::DrawCourse(const Course* pCrs)
 			
 			gInfo.x = 1215;
 		}
-		
+		//y cordinate
+
+		/*if (gInfo.y < 190)
+		{
+			gInfo.y = 150;
+		}
+		else if ((gInfo.y > 190) & (gInfo.y < 240))
+		{
+			gInfo.y = 200;
+		}
+		else if ((gInfo.y > 240)& (gInfo.y < 280))
+		{
+			gInfo.y = 247;
+		}
+		else if ((gInfo.y > 280)& (gInfo.y < 320))
+		{
+			gInfo.y = 295;
+		}
+		else if ((gInfo.y > 320)& (gInfo.y < 380))
+		{
+			gInfo.y = 342;
+		}
+		else if ((gInfo.y > 380)& (gInfo.y < 420))
+		{
+			gInfo.y = 389;
+		}
+		else if ((gInfo.y > 420)& (gInfo.y < 480))
+		{
+			gInfo.y = 437;
+		}
+		else if ((gInfo.y > 480)& (gInfo.y < 520))
+		{
+			gInfo.y = 485;
+		}
+		else if ((gInfo.y > 520)& (gInfo.y < 578))
+		{
+			gInfo.y = 530;
+		}
+		else if ((gInfo.y > 600)& (gInfo.y < 680))
+		{
+			gInfo.y = 580;
+		}*/
+		/*else if ((gInfo.y >= 620))
+		{
+			gInfo.y = -1;
+		}*/
 		
 		
 		//abedal
-		if ((pCrs->gettype() == "UnivElective") || (pCrs->gettype() == "TrackElective") ||
-			(pCrs->gettype() == "MajorElective") || (pCrs->gettype() == "Tconsentration_ele")) {
-			pWind->DrawEllipse(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
-		}
-		else {
-			pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
-		}
+		pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
 		pWind->DrawLine(gInfo.x, gInfo.y + CRS_HEIGHT / 2, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT / 2);
-	    
+	
 		//Write the course code and credit hours.
 		int Code_x = gInfo.x + CRS_WIDTH * 0.15;
 		int Code_y = gInfo.y + CRS_HEIGHT * 0.05;
@@ -537,18 +407,15 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_EXIT: return ActionData{ EXIT };		//Exit
 				case ITM_Delete: return ActionData{ DEL_CRS };   //abedal delete a course
 				case ITM_Notes: return ActionData{ ADD_Notes };  //abedal delete a course
-				case ITM_DesplayNotes: return ActionData{ Display_Notes };
-									 
+				case ITM_DesplayNotes: return ActionData{ Despaly_Notes };
+
 				case ITM_Replace_CRS: return ActionData{ Replace_CRS };//abedal delete a course
 				case ITM_Save: return ActionData { SAVE }; // save course sobhey
 				case ITM_Load: return ActionData{ LOAD }; // Load course sobhey
 				case ITM_ProgRec: return ActionData{ ImportReq }; // import program req
 				case ITM_Reorder: return ActionData{ REORDER };
-				case ITM_GPA:return ActionData{ CalculateGPA };
-				case ITM_STATUS:return ActionData{ CourseStatus };
-				case ITM_Report: return ActionData{ Report };
-				case ITM_DoubleMajor: return { DoubleMajor };
-				case ITM_Filter: return { Filter };
+				
+
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}
 			}

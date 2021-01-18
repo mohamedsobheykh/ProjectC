@@ -1,7 +1,5 @@
 #include "AcademicYear.h"
 #include "../GUI/GUI.h"
-#include <string>
-#include <iterator>
 
 AcademicYear::AcademicYear()
 {
@@ -20,14 +18,8 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 	
 	//setting the y graphics info to be as the order of the course in the semester
 	graphicsInfo course = pC->getGfxInfo();
-	//to get the x and y cordinates of that course 
 	int courseOrder = YearCourses[sem].size() + 1;
-	//course order is calculated by adding 1 to the size of the list of the courses so it checks
-	//the size if the list then add anew course to it 
 	course.y = 150 + (courseOrder-1)*50;
-	//here 150 it the place which we begin to draw courses 
-	// 50 is the height of the rectangle of the course
-	//(courseOrder-1) after deduction by one it put the 1st item for example on y = 150 
 	pC->setGfxInfo(course);
 	/////////
 
@@ -51,33 +43,22 @@ bool AcademicYear::AddCourse(Course* pC, SEMESTER sem)
 //function to delete a course abedal
 bool AcademicYear::DeleteCourse(int courseOrder, SEMESTER sem)
 {
-	//counter here to enable us to move over all courses till we find the choiced course
 	int counter = 0;
-	//keyword auto to create an iterator of the same type  the list's elements
 	for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 	{
 		if (counter == courseOrder)
 		{
 			YearCourses[sem].erase(it);
-			//removing the item which a specific order in the list of courses
 			return true;
 		}
-		
 		counter++;
-		//increament to get the second item of the list 
 	}
 
-		
+	
 
 	return false;
 }
 //
-
-//int AcademicYear::size(Course* pC, SEMESTER sem)
-//{
-//	int s = YearCourses[sem].size();
-//	return s;
-//}
 
 Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 {
@@ -90,35 +71,6 @@ Course* AcademicYear::getCourse(SEMESTER sem, int courseIndex)
 	return *it;
 	
 }
-
-//progreq................................................................................................................
-vector<Course*>  AcademicYear::getAllCourses() {
-	vector<Course*>AllCourses;
-	//Course* allCourses;
-	/*for (int sem = FALL; sem < SEM_CNT; sem++) {
-		for (int i = 0; i <= YearCourses[sem].size(); i++) {
-			//Course* a = YearCourses[sem].begin();
-			//AllCourses.erase(AllCourses.begin() + i);
-			//for (auto allCourses = YearCourses[sem].begin(); allCourses == YearCourses[sem].end(); ++allCourses) {
-			AllCourses.insert(AllCourses.begin() + i, 0);
-		}
-	}*/
-
-	for (int sem = FALL; sem < SEM_CNT; sem++) {
-		for (int i = 0; i < YearCourses[sem].size(); i++) {
-		    list<Course*> ::iterator allCourses = YearCourses[sem].begin();
-			advance(allCourses, i);
-			//AllCourses.push_back(*(YearCourses[sem].begin()));
-			//AllCourses.push_back(*allCourses);
-			//for (auto allCourses  = YearCourses[sem].begin(); allCourses == YearCourses[sem].end(); ++allCourses) {
-				AllCourses.push_back(*allCourses);
-			//}
-		}
-	}
-	return AllCourses;
-	
-}
-//progreq................................................................................................................
 
 
 void AcademicYear::DrawMe(GUI* pGUI) const
@@ -154,7 +106,7 @@ void AcademicYear::SaveMe(fstream* pFile , int yearNumber)
 
 
 
-void AcademicYear::ImportMe(fstream* pFile, int yearNumber )
+void AcademicYear::ImportMe(fstream* pFile, int yearNumber)
 {
 	string* line = new string;
 	for (int sem = FALL; sem < SEM_CNT; sem++)
@@ -212,13 +164,10 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber )
 
 bool AcademicYear::checkCredits(Rules* pRules)
 {
-	string semesterNames[3] = { "Fall", "Spring", "Summer" };
-	
+	int semCrCount = 0;
 	bool issuesStatus = true;
 	for (int sem = FALL; sem < SUMMER; sem++)
 	{
-		int semCrCount = 0;
-
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			semCrCount += (*it)->getCredits();	//call DrawMe for each course in this semester
@@ -229,7 +178,7 @@ bool AcademicYear::checkCredits(Rules* pRules)
 		{
 			Issue minCredit;
 			minCredit.issueLabel = MODERATE;
-			minCredit.issueInfo = semesterNames[sem] + " minimum credits have not been acheived";
+			minCredit.issueInfo = "Semesters minimum credits are unvalid";
 			pRules->Issues->planIssues.push_back(minCredit);
 
 			issuesStatus = false;
@@ -239,7 +188,7 @@ bool AcademicYear::checkCredits(Rules* pRules)
 		{
 			Issue maxCredit;
 			maxCredit.issueLabel = MODERATE;
-			maxCredit.issueInfo = semesterNames[sem] + " maximum credits have been exceeded";
+			maxCredit.issueInfo = "Semester maximum credits unvalid";
 			pRules->Issues->planIssues.push_back(maxCredit);
 
 			issuesStatus = false;

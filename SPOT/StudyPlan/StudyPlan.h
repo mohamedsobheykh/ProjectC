@@ -12,27 +12,20 @@ class StudyPlan:public Drawable
 		TotalTrackCredits=0, TotalConcentrationCredits=0,
 		TotalMinorCredits=0;
 
-	vector<AcademicYear*> plan;//plan is a list of academic years
-	
-	//vector<Course*> AllCourses;
+	vector<AcademicYear*> plan;	//plan is a list of academic years
+
 	string PlanNotes;
 public:
 	StudyPlan();
 	bool AddCourse(Course*, int year, SEMESTER);
 	bool DeleteCourse(int courseOrder, int year, SEMESTER); //delete a course abedal
 
-	void coursetypeindecate(Rules* pRules);
-
 	void virtual DrawMe(GUI*) const;
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);
 	virtual Course* getCourse(int, SEMESTER, int);
 
-	virtual vector<Course*> getAllCourses(); //progreq...........................................
-
-
-	bool checkRules(Rules* pRules,GUI* pGUI);
-
+	bool checkRules(Rules* pRules);
 	virtual ~StudyPlan();
 };
 

@@ -26,12 +26,9 @@ public:
 
 	bool AddCourse(Course*, SEMESTER);
 	bool DeleteCourse(int, SEMESTER);  // to delete a course from a specific year and demester
-	//int size(Course*, SEMESTER);
+
 	
 	Course* getCourse(SEMESTER, int);
-
-	//Course* getallCourses();
-	vector<Course*> getAllCourses(); //progreq...........................................
 
 	void virtual DrawMe(GUI*) const;
 	void SaveMe(fstream*, int);

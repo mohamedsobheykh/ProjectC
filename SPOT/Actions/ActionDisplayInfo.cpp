@@ -42,7 +42,7 @@ bool ActionDisplayInfo::Execute()
 		pC = pSPlan->getCourse(choicedYear, choicedSemester, choicedCourse);
 
 		if (!pC) 
-		{  
+		{
 			return false;
 		}
 		//select the course

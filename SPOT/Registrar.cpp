@@ -1,4 +1,4 @@
-﻿#include "Registrar.h"
+#include "Registrar.h"
 #include "GUI/GUI.h"
 #include "Actions/ActionAddCourse.h"
 #include "Actions/ActionDeleteCourse.h"
@@ -11,13 +11,9 @@
 #include "Actions/ActionDisplayInfo.h"
 #include "Actions/ActionDesplayNotes.h"
 #include "Actions/ActionreplaceCourse.h"
-#include"ActionCalculateGPA.h"
-#include"ActionSelectCourseStatus.h"
-#include "Actions/ActionReorderCourses.h"
 
-#include"ActionDoubleMajor.h"
-#include"ActionDisplayFilter.h"
-#include "Actions/ActionReport.h"
+
+#include "Actions/ActionReorderCourses.h"
 
 
 using namespace std;
@@ -27,226 +23,8 @@ Registrar::Registrar()
 	pGUI = new GUI;	//create interface object
 	pSPlan = new StudyPlan;	//create a study plan.
 	pRules = new Rules;
-	ImportCourseCat();// to call it automatic when the user run the program
-	ImportCourseOfferings();// to call it automatic when the user run the program
-}
-void Registrar::ImportCourseCat()
-{
-	ifstream myfile("Catalog.txt");
-	if (!myfile.is_open())
-	{
-		cout << "there is an error! " << endl;
-	}
-	else
-	{
-		char* cutting;
-		char* context = nullptr;
-		const int size = 100;
-		char line[size];
-		
-		while (myfile.getline(line, size))
-		{
-			CourseInfo s;
-			string a, b, c, d, e;
-			cutting = strtok_s(line, ",", &context);
-			int counter = 0;
-			if (cutting != NULL)
-			{
-				//CourseInfo s;
-				a = cutting;
-			    //cout << cutting << " ";
-				s.Code = cutting;
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				//a = cutting;
-				//cout << a << " ";
-				s.Title = cutting;
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				//b = cutting;
-				//cout << b << " ";
-				s.Credits = stoi(cutting);
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				c = cutting;
-				//cout << c << " "; deleted forever 
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				if (string(cutting) != " ")
-				{
-					s.CoReqList.push_back(cutting);
-				}
-				
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				counter--;
-				//cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				//cout << e << " "; deldeted forever
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				
-				//f
-				//cout << cutting << " ";
-				for (int i : {1, 2, 3})
-				{
-					if (string(cutting) != " ")
-					{
-						s.PreReqList.push_back(cutting);
-					}
-					if (i == 3)
-						break;
-					cutting = strtok_s(NULL, ",", &context);
-					counter++;
-				}
-				counter--;
-				/* cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				//g
-				//cout << cutting << " ";
-				if (cutting != " ")
-				{
-					s.PreReqList.push_back(cutting);
-				}
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-
-				//cout << cutting << " ";
-				if (cutting != " ")
-				{
-					s.PreReqList.push_back(cutting);
-				}
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-
-				//e = cutting;
-				//cout << cutting << " ";
-				cutting = strtok_s(NULL, ",", &context);
-				*/
-			}
-			
-			//cout << endl;
-			//RegRules.CourseCatalog.push_back(s);
-			pRules->CourseCatalog.push_back(s);
-			//cout << "abd";
-		}
-	} 
 }
 
-void Registrar::ImportCourseOfferings()
-{
-	ifstream myfile("a.txt");
-	if (!myfile.is_open())
-	{
-		cout << "there is an error! " << endl;
-	}
-	else
-	{
-		char* cutting;
-		char* context = nullptr;
-		const int size = 10000;
-		char line[size];
-		AcademicYearOfferings d;
-		while (myfile.getline(line, size))
-		{
-			cutting = strtok_s(line, ",", &context);
-	        cout << cutting << endl;
-			d.Year = cutting;
-			cutting = strtok_s(NULL, ",", &context);
-			cout << cutting << endl;
-			d.semester = atoi(cutting);
-			//cout << d.semester;
-			//int SEMESTERNUMBER = atoi(cutting) - 1;
-			cutting = strtok_s(NULL, ",", &context);
-			while (cutting != NULL)
-			{
-				cout << cutting << " ";
-				cout << endl;
-				d.Offerings[d.semester - 1].push_back(cutting);
-				cutting = strtok_s(NULL, ",", &context);
-				
-				//d.Offerings[0].push_back(cutting);
-				//d.Offerings[d.semester].push_back(cutting);
-			}
-			
-			cout << endl;
-			cout << d.Offerings[2].size(); cout << endl;
-			//pRules->OffringsList.push_back(d);
-			//cout << "ih";
-			//while (1);
-			pRules->OffringsList.push_back(d);
-			
-		}
-		//RegRules.OffringsList.push_back(d);
-		//cout << d.Offerings[0][0];
-		
-
-
-		//cutting = strtok_s(line, ",", &context);
-		//s->PreReqList.push_back(cutting);
-		//cout << cutting;
-		//s.Code = اللي هنقطعه لها ;
-		//RegRules.CourseCatalog.push_back(s);
-	}
-	 //cout << pRules->OffringsList.size(); // to see if it add the offerings to its vector
-}
-
-//getting course data abedal
-CourseInfo* Registrar::GetCourseInfo(Course_Code code)
-{
-	//cout << pRules->OffringsList.size(); // to see if it add the offerings to its vector
-
-	//cout << "HI " << pRules->CourseCatalog.size();
-	//while (1);
-
-	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
-	{
-		//cout << pRules->CourseCatalog[2].Code;
-		if (pRules->CourseCatalog[i].Code == code)
-		{
-			
-			return &pRules->CourseCatalog[i];
-		}
-	}
-//here when the user enter a course that does not exist in the catalog
-
-	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
-	{
-		//cout << pRules->CourseCatalog[2].Code;
-		if (pRules->CourseCatalog[i].Code != code)
-		{
-
-			return NULL;
-		}
-	}
-}
-
-Course* Registrar::NewCourse(Course_Code code)
-{
-	CourseInfo* info = nullptr;
-	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
-	{
-		//cout << pRules->CourseCatalog[2].Code;
-		if (pRules->CourseCatalog[i].Code == code)
-		{
-			info = &pRules->CourseCatalog[i];
-		}
-	}
-	if (!info)
-		return nullptr;
-
-	Course* pC = new Course(info->Code, info->Title, info->Credits);
-	pC->setInfo(info);
-	for (Course_Code i : info->PreReqList)
-		cout << "/////////////" << info->Code << " prereq " << i << endl;
-	return pC;
-}
 //returns a pointer to GUI
 GUI* Registrar::getGUI() const
 {
@@ -261,14 +39,8 @@ StudyPlan* Registrar::getStudyPlay() const
 
 Rules* Registrar::getRules() const
 {
-	//return &pRules;
 	return pRules;
 }
-
-/*Rules* Registrar::getRulesOfDoubleMajor() const
-{
-	return pRules;
-}*/
 
 
 Action* Registrar::CreateRequiredAction() 
@@ -290,7 +62,7 @@ Action* Registrar::CreateRequiredAction()
 	case ADD_Notes:
 		RequiredAction = new ActionAddNotes(this);
 		break;
-	case Display_Notes:
+	case Despaly_Notes:
 		RequiredAction = new ActionDesplayNotes(this);
 		break;
 	case SAVE:
@@ -311,22 +83,7 @@ Action* Registrar::CreateRequiredAction()
 	case REORDER:
 		RequiredAction = new ActionReorderCourses(this);
 		break;
-	case CalculateGPA:
-		RequiredAction = new ActionCalculateGPA(this);
-		break;
-	case CourseStatus:
-		RequiredAction = new ActionSelectCourseStatus(this);
-		break;
 
-	case DoubleMajor:
-		RequiredAction = new ActionDoubleMajor(this);
-		break;
-	case Filter:
-		RequiredAction = new ActionDisplayFilter(this);
-		break;
-	case Report:
-		RequiredAction = new ActionReport(this);
-		break;
 
 	//TODO: Add case for each action
 	
@@ -353,15 +110,14 @@ void Registrar::Run()
 		//update interface here as CMU Lib doesn't refresh itself
 		//when window is minimized then restored
 		UpdateInterface();
-		checkRules();
 
 		Action* pAct = CreateRequiredAction();
 		if (pAct)	//if user doesn't cancel
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
 			{
-				
 				UpdateInterface();
+				checkRules();
 			}
 		}
 		//cout << ActionImportReq.Rule1.
@@ -378,28 +134,18 @@ void Registrar::UpdateInterface()
 
 void Registrar::checkRules()
 {
-	if (pRules->Issues)
-		delete pRules->Issues; 
-
 	pRules->Issues = new Issues;
 
-	if (!pSPlan->checkRules(pRules,pGUI))
+	if (!pSPlan->checkRules(pRules))
 	{
-		
-		int MOD = 0; int CRI = 0;
+		//TODO
 		for (int i = 0; i < pRules->Issues->planIssues.size(); i++)
 		{
-			if (pRules->Issues->planIssues[i].issueLabel == MODERATE)
-				MOD++;
-			else if (pRules->Issues->planIssues[i].issueLabel == CRITICAL)
-			{
-				CRI++;
-				//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
-			}
-				
+			//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
 		}
-		pGUI->PrintIssue(MOD,CRI);
 	}
+
+	delete pRules->Issues;
 		
 }
 
@@ -407,55 +153,3 @@ Registrar::~Registrar()
 {
 	delete pGUI;
 }
-// here
-////cutting = strtok_s(NULL, ",", &context);
-//				/*a = cutting;
-//				cout << cutting << " ";
-//				cutting = strtok_s(NULL, ",", &context);
-//				counter++;*/
-//				//CourseInfo* s = new CourseInfo;
-//
-//if (counter == 0)
-//{
-//	//s.Code = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 1)
-//{
-//	//s.Title = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 2)
-//{
-//	//s.Credits = stoi(cutting);
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 3)
-//{
-//	//s.CoReqList.push_back(cutting);
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 4)
-//{
-//	e = cutting;
-//	cout << e << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 5)
-//{
-//	//e = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-////s->Code = cutting;
-////cout << "gfd";

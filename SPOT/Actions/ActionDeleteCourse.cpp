@@ -29,6 +29,8 @@ bool ActionDeleteCourse::Execute()
 		StudyPlan* pSPlan = pReg->getStudyPlay();
 		pSPlan->DeleteCourse(choicedCourse, choicedYear, SEMESTER(choicedSemester));
 		
+		
+
 		graphicsInfo gInfo{ x, y };
 		//TODO: given course code, get course title, crd hours from registrar
 		//For now, we will add any dummy values

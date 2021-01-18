@@ -23,7 +23,7 @@ struct CourseInfo
 struct AcademicYearOfferings
 {
 	string Year; //academic year of the offerings e.g. 2019-2020
-	int semester;   //added to use the number of the semester
+
 
 	//Each year has an array of of 3 vectors of courses CODE. 
 	//Each vector cossrsponds to a semester
@@ -32,11 +32,11 @@ struct AcademicYearOfferings
 	//So Offerings[SUMMER] is a vector of courses offered in SUMMER in THAT year
 	vector<Course_Code> Offerings[SEM_CNT];
 };
- 
-/* struct Issues
+
+struct Issues
 {
 	vector<Issue> planIssues;
-}; */
+};
 
 struct Rules	//contains all objects for registrations rules
 {
@@ -44,11 +44,9 @@ struct Rules	//contains all objects for registrations rules
 
 	vector<CourseInfo> CourseCatalog;	//List of ALL courses with full info
 	vector<AcademicYearOfferings> OffringsList;	//all offerings for all acedmic years
-	int totalCredits;
 
-
-	int SemMinCredit = 12;		//min no. of credit hours per semester
-	int SemMaxCredit = 18;		//max no. of credit hours per semester
+	int SemMinCredit;		//min no. of credit hours per semester
+	int SemMaxCredit;		//max no. of credit hours per semester
 
 	int ReqUnivCredits;		 //total no. of credits req by Univ courses
 	int Uni_compulsory_cr;   //credits req by Univ compulsory courses
@@ -83,12 +81,8 @@ struct Rules	//contains all objects for registrations rules
 	vector<Course_Code> consentration4_com;	//consentration 4 courses comp
 	vector<Course_Code> consentration4_ele;	//consentration 4 courses electives
 
-	vector<Course_Code> Tconsentration_com;// the choosen consentration's courses comp
-	vector<Course_Code> Tconsentration_ele;//the choosen consentration's courses  electives
-	int Tcon_ele;
-	int Tcon_com;
 	
-	Issues* Issues = nullptr;
+	Issues* Issues;
 };
 
 /* format of the txt file:

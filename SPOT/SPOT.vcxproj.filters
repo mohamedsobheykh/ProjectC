@@ -162,8 +162,8 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionImportReq.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
+		<Filter>Actions</Filter>
+	</ClCompile>
     <ClCompile Include="Actions\ActionReorderCourses.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -174,16 +174,6 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionDesplayNotes.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\ActionImportCat.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionCalculateGPA.cpp" />
-    <ClCompile Include="ActionSelectCourseStatus.cpp" />
-    <ClCompile Include="ActionDoubleMajor.cpp" />
-    <ClCompile Include="ActionDisplayFilter.cpp" />
-    <ClCompile Include="Actions\ActionReport.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -285,8 +275,8 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionImportReq.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
+		<Filter>Actions</Filter>
+	</ClInclude>
     <ClInclude Include="Actions\ActionReorderCourses.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -297,18 +287,6 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionDesplayNotes.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\ActionImportCat.h" />
-    <ClInclude Include="ActionCalculateGPA.h" />
-    <ClInclude Include="ActionSelectCourseStatus.h" />
-    <ClInclude Include="ActionDisplayStudentLevel.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayStudentLevel.h" />
-    <ClInclude Include="ActionDoubleMajor.h" />
-    <ClInclude Include="ActionDisplayFilter.h" />
-    <ClInclude Include="Actions\ActionReport.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
