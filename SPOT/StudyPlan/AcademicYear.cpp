@@ -213,10 +213,12 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber )
 bool AcademicYear::checkCredits(Rules* pRules)
 {
 	string semesterNames[3] = { "Fall", "Spring", "Summer" };
-	int semCrCount = 0;
+	
 	bool issuesStatus = true;
 	for (int sem = FALL; sem < SUMMER; sem++)
 	{
+		int semCrCount = 0;
+
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			semCrCount += (*it)->getCredits();	//call DrawMe for each course in this semester

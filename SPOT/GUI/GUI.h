@@ -31,8 +31,10 @@ class GUI
 		ITM_Load,
 		ITM_Reorder,
 		ITM_ProgRec,
-		ITM_GPA,
-		ITM_STATUS,
+		ITM_GPA,// calculate GPA
+		ITM_STATUS,// show status
+		ITM_DoubleMajor, // double major 
+		ITM_Filter,// display filter
 		ITM_Report,
 		ITM_EXIT,		//Exit item
 

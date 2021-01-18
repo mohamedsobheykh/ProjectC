@@ -12,7 +12,8 @@ class StudyPlan:public Drawable
 		TotalTrackCredits=0, TotalConcentrationCredits=0,
 		TotalMinorCredits=0;
 
-	vector<AcademicYear*> plan;	//plan is a list of academic years
+	vector<AcademicYear*> plan;//plan is a list of academic years
+	
 	//vector<Course*> AllCourses;
 	string PlanNotes;
 public:
@@ -29,7 +30,9 @@ public:
 
 	virtual vector<Course*> getAllCourses(); //progreq...........................................
 
+
 	bool checkRules(Rules* pRules,GUI* pGUI);
+
 	virtual ~StudyPlan();
 };
 

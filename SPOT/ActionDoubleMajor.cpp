@@ -1,61 +1,59 @@
-#include "ActionImportReq.h"
-#include "..\Registrar.h"
-#include "..\Rules.h"
+#include "ActionDoubleMajor.h"
+#include "Registrar.h"
+#include "Rules.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "..\GUI\GUI.h"
-
-using namespace std;
-
-ActionImportReq::ActionImportReq(Registrar* p) :Action(p)
+#include "GUI/GUI.h"
+#include"StudyPlan/StudyPlan.h"
+ActionDoubleMajor::ActionDoubleMajor(Registrar* P):Action(P)
 {
 }
 
-//Rules* ActionImportReq:: getRule() {
-//    return Rule;
-//}
-
-bool ActionImportReq::Execute()
+bool ActionDoubleMajor::Execute()
 {
+
     GUI* pGUI = pReg->getGUI();
 
-    Rule1 = pReg->getRules();
+    Rule2 = pReg->getRules();
     //ActionData actData = pGUI->GetUserAction("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ] ");
     pGUI->PrintMsg("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ]");
-    string majorrec = pGUI->GetSrting();
+    string majorec = pGUI->GetSrting();
 
 
-    while ((majorrec != "CIE") && (majorrec != "AEROSPACE") && (majorrec != "RENEWABLE") && (majorrec != "NANOTECH") && (majorrec != "ENVAIROMENTAL")) {
+    while ((majorec != "CIE") && (majorec != "AEROSPACE") && (majorec != "RENEWABLE") && (majorec != "NANOTECH") && (majorec != "ENVAIROMENTAL")) {
         pGUI->PrintMsg("Wrong! choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ]");
-        majorrec = pGUI->GetSrting();
+        majorec = pGUI->GetSrting();
     }
     // majorrules = new fstream("CIEREC.txt", ios::in);
     // pGUI->PrintMsg(" bb ");
      //fstream majorrules;
-    if (majorrec == "CIE") {
+    if (majorec == "CIE") {
         // majorrules = new fstream("CIEREC.txt", ios::in);
-        majorrules.open("Actions\\CIEREC.txt"); //fstream majorrules("Text.txt");
+        majorrules2.open("Actions\\CIEREC.txt"); //fstream majorrules("Text.txt");
+       /*if (!(majorrules)) {
+           return false;
+        }*/
 
     }
-    else if (majorrec == "AEROSPACE") {
-        majorrules.open("Actions\\AEROREC.txt");
+    else if (majorec == "AEROSPACE") {
+        majorrules2.open("Actions\\AEROREC.txt");
 
 
     }
-    else if (majorrec == "RENEWABLE") {
-        majorrules.open("Actions\\RENOREC.txt");
+    else if (majorec == "RENEWABLE") {
+        majorrules2.open("Actions\\RENOREC.txt");
 
     }
-    else if (majorrec == "NANOTECH") {
-        majorrules.open("Actions\\NANOREC.txt");
+    else if (majorec == "NANOTECH") {
+        majorrules2.open("Actions\\NANOREC.txt");
 
     }
-    else if (majorrec == "ENVAIROMENTAL") {
-        majorrules.open("Actions\\ENVAREC.txt");
+    else if (majorec == "ENVAIROMENTAL") {
+        majorrules2.open("Actions\\ENVAREC.txt");
 
     }
-    if (!(majorrules)) {
+    if (!(majorrules2)) {
         return false;
     }
 
@@ -68,46 +66,46 @@ bool ActionImportReq::Execute()
     const int size = 100;
     char line[size];
 
-    while (majorrules.getline(line, size)) {
+    while (majorrules2.getline(line, size)) {
         // pGUI->ClearStatusBar();
          //pGUI->PrintMsg(" yaaaaa ");
         if (indicator == 1) {
             // pGUI->PrintMsg(" webaadeen ");
             t = strtok_s(line, ",", &context);
-            Rule1->ReqUnivCredits = stoi(t);
+            Rule2->totalCredits = stoi(t);
             indicator++;
             //pGUI->PrintMsg(t);
 
         }
         else if (indicator == 2) {
             t = strtok_s(line, ",", &context);
-            Rule1->Uni_compulsory_cr = stoi(t);
+            Rule2->Uni_compulsory_cr = stoi(t);
             t = strtok_s(context, ",", &context);
-            Rule1->Uni_elective_cr = stoi(t);
+            Rule2->Uni_elective_cr = stoi(t);
             indicator++;
         }
         else if (indicator == 3) {
             t = strtok_s(line, ",", &context);
-            Rule1->ReqTrackCredits = stoi(t);
+            Rule2->ReqTrackCredits = stoi(t);
             indicator++;
         }
         else if (indicator == 4) {
             t = strtok_s(line, ",", &context);
-            Rule1->Major_compulsory_cr = stoi(t);
+            Rule2->Major_compulsory_cr = stoi(t);
             t = strtok_s(context, ",", &context);
-            Rule1->Major_elective_cr = stoi(t);
+            Rule2->Major_elective_cr = stoi(t);
             indicator++;
         }
         else if (indicator == 5) {
             t = strtok_s(line, ",", &context);
-            Rule1->no_concentration = stoi(t);
+            Rule2->no_concentration = stoi(t);
             indicator++;
         }
         else if (indicator == 6) {
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 int num = stoi(t);
-                Rule1->no_cr_concentrations.push_back(num);
+                Rule2->no_cr_concentrations.push_back(num);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -117,7 +115,7 @@ bool ActionImportReq::Execute()
             //pGUI->PrintMsg("eheehe");
             while (t != NULL) {
                 string s = t;
-                Rule1->UnivCompulsory.push_back(s);
+                Rule2->UnivCompulsory.push_back(s);
                 t = strtok_s(NULL, ",", &context);
 
             }
@@ -127,7 +125,7 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->UnivElective.push_back(s);
+                Rule2->UnivElective.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -136,7 +134,7 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->TrackCompulsory.push_back(s);
+                Rule2->TrackCompulsory.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -145,7 +143,7 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->MajorCompulsory.push_back(s);
+                Rule2->MajorCompulsory.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -154,18 +152,16 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->MajorElective.push_back(s);
+                Rule2->MajorElective.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
-            if (Rule1->no_concentration != 0) {
-                indicator++;
-            }
+            indicator++;
         }
         else if (indicator == 12) {
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration1_com.push_back(s);
+                Rule2->consentration1_com.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -174,18 +170,16 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration1_ele.push_back(s);
+                Rule2->consentration1_ele.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
-            if (Rule1->no_concentration >= 2) {
-                indicator++;
-            }
+            indicator++;
         }
         else if (indicator == 14) {
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration2_com.push_back(s);
+                Rule2->consentration2_com.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -194,18 +188,16 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration2_ele.push_back(s);
+                Rule2->consentration2_ele.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
-            if (Rule1->no_concentration >= 3) {
-                indicator++;
-            }
+            indicator++;
         }
         else if (indicator == 16) {
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration3_com.push_back(s);
+                Rule2->consentration3_com.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -214,18 +206,16 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration3_ele.push_back(s);
+                Rule2->consentration3_ele.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
-            if (Rule1->no_concentration >= 4) {
-                indicator++;
-            }
+            indicator++;
         }
         else if (indicator == 18) {
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration4_com.push_back(s);
+                Rule2->consentration4_com.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -234,7 +224,7 @@ bool ActionImportReq::Execute()
             t = strtok_s(line, ",", &context);
             while (t != NULL) {
                 string s = t;
-                Rule1->consentration4_ele.push_back(s);
+                Rule2->consentration4_ele.push_back(s);
                 t = strtok_s(NULL, ",", &context);
             }
             indicator++;
@@ -242,68 +232,38 @@ bool ActionImportReq::Execute()
 
 
     }
-
-    Rule1->ReqMajorCredits = Rule1->Major_compulsory_cr + Rule1->Major_elective_cr;
-    (majorrules).close();
-    Rule1->SemMinCredit = 12;
-    Rule1->SemMaxCredit = 18;
-    // pGUI->PrintMsg(" \\*o*/ ");
+    Rule2->ReqMajorCredits = Rule2->Major_compulsory_cr + Rule2->Major_elective_cr;
+    (majorrules2).close();
+    Rule2->SemMinCredit = 12;
+    Rule2->SemMaxCredit = 18;
+    pGUI->PrintMsg(" \\*o*/ ");
     // pGUI->PrintMsg(" imported ! ");
-    if (Rule1->no_concentration != 0) {
+   /* StudyPlan* pSPlan = pReg->getStudyPlay();
+    bool check;
+   check= pSPlan->checkRules(Rule2);*/
+    return true;
+    import = pSPlan->checkRules(Rule2);
+}
 
-        pGUI->PrintMsg("choose your consentration please! [ 1 / 2 / 3 ......... ]");
-        string conrec = pGUI->GetSrting();
-        int num = stoi(conrec);
 
-        while (num > Rule1->no_concentration) {
-            pGUI->PrintMsg("Wrong! this consentration isn't available, choose again! ");
-            conrec = pGUI->GetSrting();
-            return true;
-        }
-        if (num == 1) {
-            Rule1->Tconsentration_com = Rule1->consentration1_com;
-            Rule1->Tconsentration_ele = Rule1->consentration1_ele;
 
-            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(0);
-            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(1);
+/*bool ActionDoubleMajor::checkRulesOfDoubleMajor(Rules* Rule2)
+{
+    bool issuesStatus = true;
+    // Check for the total credits of the studyplan
+    vector<Course*> ALL =pSPlan-> getAllCourses();
+    int TOTALCR = 0;
 
-            pGUI->PrintMsg(" \\*o*/ consentration 1 has been choosen !");
-            //cout << Rule1->Tcon_ele;
-        }
-        else if (num == 2) {
-            Rule1->Tconsentration_com = Rule1->consentration2_com;
-            Rule1->Tconsentration_ele = Rule1->consentration2_ele;
-            
-            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(2);
-            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(3);
+    for (int i = 0; i < ALL.size(); i++)
+    {
+        TOTALCR= (*)
 
-            pGUI->PrintMsg(" \\*o*/ consentration 2 has been choosen !");
-            //cout << Rule1->Tcon_ele;
-        }
-        else if (num == 3) {
-            Rule1->Tconsentration_com = Rule1->consentration3_com;
-            Rule1->Tconsentration_ele = Rule1->consentration3_ele;
-            
-            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(4);
-            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(5);
 
-            pGUI->PrintMsg(" \\*o*/ consentration 3 has been choosen ! ");
-            //cout << Rule1->Tcon_ele;          
-        }
-        else if (num == 4) {
-            Rule1->Tconsentration_com = Rule1->consentration4_com;
-            Rule1->Tconsentration_ele = Rule1->consentration4_ele;
-            
-            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(6);
-            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(7);
-
-            pGUI->PrintMsg(" \\*o*/ consentration 4 has been choosen ! ");
-            //cout << Rule1->Tcon_ele;
-        }
 
     }
-   
+
+
+}*/
+ActionDoubleMajor::~ActionDoubleMajor()
+{
 }
-        ActionImportReq::~ActionImportReq()
-        {
-        }

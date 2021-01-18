@@ -14,6 +14,9 @@
 #include"ActionCalculateGPA.h"
 #include"ActionSelectCourseStatus.h"
 #include "Actions/ActionReorderCourses.h"
+
+#include"ActionDoubleMajor.h"
+#include"ActionDisplayFilter.h"
 #include "Actions/ActionReport.h"
 
 
@@ -40,13 +43,14 @@ void Registrar::ImportCourseCat()
 		char* context = nullptr;
 		const int size = 100;
 		char line[size];
-		CourseInfo s;
+		
 		while (myfile.getline(line, size))
 		{
+			CourseInfo s;
 			string a, b, c, d, e;
 			cutting = strtok_s(line, ",", &context);
 			int counter = 0;
-			while (cutting != NULL)
+			if (cutting != NULL)
 			{
 				//CourseInfo s;
 				a = cutting;
@@ -72,27 +76,37 @@ void Registrar::ImportCourseCat()
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				
-				d = cutting;
-				//cout << d << " ";
-				if (d != " ")
+				if (string(cutting) != " ")
 				{
 					s.CoReqList.push_back(cutting);
 				}
+				
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				
-				e = cutting;
+				counter--;
+				//cutting = strtok_s(NULL, ",", &context);
+				counter++;
+				
 				//cout << e << " "; deldeted forever
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				
 				//f
 				//cout << cutting << " ";
-				if (cutting != " ")
+				for (int i : {1, 2, 3})
 				{
-					s.PreReqList.push_back(cutting);
+					if (string(cutting) != " ")
+					{
+						s.PreReqList.push_back(cutting);
+					}
+					if (i == 3)
+						break;
+					cutting = strtok_s(NULL, ",", &context);
+					counter++;
 				}
-				cutting = strtok_s(NULL, ",", &context);
+				counter--;
+				/* cutting = strtok_s(NULL, ",", &context);
 				counter++;
 				//g
 				//cout << cutting << " ";
@@ -114,7 +128,7 @@ void Registrar::ImportCourseCat()
 				//e = cutting;
 				//cout << cutting << " ";
 				cutting = strtok_s(NULL, ",", &context);
-				
+				*/
 			}
 			
 			//cout << endl;
@@ -229,6 +243,8 @@ Course* Registrar::NewCourse(Course_Code code)
 
 	Course* pC = new Course(info->Code, info->Title, info->Credits);
 	pC->setInfo(info);
+	for (Course_Code i : info->PreReqList)
+		cout << "/////////////" << info->Code << " prereq " << i << endl;
 	return pC;
 }
 //returns a pointer to GUI
@@ -245,8 +261,14 @@ StudyPlan* Registrar::getStudyPlay() const
 
 Rules* Registrar::getRules() const
 {
+	//return &pRules;
 	return pRules;
 }
+
+/*Rules* Registrar::getRulesOfDoubleMajor() const
+{
+	return pRules;
+}*/
 
 
 Action* Registrar::CreateRequiredAction() 
@@ -295,6 +317,13 @@ Action* Registrar::CreateRequiredAction()
 	case CourseStatus:
 		RequiredAction = new ActionSelectCourseStatus(this);
 		break;
+
+	case DoubleMajor:
+		RequiredAction = new ActionDoubleMajor(this);
+		break;
+	case Filter:
+		RequiredAction = new ActionDisplayFilter(this);
+
 	case Report:
 		RequiredAction = new ActionReport(this);
 		break;
@@ -325,11 +354,13 @@ void Registrar::Run()
 		//when window is minimized then restored
 		UpdateInterface();
 		checkRules();
+
 		Action* pAct = CreateRequiredAction();
 		if (pAct)	//if user doesn't cancel
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
 			{
+				
 				UpdateInterface();
 			}
 		}

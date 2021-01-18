@@ -5,7 +5,6 @@
 #include "StudyPlan/StudyPlan.h"
 
 
-
 //The maestro class for the application
 class Registrar
 {
@@ -13,6 +12,8 @@ class Registrar
 	Rules* pRules;	//Registration rules
 	StudyPlan* pSPlan;
 	Rules RegRules;
+	Rules RegRulesDoubleMajor;
+	//Rules* pRulesOfDoubleMajor;
 public:
 	Registrar();
 	GUI* getGUI() const;
@@ -23,7 +24,7 @@ public:
 	CourseInfo* GetCourseInfo(Course_Code code);
 	Course* NewCourse(Course_Code code);
 	Rules* getRules() const;
-	
+	//Rules* getRulesOfDoubleMajor()const;
 	void checkRules();
 	// added recently to import the catalog 
 	void ImportCourseCat();
