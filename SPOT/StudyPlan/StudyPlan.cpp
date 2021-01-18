@@ -327,6 +327,8 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 				
 				for (Course_Code PreCode : PreReq) //loop each pre requisite for the course
 				{
+					if (PreCode == " ")
+						continue;
 					cout << PreCode << "for" << pC->getCode() << endl;
 					bool found = false;
 					// check if the pre requisite course found
@@ -377,6 +379,8 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 
 				for (Course_Code CoReqCode : CoReq) //loop each pre requisite for the course
 				{
+					if (CoReqCode == " ")
+						continue;
 					bool found = false;
 					// check if the pre requisite course found
 					int CoCounter = 0;
