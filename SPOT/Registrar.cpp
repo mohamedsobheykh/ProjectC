@@ -12,8 +12,9 @@
 #include "Actions/ActionDesplayNotes.h"
 #include "Actions/ActionreplaceCourse.h"
 #include"ActionCalculateGPA.h"
-
+#include"ActionSelectCourseStatus.h"
 #include "Actions/ActionReorderCourses.h"
+#include "Actions/ActionReport.h"
 
 
 using namespace std;
@@ -23,7 +24,8 @@ Registrar::Registrar()
 	pGUI = new GUI;	//create interface object
 	pSPlan = new StudyPlan;	//create a study plan.
 	pRules = new Rules;
-	ImportCourseCat();
+	ImportCourseCat();// to call it automatic when the user run the program
+	ImportCourseOfferings();// to call it automatic when the user run the program
 }
 void Registrar::ImportCourseCat()
 {
@@ -52,32 +54,24 @@ void Registrar::ImportCourseCat()
 				s.Code = cutting;
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//CourseInfo* s = new CourseInfo;
-				//if (counter == 0)
-				//{
+				
 				//a = cutting;
 				//cout << a << " ";
 				s.Title = cutting;
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//}
-				//else if (counter == 1)
-				//{
+				
 				//b = cutting;
 				//cout << b << " ";
 				s.Credits = stoi(cutting);
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//}
-				//else if (counter == 2)
-				//{
+				
 				c = cutting;
 				//cout << c << " "; deleted forever 
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//}
-				//else if (counter == 3)
-				//{
+				
 				d = cutting;
 				//cout << d << " ";
 				if (d != " ")
@@ -86,14 +80,12 @@ void Registrar::ImportCourseCat()
 				}
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//}
-				//else if (counter == 4)
-				//{
+				
 				e = cutting;
 				//cout << e << " "; deldeted forever
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
-				//}
+				
 				//f
 				//cout << cutting << " ";
 				if (cutting != " ")
@@ -119,16 +111,10 @@ void Registrar::ImportCourseCat()
 				cutting = strtok_s(NULL, ",", &context);
 				counter++;
 
-				//else if (counter == 5)
-				//{
-				//    //e = cutting;
-				//    cout << cutting << " ";
+				//e = cutting;
+				//cout << cutting << " ";
 				cutting = strtok_s(NULL, ",", &context);
-				//    counter++;
-				//}
-				//s->Code = cutting;
-				//cout << "gfd";
-				//pRules->CourseCatalog.push_back(s);
+				
 			}
 			
 			//cout << endl;
@@ -141,11 +127,67 @@ void Registrar::ImportCourseCat()
 
 void Registrar::ImportCourseOfferings()
 {
+	ifstream myfile("a.txt");
+	if (!myfile.is_open())
+	{
+		cout << "there is an error! " << endl;
+	}
+	else
+	{
+		char* cutting;
+		char* context = nullptr;
+		const int size = 10000;
+		char line[size];
+		AcademicYearOfferings d;
+		while (myfile.getline(line, size))
+		{
+			cutting = strtok_s(line, ",", &context);
+	        cout << cutting << endl;
+			d.Year = cutting;
+			cutting = strtok_s(NULL, ",", &context);
+			cout << cutting << endl;
+			d.semester = atoi(cutting);
+			//cout << d.semester;
+			//int SEMESTERNUMBER = atoi(cutting) - 1;
+			cutting = strtok_s(NULL, ",", &context);
+			while (cutting != NULL)
+			{
+				cout << cutting << " ";
+				cout << endl;
+				d.Offerings[d.semester - 1].push_back(cutting);
+				cutting = strtok_s(NULL, ",", &context);
+				
+				//d.Offerings[0].push_back(cutting);
+				//d.Offerings[d.semester].push_back(cutting);
+			}
+			
+			cout << endl;
+			cout << d.Offerings[2].size(); cout << endl;
+			//pRules->OffringsList.push_back(d);
+			//cout << "ih";
+			//while (1);
+			pRules->OffringsList.push_back(d);
+			
+		}
+		//RegRules.OffringsList.push_back(d);
+		//cout << d.Offerings[0][0];
+		
+
+
+		//cutting = strtok_s(line, ",", &context);
+		//s->PreReqList.push_back(cutting);
+		//cout << cutting;
+		//s.Code = اللي هنقطعه لها ;
+		//RegRules.CourseCatalog.push_back(s);
+	}
+	 //cout << pRules->OffringsList.size(); // to see if it add the offerings to its vector
 }
 
 //getting course data abedal
 CourseInfo* Registrar::GetCourseInfo(Course_Code code)
 {
+	//cout << pRules->OffringsList.size(); // to see if it add the offerings to its vector
+
 	//cout << "HI " << pRules->CourseCatalog.size();
 	//while (1);
 
@@ -171,6 +213,24 @@ CourseInfo* Registrar::GetCourseInfo(Course_Code code)
 	}
 }
 
+Course* Registrar::NewCourse(Course_Code code)
+{
+	CourseInfo* info = nullptr;
+	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
+	{
+		//cout << pRules->CourseCatalog[2].Code;
+		if (pRules->CourseCatalog[i].Code == code)
+		{
+			info = &pRules->CourseCatalog[i];
+		}
+	}
+	if (!info)
+		return nullptr;
+
+	Course* pC = new Course(info->Code, info->Title, info->Credits);
+	pC->setInfo(info);
+	return pC;
+}
 //returns a pointer to GUI
 GUI* Registrar::getGUI() const
 {
@@ -225,14 +285,19 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case DRAW_AREA:
 		RequiredAction = new ActionDisplayInfo(this , actData);
-		//RequiredAction = new ActionCalculateGPA(this,actData);
 		break;
 	case REORDER:
 		RequiredAction = new ActionReorderCourses(this);
+		break;
 	case CalculateGPA:
 		RequiredAction = new ActionCalculateGPA(this);
 		break;
-
+	case CourseStatus:
+		RequiredAction = new ActionSelectCourseStatus(this);
+		break;
+	case Report:
+		RequiredAction = new ActionReport(this);
+		break;
 
 	//TODO: Add case for each action
 	
@@ -259,14 +324,13 @@ void Registrar::Run()
 		//update interface here as CMU Lib doesn't refresh itself
 		//when window is minimized then restored
 		UpdateInterface();
-
+		checkRules();
 		Action* pAct = CreateRequiredAction();
 		if (pAct)	//if user doesn't cancel
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
 			{
 				UpdateInterface();
-				checkRules();
 			}
 		}
 		//cout << ActionImportReq.Rule1.
@@ -283,18 +347,28 @@ void Registrar::UpdateInterface()
 
 void Registrar::checkRules()
 {
+	if (pRules->Issues)
+		delete pRules->Issues; 
+
 	pRules->Issues = new Issues;
 
-	if (!pSPlan->checkRules(pRules))
+	if (!pSPlan->checkRules(pRules,pGUI))
 	{
-		//TODO
+		
+		int MOD = 0; int CRI = 0;
 		for (int i = 0; i < pRules->Issues->planIssues.size(); i++)
 		{
-			//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+			if (pRules->Issues->planIssues[i].issueLabel == MODERATE)
+				MOD++;
+			else if (pRules->Issues->planIssues[i].issueLabel == CRITICAL)
+			{
+				CRI++;
+				//pGUI->GetUserAction(pRules->Issues->planIssues[i].issueInfo);
+			}
+				
 		}
+		pGUI->PrintIssue(MOD,CRI);
 	}
-
-	delete pRules->Issues;
 		
 }
 

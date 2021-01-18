@@ -18,14 +18,13 @@ bool ActionAddCourse::Execute()
 
 	Course_Code code = pGUI->GetSrting();
 	
-	CourseInfo* CourseData = pReg->GetCourseInfo(code); //added new to get the information of the courses 
-	if (CourseData == NULL)   // to check if the code entered does not exist in the catalog of courses
+	Course* pC = pReg->NewCourse(code); //added new to get the information of the courses 
+	if (!pC)   // to check if the code entered does not exist in the catalog of courses
 	{
-		pGUI->PrintMsg("the code entered does not exist in the catalog of courses, Press enter to take another action:");
-		Course_Code code = pGUI->GetSrting();
+		pGUI->GetUserAction("the code entered does not exist in the catalog of courses");
+		
 	}
 	
-
 	else // if the code entered already exists in the Catalog 
 	{
 		ActionData actData = pGUI->GetUserAction("Select a year to add coures to:");
@@ -55,10 +54,6 @@ bool ActionAddCourse::Execute()
 			//int crd = 0;
 		
 	
-			string Title = CourseData->Title;// added 
-			int crd = CourseData->Credits;// added 
-
-			Course* pC = new Course(code, Title, crd);
 			pC->setGfxInfo(gInfo);
 
 			StudyPlan* pS = pReg->getStudyPlay();
@@ -66,7 +61,7 @@ bool ActionAddCourse::Execute()
 			//: Ask registrar to add course to the year selected by the user  done
 			//: add the course to the correct year obtained from registrar   done
 
-			//For the seke of demo, we will add the course to the 1st year, 1st semester
+			
 		
 		}
 

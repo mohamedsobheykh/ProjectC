@@ -12,7 +12,7 @@ class Registrar
 	GUI* pGUI;	//pointer to GUI 
 	Rules* pRules;	//Registration rules
 	StudyPlan* pSPlan;
-	//Rules RegRules;
+	Rules RegRules;
 public:
 	Registrar();
 	GUI* getGUI() const;
@@ -21,6 +21,7 @@ public:
 	void UpdateInterface();
 	StudyPlan* getStudyPlay() const;
 	CourseInfo* GetCourseInfo(Course_Code code);
+	Course* NewCourse(Course_Code code);
 	Rules* getRules() const;
 	
 	void checkRules();

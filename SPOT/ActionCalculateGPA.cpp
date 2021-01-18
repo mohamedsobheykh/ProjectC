@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 #include"ActionCalculateGPA.h"
-#include"Registrar.h"
 #include"Courses/UnivCourse.h"
 #include<vector>
 #include<string>
@@ -15,7 +14,7 @@ ActionCalculateGPA::ActionCalculateGPA(Registrar* P):Action(P)
 bool ActionCalculateGPA::Execute()
 {
 	GUI* pGUI = pReg->getGUI();
-	ActionData actData = pGUI->GetUserAction("Select the course ..");
+	ActionData actData = pGUI->GetUserAction("Select the course you want to add letter grade to it ..");
 
 
 	int yearWidth = 260;

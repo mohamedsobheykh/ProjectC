@@ -31,6 +31,7 @@ class GUI
 		ITM_ProgRec,
 		ITM_GPA,
 		ITM_STATUS,
+		ITM_Report,
 		ITM_EXIT,		//Exit item
 
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
@@ -48,7 +49,7 @@ class GUI
 
 	color DrawColor = BLACK;		//Drawing color
 	color FillColor = YELLOW;		//Filling color (for courses)
-	color HiColor = RED;			//Highlighting color
+	color HiColor = BLUE;			//Highlighting color
 	color ConnColor = GREEN;		//Connector color
 	color MsgColor = BLACK;			//Messages color
 	color BkGrndColor = LIGHTGRAY;	//Background color
@@ -70,6 +71,8 @@ public:
 	//output functions
 	void PrintMsg(string msg) const;		//prints a message on status bar
 	void PrintNotes(string msg) const;
+	void PrintIssue(int Moderate, int Critical);
+	void PrintIssueReport(Issues*);
 	//Drawing functions
 	void DrawCourse(const Course* );
 	void DrawAcademicYear(const AcademicYear*);

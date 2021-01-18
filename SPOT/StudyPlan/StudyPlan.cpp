@@ -106,7 +106,8 @@ vector<Course*> StudyPlan::getAllCourses() {
 	return ALLcourses;
 }
 
-bool StudyPlan::checkRules(Rules* const pRules )
+
+bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 {
 	bool issuesStatus = true;
 
@@ -326,6 +327,7 @@ bool StudyPlan::checkRules(Rules* const pRules )
 				
 				for (Course_Code PreCode : PreReq) //loop each pre requisite for the course
 				{
+					cout << PreCode << "for" << pC->getCode() << endl;
 					bool found = false;
 					// check if the pre requisite course found
 					for (int preYear = year; preYear >= 0 && !found; preYear--)
@@ -362,6 +364,10 @@ bool StudyPlan::checkRules(Rules* const pRules )
 						preReqIssue.issueLabel = CRITICAL;
 						preReqIssue.issueInfo = PreCode + " is a missing Pre-Requisite for " + pC->getCode();
 						pRules->Issues->planIssues.push_back(preReqIssue);
+						//show the borderline for critical issue
+						pC->setIssueState(CRITICAL);
+						pC->DrawMe(pGUI);
+						pC->setIssueState(CLEAN);
 
 						issuesStatus = false;
 					}
@@ -392,6 +398,10 @@ bool StudyPlan::checkRules(Rules* const pRules )
 						CoReqIssue.issueLabel = CRITICAL;
 						CoReqIssue.issueInfo = CoReqCode + " is a missing Co-Requisite for " + pC->getCode();
 						pRules->Issues->planIssues.push_back(CoReqIssue);
+						//show the borderline for critical issue
+						pC->setIssueState(CRITICAL);
+						pC->DrawMe(pGUI);
+						pC->setIssueState(CLEAN);
 
 						issuesStatus = false;
 					}

@@ -5,11 +5,10 @@ class ActionCalculateGPA:
 	public Action
 {
 public:
-	//ActionCalculateGPA(Regi)
+	
 	ActionCalculateGPA(Registrar*p);
 	bool virtual Execute();
 	double calculateGPA(string letter, Course* pC);
-
 	virtual ~ActionCalculateGPA();
 private:
 	string GPA;
