@@ -33,10 +33,10 @@ struct AcademicYearOfferings
 	vector<Course_Code> Offerings[SEM_CNT];
 };
  
-struct Issues
+/* struct Issues
 {
 	vector<Issue> planIssues;
-};
+}; */
 
 struct Rules	//contains all objects for registrations rules
 {
@@ -82,7 +82,7 @@ struct Rules	//contains all objects for registrations rules
 	vector<Course_Code> consentration4_ele;	//consentration 4 courses electives
 
 	
-	Issues* Issues;
+	Issues* Issues = nullptr;
 };
 
 /* format of the txt file:
