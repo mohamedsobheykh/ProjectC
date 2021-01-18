@@ -83,6 +83,8 @@ struct Rules	//contains all objects for registrations rules
 
 	vector<Course_Code> Tconsentration_com;// the choosen consentration's courses comp
 	vector<Course_Code> Tconsentration_ele;//the choosen consentration's courses  electives
+	int Tcon_ele;
+	int Tcon_com;
 
 	Issues* Issues;
 };

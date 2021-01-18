@@ -266,26 +266,42 @@ bool ActionImportReq::Execute()
         if (num == 1) {
             Rule1->Tconsentration_com = Rule1->consentration1_com;
             Rule1->Tconsentration_ele = Rule1->consentration1_ele;
+
+            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(0);
+            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(1);
+
             pGUI->PrintMsg(" \\*o*/ consentration 1 has been choosen !");
-            //cout << "\\*o*/ consentration 1 has been choosen !";
+            //cout << Rule1->Tcon_ele;
         }
         else if (num == 2) {
             Rule1->Tconsentration_com = Rule1->consentration2_com;
             Rule1->Tconsentration_ele = Rule1->consentration2_ele;
+            
+            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(2);
+            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(3);
+
             pGUI->PrintMsg(" \\*o*/ consentration 2 has been choosen !");
-            //cout << "2222222222222222222222222222222222222222222";
+            //cout << Rule1->Tcon_ele;
         }
         else if (num == 3) {
             Rule1->Tconsentration_com = Rule1->consentration3_com;
             Rule1->Tconsentration_ele = Rule1->consentration3_ele;
-            pGUI->PrintMsg(" \\*o*/ consentration 3 has been choosen ! ");
-            //cout << "33333333333333333333333333333333333333333333";
             
+            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(4);
+            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(5);
+
+            pGUI->PrintMsg(" \\*o*/ consentration 3 has been choosen ! ");
+            //cout << Rule1->Tcon_ele;          
         }
         else if (num == 4) {
             Rule1->Tconsentration_com = Rule1->consentration4_com;
             Rule1->Tconsentration_ele = Rule1->consentration4_ele;
+            
+            Rule1->Tcon_com = Rule1->no_cr_concentrations.at(6);
+            Rule1->Tcon_ele = Rule1->no_cr_concentrations.at(7);
+
             pGUI->PrintMsg(" \\*o*/ consentration 4 has been choosen ! ");
+            //cout << Rule1->Tcon_ele;
         }
 
     }
