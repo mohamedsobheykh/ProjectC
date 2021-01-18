@@ -8,3 +8,5 @@ Fall minimum credits have not been acheived
 Spring minimum credits have not been acheived
 Fall minimum credits have not been acheived
 Spring minimum credits have not been acheived
+MATH 101 is a missing Pre-Requisite for MATH 102
+CSCI 101 is a missing Pre-Requisite for CIE 202

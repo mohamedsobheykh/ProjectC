@@ -180,18 +180,9 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="ActionCalculateGPA.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
-
     <ClCompile Include="ActionDoubleMajor.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="ActionDisplayFilter.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\ActionReport.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -316,11 +307,7 @@
     </ClInclude>
     <ClInclude Include="DisplayStudentLevel.h" />
     <ClInclude Include="ActionDoubleMajor.h" />
-     <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="ActionDisplayFilter.h" />
-     <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\ActionReport.h">
       <Filter>Actions</Filter>
     </ClInclude>

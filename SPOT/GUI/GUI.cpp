@@ -164,6 +164,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
 	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
 	MenuItemImages[ITM_Report] = "GUI\\Images\\Menu\\Menu_Report.jpg";
+	MenuItemImages[ITM_DoubleMajor] = "GUI\\Images\\Menu\\Menu_double_major.jpg";
+	MenuItemImages[ITM_Filter] = "GUI\\Images\\Menu\\Menu_filter.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list done
 
@@ -253,52 +255,7 @@ void GUI::UpdateInterface() const
 	pWind->SetBuffering(false);
 
 }
-/*
-void coursetypeindecate(Rules* pRules, Course* pCrs) {
-	for (int i = 0; i < pRules->UnivCompulsory.size(); i++) {
-		if (pCrs->getCode() == pRules->UnivCompulsory.at(i)) {
-			pCrs->settype("UnivCompulsory");
-			//cout << "1111111111111111111111111111111111111111111111111111111111";
-		}
-	}
-	for (int i = 0; i < pRules->TrackCompulsory.size(); i++) {
-		if (pCrs->getCode() == pRules->TrackCompulsory.at(i)) {
-			pCrs->settype("TrackCompulsory");
-		}
-	}
-	for (int i = 0; i < pRules->MajorCompulsory.size(); i++) {
-		if (pCrs->getCode() == pRules->MajorCompulsory.at(i)) {
-			pCrs->settype("MajorCompulsory");
-		}
-	}
-	for (int i = 0; i < pRules->Tconsentration_com.size(); i++) {
-		if (pCrs->getCode() == pRules->Tconsentration_com.at(i)) {
-			pCrs->settype("Tconsentration_com");
-		}
-	}
-	for (int i = 0; i < pRules->UnivElective.size(); i++) {
-		if (pCrs->getCode() == pRules->UnivElective.at(i)) {
-			pCrs->settype("UnivElective");
-			
-		}
-	}
-	for (int i = 0; i < pRules->TrackElective.size(); i++) {
-		if (pCrs->getCode() == pRules->TrackElective.at(i)) {
-			pCrs->settype("TrackElective");
-		}
-	}
-	for (int i = 0; i < pRules->MajorElective.size(); i++) {
-		if (pCrs->getCode() == pRules->MajorElective.at(i)) {
-			pCrs->settype("MajorElective");
-		}
-	}
-	for (int i = 0; i < pRules->Tconsentration_ele.size(); i++) {
-		if (pCrs->getCode() == pRules->Tconsentration_ele.at(i)) {
-			pCrs->settype("Tconsentration_ele");
-		}
-	}
 
-}*/
 
 //int typenum = coursetypeindecate(Rules * pRules, const Course * pCrs);
 
@@ -340,6 +297,7 @@ void GUI::DrawCourse(const Course* pCrs)
 		
 	}
 
+	pWind->SetBrush(FillColor);
 	graphicsInfo gInfo = pCrs->getGfxInfo();
 	
 	//abedal
@@ -589,7 +547,8 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_GPA:return ActionData{ CalculateGPA };
 				case ITM_STATUS:return ActionData{ CourseStatus };
 				case ITM_Report: return ActionData{ Report };
-
+				case ITM_DoubleMajor: return { DoubleMajor };
+				case ITM_Filter: return { Filter };
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}
 			}
