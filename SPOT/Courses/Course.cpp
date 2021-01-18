@@ -21,6 +21,14 @@ string Course::getTitle() const
 {
 	return Title;
 }
+string Course::gettype() const
+{
+	return type;
+}
+void Course::settype(string w)
+{
+	type = w;
+ }
 
 //return course credits
 int Course::getCredits() const

@@ -1,9 +1,10 @@
 #include "GUI.h"
+//#include "..\Rules.h"
 #include "../Courses/Course.h"
 #include "../StudyPlan/AcademicYear.h"
 #include <sstream>
 #include <iostream>
-
+//#include "../Registrar.h"
 
 GUI::GUI()
 { 
@@ -252,6 +253,54 @@ void GUI::UpdateInterface() const
 	pWind->SetBuffering(false);
 
 }
+/*
+void coursetypeindecate(Rules* pRules, Course* pCrs) {
+	for (int i = 0; i < pRules->UnivCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->UnivCompulsory.at(i)) {
+			pCrs->settype("UnivCompulsory");
+			//cout << "1111111111111111111111111111111111111111111111111111111111";
+		}
+	}
+	for (int i = 0; i < pRules->TrackCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->TrackCompulsory.at(i)) {
+			pCrs->settype("TrackCompulsory");
+		}
+	}
+	for (int i = 0; i < pRules->MajorCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->MajorCompulsory.at(i)) {
+			pCrs->settype("MajorCompulsory");
+		}
+	}
+	for (int i = 0; i < pRules->Tconsentration_com.size(); i++) {
+		if (pCrs->getCode() == pRules->Tconsentration_com.at(i)) {
+			pCrs->settype("Tconsentration_com");
+		}
+	}
+	for (int i = 0; i < pRules->UnivElective.size(); i++) {
+		if (pCrs->getCode() == pRules->UnivElective.at(i)) {
+			pCrs->settype("UnivElective");
+			
+		}
+	}
+	for (int i = 0; i < pRules->TrackElective.size(); i++) {
+		if (pCrs->getCode() == pRules->TrackElective.at(i)) {
+			pCrs->settype("TrackElective");
+		}
+	}
+	for (int i = 0; i < pRules->MajorElective.size(); i++) {
+		if (pCrs->getCode() == pRules->MajorElective.at(i)) {
+			pCrs->settype("MajorElective");
+		}
+	}
+	for (int i = 0; i < pRules->Tconsentration_ele.size(); i++) {
+		if (pCrs->getCode() == pRules->Tconsentration_ele.at(i)) {
+			pCrs->settype("Tconsentration_ele");
+		}
+	}
+
+}*/
+
+//int typenum = coursetypeindecate(Rules * pRules, const Course * pCrs);
 
 ////////////////////////    Drawing functions    ///////////////////
 void GUI::DrawCourse(const Course* pCrs)
@@ -262,9 +311,30 @@ void GUI::DrawCourse(const Course* pCrs)
 	{
 		pCrs->getIssueState() == CRITICAL ? pWind->SetPen(RED, 2) : pWind->SetPen(ORANGE, 2);
 	}
-	else
-	pWind->SetPen(DrawColor, 2);
-	pWind->SetBrush(FillColor);
+	else  {
+		//pWind->SetPen(DrawColor, 2);
+		//pWind->SetBrush(FillColor);
+		if (pCrs->gettype() == "UnivCompulsory" ) {
+			pWind->SetPen(VIOLET, 2);
+			pWind->SetBrush(FillColor);
+		}
+		 else if (pCrs->gettype() == "TrackCompulsory") {
+			pWind->SetPen(GREEN, 2);
+			pWind->SetBrush(FillColor);
+		}
+		 else if (pCrs->gettype() == "MajorCompulsory") {
+			pWind->SetPen(YELLOW, 2);
+			pWind->SetBrush(FillColor);
+		}
+		 else if (pCrs->gettype() == "Tconsentration_com") {
+			pWind->SetPen(PINK, 2);
+			pWind->SetBrush(FillColor);
+		}
+		
+		
+		
+	}
+
 	graphicsInfo gInfo = pCrs->getGfxInfo();
 	
 	//abedal
@@ -426,9 +496,15 @@ void GUI::DrawCourse(const Course* pCrs)
 		
 		
 		//abedal
-		pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
+		if ((pCrs->gettype() == "UnivElective") || (pCrs->gettype() == "TrackElective") ||
+			(pCrs->gettype() == "MajorElective") || (pCrs->gettype() == "Tconsentration_ele")) {
+			pWind->DrawEllipse(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
+		}
+		else {
+			pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
+		}
 		pWind->DrawLine(gInfo.x, gInfo.y + CRS_HEIGHT / 2, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT / 2);
-	
+	    
 		//Write the course code and credit hours.
 		int Code_x = gInfo.x + CRS_WIDTH * 0.15;
 		int Code_y = gInfo.y + CRS_HEIGHT * 0.05;

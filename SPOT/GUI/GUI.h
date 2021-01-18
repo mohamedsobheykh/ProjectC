@@ -2,12 +2,14 @@
 #include <string>
 using namespace std;
 
-
+//#include "..\Rules.h"
+#include "../Actions/ActionImportReq.h"
 #include "..\DEFs.h"
 #include "CMUgraphicsLib\CMUgraphics.h"
 
 class Course;
 class AcademicYear;
+class Registrar;////
 //user interface class
 class GUI 
 {
@@ -59,9 +61,10 @@ class GUI
 	window* pWind;
 	window* pWind2;
 	
-
+	//Rules* rule;
 public:
 	GUI();
+	//int typenum;
 	void setFillColor(const color);
 	void CreateNewWindow();
 	void CreateMenu() const;
@@ -77,6 +80,8 @@ public:
 	void DrawCourse(const Course* );
 	void DrawAcademicYear(const AcademicYear*);
 	void UpdateInterface() const;
+
+	//void coursetypeindecate(Rules*, const Course*);
 	
 	//input functions
 	ActionData GUI::GetUserAction(string msg = "") const;
