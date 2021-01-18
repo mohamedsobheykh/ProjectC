@@ -32,7 +32,8 @@ class GUI
 		ITM_GPA,
 		ITM_STATUS,
 		ITM_EXIT,		//Exit item
-
+		ITM_DoubleConcentration,
+		ITM_Minor,
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
 
 	};

@@ -35,6 +35,8 @@ enum ActionType
 
 	ImportReq, //import prog req
 	EXIT,		//Exit the application
+	DoubleConcentration,
+	Minor,
 
 	STATUS_BAR,	//A click on the status bar
 	MENU_BAR,	//A click on an empty place in the menu bar
