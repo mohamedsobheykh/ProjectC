@@ -323,7 +323,7 @@ Action* Registrar::CreateRequiredAction()
 		break;
 	case Filter:
 		RequiredAction = new ActionDisplayFilter(this);
-
+		break;
 	case Report:
 		RequiredAction = new ActionReport(this);
 		break;
