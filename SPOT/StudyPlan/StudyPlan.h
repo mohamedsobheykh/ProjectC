@@ -21,6 +21,8 @@ public:
 	bool AddCourse(Course*, int year, SEMESTER);
 	bool DeleteCourse(int courseOrder, int year, SEMESTER); //delete a course abedal
 
+	void coursetypeindecate(Rules* pRules);
+
 	void virtual DrawMe(GUI*) const;
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);

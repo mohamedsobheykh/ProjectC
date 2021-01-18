@@ -27,6 +27,8 @@ public:
 	Course(Course_Code r_code,string r_title, int crd);
 	string getTitle() const;
 	string getCode() const;
+	void settype( string );
+	string gettype() const;
 	int getCredits() const;
 	CourseInfo* getInfo();
 	void setIssueState(IssueLabel);
