@@ -106,7 +106,7 @@ vector<Course*> StudyPlan::getAllCourses() {
 	return ALLcourses;
 }
 
-bool StudyPlan::checkRules(Rules* pRules )
+bool StudyPlan::checkRules(Rules* const pRules )
 {
 	bool issuesStatus = true;
 

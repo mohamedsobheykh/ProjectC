@@ -81,7 +81,9 @@ struct Rules	//contains all objects for registrations rules
 	vector<Course_Code> consentration4_com;	//consentration 4 courses comp
 	vector<Course_Code> consentration4_ele;	//consentration 4 courses electives
 
-	
+	vector<Course_Code> Tconsentration_com;// the choosen consentration's courses comp
+	vector<Course_Code> Tconsentration_ele;//the choosen consentration's courses  electives
+
 	Issues* Issues;
 };
 
