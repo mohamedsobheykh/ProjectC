@@ -345,7 +345,7 @@ void Registrar::checkRules()
 {
 	pRules->Issues = new Issues;
 
-	if (!pSPlan->checkRules(pRules))
+	if (!pSPlan->checkRules(pRules,pGUI))
 	{
 		
 		int MOD = 0; int CRI = 0;

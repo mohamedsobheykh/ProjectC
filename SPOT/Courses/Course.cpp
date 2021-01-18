@@ -5,6 +5,7 @@ Course::Course(Course_Code r_code, string r_title, int crd):code(r_code),Title(r
 {
 	credits = crd;
 	Info = new CourseInfo;
+	issueState = CLEAN;
 }
 
 Course::~Course()
@@ -31,6 +32,16 @@ CourseInfo* Course::getInfo()
 {
 	CourseInfo* pInfo = Info;
 	return pInfo;
+}
+
+void Course::setIssueState(IssueLabel issueState)
+{
+	this->issueState = issueState;
+}
+
+IssueLabel Course::getIssueState() const
+{
+	return issueState;
 }
 
 void Course::setInfo(CourseInfo* Info)

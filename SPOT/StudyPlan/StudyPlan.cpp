@@ -106,7 +106,7 @@ vector<Course*> StudyPlan::getAllCourses() {
 	return ALLcourses;
 }
 
-bool StudyPlan::checkRules(Rules* pRules )
+bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 {
 	bool issuesStatus = true;
 
@@ -317,6 +317,10 @@ bool StudyPlan::checkRules(Rules* pRules )
 						preReqIssue.issueLabel = CRITICAL;
 						preReqIssue.issueInfo = PreCode + " is a missing Pre-Requisite for " + pC->getCode();
 						pRules->Issues->planIssues.push_back(preReqIssue);
+						//show the borderline for critical issue
+						pC->setIssueState(CRITICAL);
+						pC->DrawMe(pGUI);
+						pC->setIssueState(CLEAN);
 
 						issuesStatus = false;
 					}
@@ -347,6 +351,10 @@ bool StudyPlan::checkRules(Rules* pRules )
 						CoReqIssue.issueLabel = CRITICAL;
 						CoReqIssue.issueInfo = CoReqCode + " is a missing Co-Requisite for " + pC->getCode();
 						pRules->Issues->planIssues.push_back(CoReqIssue);
+						//show the borderline for critical issue
+						pC->setIssueState(CRITICAL);
+						pC->DrawMe(pGUI);
+						pC->setIssueState(CLEAN);
 
 						issuesStatus = false;
 					}

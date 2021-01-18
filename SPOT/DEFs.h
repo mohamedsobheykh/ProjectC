@@ -58,7 +58,8 @@ struct ActionData
 enum IssueLabel
 {
 	CRITICAL,
-	MODERATE
+	MODERATE,
+	CLEAN
 };
 struct Issue
 {
