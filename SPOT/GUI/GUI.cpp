@@ -13,6 +13,100 @@ GUI::GUI()
 	ClearStatusBar();
 	CreateMenu();
 }
+/*
+void GUI::PrintIssueReport(Issues* planIssues)
+{
+	int Xi = 600;
+	int Yi = 100;
+	int width = 600;
+	int hight = 600;
+	window* pWind2;
+	pWind2 = new window(width, hight, Xi, Yi);
+	pWind2->ChangeTitle("StudyPlan Validity Report - ESC to close");
+	//clear drawing area
+	keytype ktInput;
+	clicktype ctInput;
+	char cKeyData;
+	
+	// Flush out the input queues before beginning
+	pWind2->FlushMouseQueue();
+	pWind2->FlushKeyQueue();
+	while (true)
+	{
+		int x, y;
+		//ctInput = pWind2->GetMouseClick(x, y);//Get the coordinates of the user click
+		ktInput = pWind2->GetKeyPress(cKeyData);
+		if (ktInput == ESCAPE)
+			break;  
+
+		//pWind2->UpdateBuffer();
+		//Redraw everything
+		pWind2->SetBrush(BkGrndColor);
+		pWind2->SetPen(BkGrndColor);
+		pWind2->DrawRectangle(Xi, Yi, Xi + width, Yi + hight);
+
+
+		pWind2->SetFont(20, BOLD, BY_NAME, "Arial");
+		pWind2->SetPen(MsgColor);
+		pWind2->DrawString(Xi + 50, Yi + 50,"comeon jalksj;sf ljadsljf ");
+		cout << "reachedhere";
+
+		
+
+	}
+	 
+	delete pWind2;
+}
+*/
+void GUI::PrintIssueReport(Issues* planIssues)
+{
+	window* temp = pWind;
+	pWind = new window(WindWidth, WindHeight, wx, wy);
+	pWind->ChangeTitle("StudyPlan Validity Report - ESC to close");
+	ClearDrawingArea();
+	//ClearStatusBar();
+	//CreateMenu();
+	pWind->SetFont(30, BOLD, BY_NAME, "Arial");
+	pWind->SetPen(BLUE);
+	pWind->DrawString(wx, wy, "The Issues list: ");
+
+	while (true)
+	{
+		pWind->SetBuffering(true);
+		//Redraw everything
+		//CreateMenu();
+		//ClearStatusBar();
+		ClearDrawingArea();
+		pWind->UpdateBuffer();
+		pWind->SetBuffering(false);
+		// start writing
+		int lineCount = 0;
+		int colCount = 0;
+		pWind->SetFont(30, BOLD, BY_NAME, "Arial");
+		pWind->SetPen(BLUE);
+		pWind->DrawString(wx, wy, "The Issues list: ");
+
+		pWind->SetFont(15, BOLD, BY_NAME, "Arial");
+		pWind->SetPen(MsgColor);
+		for (int i = 0; i < planIssues->planIssues.size(); i++)
+		{
+			ostringstream msg;
+			msg << i +1 << "- " << planIssues->planIssues[i].issueInfo;
+			pWind->DrawString(wx + colCount*(WindWidth/3), wy + 70 + 20 * lineCount++, msg.str());
+
+			if (lineCount == 28)
+			{
+				lineCount = 0;
+				colCount++;
+			}
+		}
+
+		if (this->GetUserAction().actType == CANCEL)
+			break;
+	}
+	delete pWind;
+	pWind = temp;
+}
 
 
 void GUI::CreateNewWindow()
@@ -68,6 +162,7 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
 	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
 	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
+	MenuItemImages[ITM_Report] = "GUI\\Images\\Menu\\Menu_Report.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list done
 
@@ -141,6 +236,8 @@ void GUI::PrintIssue(int Moderate, int Critical)
 	}
 	
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////
 void GUI::UpdateInterface() const
@@ -455,6 +552,7 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_Reorder: return ActionData{ REORDER };
 				case ITM_GPA:return ActionData{ CalculateGPA };
 				case ITM_STATUS:return ActionData{ CourseStatus };
+				case ITM_Report: return ActionData{ Report };
 
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}

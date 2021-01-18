@@ -14,6 +14,7 @@
 #include"ActionCalculateGPA.h"
 #include"ActionSelectCourseStatus.h"
 #include "Actions/ActionReorderCourses.h"
+#include "Actions/ActionReport.h"
 
 
 using namespace std;
@@ -294,6 +295,9 @@ Action* Registrar::CreateRequiredAction()
 	case CourseStatus:
 		RequiredAction = new ActionSelectCourseStatus(this);
 		break;
+	case Report:
+		RequiredAction = new ActionReport(this);
+		break;
 
 	//TODO: Add case for each action
 	
@@ -343,6 +347,9 @@ void Registrar::UpdateInterface()
 
 void Registrar::checkRules()
 {
+	if (pRules->Issues)
+		delete pRules->Issues; 
+
 	pRules->Issues = new Issues;
 
 	if (!pSPlan->checkRules(pRules,pGUI))
@@ -362,8 +369,6 @@ void Registrar::checkRules()
 		}
 		pGUI->PrintIssue(MOD,CRI);
 	}
-
-	delete pRules->Issues;
 		
 }
 

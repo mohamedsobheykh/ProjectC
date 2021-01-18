@@ -2,6 +2,7 @@
 
 //This header file contains some defenitions to be used all over the application
 #include <string>
+#include <vector>
 using namespace std;
 typedef string Course_Code;
 
@@ -29,7 +30,7 @@ enum ActionType
 	Display_Notes,
 	Replace_CRS,  //replace a course
 	REORDER, //reorder the course to another sem or year
-
+	Report,
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled
 
@@ -65,6 +66,10 @@ struct Issue
 {
 	IssueLabel issueLabel;
 	string issueInfo;
+};
+struct Issues
+{
+	vector<Issue> planIssues;
 };
 
 
