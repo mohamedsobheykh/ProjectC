@@ -330,7 +330,12 @@ void GUI::DrawCourse(const Course* pCrs)
 			pWind->SetPen(PINK, 2);
 			pWind->SetBrush(FillColor);
 		}
+		 else {
+			pWind->SetPen(BLACK, 2);
+			pWind->SetBrush(FillColor);
 		
+		}
+
 		
 		
 	}
