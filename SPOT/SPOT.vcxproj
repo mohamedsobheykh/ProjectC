@@ -120,6 +120,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionCalculateGPA.cpp" />
+    <ClCompile Include="ActionDisplayFilter.cpp" />
+    <ClCompile Include="ActionDoubleMajor.cpp" />
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
     <ClCompile Include="Actions\ActionAddCourse.cpp" />
     <ClCompile Include="Actions\ActionAddNotes.cpp" />
@@ -133,6 +135,7 @@
     <ClCompile Include="Actions\ActionMinor.cpp" />
     <ClCompile Include="Actions\ActionReorderCourses.cpp" />
     <ClCompile Include="Actions\ActionreplaceCourse.cpp" />
+    <ClCompile Include="Actions\ActionReport.cpp" />
     <ClCompile Include="Actions\ActionSavePlan.cpp" />
     <ClCompile Include="Actions\ActionImportReq.cpp" />
     <ClCompile Include="Courses\Course.cpp" />
@@ -180,7 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionCalculateGPA.h" />
+    <ClInclude Include="ActionDisplayFilter.h" />
     <ClInclude Include="ActionDisplayStudentLevel.h" />
+    <ClInclude Include="ActionDoubleMajor.h" />
     <ClInclude Include="ActionSelectCourseStatus.h" />
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddCourse.h" />
@@ -195,6 +200,7 @@
     <ClInclude Include="Actions\ActionMinor.h" />
     <ClInclude Include="Actions\ActionReorderCourses.h" />
     <ClInclude Include="Actions\ActionreplaceCourse.h" />
+    <ClInclude Include="Actions\ActionReport.h" />
     <ClInclude Include="Actions\ActionSavePlan.h" />
     <ClInclude Include="Actions\ActionImportReq.h" />
     <ClInclude Include="Courses\Course.h" />

@@ -2,6 +2,7 @@
 
 //This header file contains some defenitions to be used all over the application
 #include <string>
+#include <vector>
 using namespace std;
 typedef string Course_Code;
 
@@ -29,7 +30,7 @@ enum ActionType
 	Display_Notes,
 	Replace_CRS,  //replace a course
 	REORDER, //reorder the course to another sem or year
-
+	Report,
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled
 
@@ -43,6 +44,8 @@ enum ActionType
 	DRAW_AREA,	//A click in the drawing area
 	CalculateGPA, // enter the letter grade to each course and calculate the weighted gpa
 	CourseStatus,// choose the course status ( done / pending / in progress )
+	DoubleMajor,// choose the second major
+	Filter,//display filter
 	CANCEL,		//ESC key is pressed
 
 	//TODO: Add more action types
@@ -60,12 +63,17 @@ struct ActionData
 enum IssueLabel
 {
 	CRITICAL,
-	MODERATE
+	MODERATE,
+	CLEAN
 };
 struct Issue
 {
 	IssueLabel issueLabel;
 	string issueInfo;
+};
+struct Issues
+{
+	vector<Issue> planIssues;
 };
 
 
