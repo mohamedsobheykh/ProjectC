@@ -17,13 +17,18 @@ class Course : public Drawable
 	bool Done;		//Done or not yet?
 	list<Course_Code> PreReq;	//list of prerequisites
 	list<Course_Code> CoReq;	//list of prerequisites
-
+	bool show;
 	CourseInfo* Info;
 	IssueLabel issueState;
 public:
+	Course();
+	void setShowCourse(bool show);
+	bool getShowCourse()const;
 	Course(Course_Code r_code,string r_title, int crd);
 	string getTitle() const;
 	string getCode() const;
+	void settype( string );
+	string gettype() const;
 	int getCredits() const;
 	CourseInfo* getInfo();
 	void setIssueState(IssueLabel);

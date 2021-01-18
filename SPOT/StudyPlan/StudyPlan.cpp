@@ -57,7 +57,7 @@ bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 }
 
 void StudyPlan::DrawMe(GUI* pGUI) const
-{
+{ 
 	//Plan draws all year inside it.
 	for (int i = 0; i < plan.size(); i++)
 		plan[i]->DrawMe(pGUI);
@@ -103,11 +103,62 @@ vector<Course*> StudyPlan::getAllCourses() {
 			ALLcourses.push_back(*(AllCourses.begin()+i));
 		}
 	}
+
 	return ALLcourses;
 }
 
+/*void coursetypeindecate(Rules* pRules) {
+	vector<Course*> corsat = getAllCourses();
+
+	for (int i = 0; i < pRules->UnivCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->UnivCompulsory.at(i)) {
+			pCrs->settype("UnivCompulsory");
+			//cout << "1111111111111111111111111111111111111111111111111111111111";
+		}
+	}
+	for (int i = 0; i < pRules->TrackCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->TrackCompulsory.at(i)) {
+			pCrs->settype("TrackCompulsory");
+		}
+	}
+	for (int i = 0; i < pRules->MajorCompulsory.size(); i++) {
+		if (pCrs->getCode() == pRules->MajorCompulsory.at(i)) {
+			pCrs->settype("MajorCompulsory");
+		}
+	}
+	for (int i = 0; i < pRules->Tconsentration_com.size(); i++) {
+		if (pCrs->getCode() == pRules->Tconsentration_com.at(i)) {
+			pCrs->settype("Tconsentration_com");
+		}
+	}
+	for (int i = 0; i < pRules->UnivElective.size(); i++) {
+		if (pCrs->getCode() == pRules->UnivElective.at(i)) {
+			pCrs->settype("UnivElective");
+
+		}
+	}
+	for (int i = 0; i < pRules->TrackElective.size(); i++) {
+		if (pCrs->getCode() == pRules->TrackElective.at(i)) {
+			pCrs->settype("TrackElective");
+		}
+	}
+	for (int i = 0; i < pRules->MajorElective.size(); i++) {
+		if (pCrs->getCode() == pRules->MajorElective.at(i)) {
+			pCrs->settype("MajorElective");
+		}
+	}
+	for (int i = 0; i < pRules->Tconsentration_ele.size(); i++) {
+		if (pCrs->getCode() == pRules->Tconsentration_ele.at(i)) {
+			pCrs->settype("Tconsentration_ele");
+		}
+	}
+
+}
+*/
+
 
 bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
+
 {
 	bool issuesStatus = true;
 
@@ -128,7 +179,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 		issuesStatus = false;
 		Issue total_cr;
 		total_cr.issueLabel = CRITICAL;
-		total_cr.issueInfo = "there are a missing courses of the total cr of the studyplan ";
+		total_cr.issueInfo = "there are a missing courses of the total courses of the studyplan ";
 		pRules->Issues->planIssues.push_back(total_cr);
 
 	}
@@ -273,7 +324,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 		issuesStatus = false;
 		Issue cconCompulsoryy;
 		cconCompulsoryy.issueLabel = CRITICAL;
-		cconCompulsoryy.issueInfo = "there are a missing courses of the Major Compulsory courses ";
+		cconCompulsoryy.issueInfo = "there are a missing courses of the consentration Compulsory courses ";
 		pRules->Issues->planIssues.push_back(cconCompulsoryy);
 	}
 	//..................................................................................................
@@ -297,7 +348,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 		issuesStatus = false;
 		Issue conElectivee;
 		conElectivee.issueLabel = CRITICAL;
-		conElectivee.issueInfo = "there are a missing courses of the Major Electives ";
+		conElectivee.issueInfo = "there are a missing courses of the consentration Electives ";
 		pRules->Issues->planIssues.push_back(conElectivee);
 	}
 
