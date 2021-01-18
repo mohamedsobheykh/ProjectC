@@ -242,7 +242,7 @@ bool ActionDoubleMajor::Execute()
     bool check;
    check= pSPlan->checkRules(Rule2);*/
     return true;
-    import = pSPlan->checkRules(Rule2);
+    import = pSPlan->checkRules(Rule2,pGUI);
 }
 
 
