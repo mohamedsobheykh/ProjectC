@@ -106,6 +106,7 @@ vector<Course*> StudyPlan::getAllCourses() {
 	return ALLcourses;
 }
 
+
 bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 {
 	bool issuesStatus = true;
@@ -117,18 +118,19 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	{
 		//int TOTALCR = 0;
 		TOTALCR = (*(ALL.begin()+i))->getCredits() + TOTALCR;
-		int r = pRules->ReqUnivCredits;
-		if (TOTALCR >= r) {
-			issuesStatus = true;
-		}
-		else {
-			issuesStatus = false;
-			Issue total_cr;
-			total_cr.issueLabel = CRITICAL;
-			total_cr.issueInfo = "there are a missing courses of the total cr of the studyplan ";
-			pRules->Issues->planIssues.push_back(total_cr);
 		
-		}
+	}
+	int r = pRules->ReqUnivCredits;
+	if (TOTALCR >= r) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue total_cr;
+		total_cr.issueLabel = CRITICAL;
+		total_cr.issueInfo = "there are a missing courses of the total cr of the studyplan ";
+		pRules->Issues->planIssues.push_back(total_cr);
+
 	}
 	//..................................................................................................
 	//check for UnivCompulsory 
@@ -252,7 +254,52 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 		pRules->Issues->planIssues.push_back(MajorElectivee);
 	}
 	//..................................................................................................
-	
+	//check for consentration Compulsory cr
+	int cconCompulsory = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->Tconsentration_com.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->Tconsentration_com[j];
+			if (a == b) {
+				cconCompulsory++;
+			}
+		}
+	}
+	if (cconCompulsory == pRules->Tconsentration_com.size()) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue cconCompulsoryy;
+		cconCompulsoryy.issueLabel = CRITICAL;
+		cconCompulsoryy.issueInfo = "there are a missing courses of the Major Compulsory courses ";
+		pRules->Issues->planIssues.push_back(cconCompulsoryy);
+	}
+	//..................................................................................................
+	//check for consentration Elective cr
+	int cconElective = 0;
+	for (int i = 0; i < ALL.size(); i++)
+	{
+		for (int j = 0; j < pRules->Tconsentration_ele.size(); j++) {
+			string a = (*(ALL.begin() + i))->getCode();
+			string b = pRules->Tconsentration_ele[j];
+			if (a == b) {
+				cconElective = (*(ALL.begin() + i))->getCredits() + cconElective;
+
+			}
+		}
+	}
+	if (cconElective >= pRules->Tcon_ele) {
+		issuesStatus = true;
+	}
+	else {
+		issuesStatus = false;
+		Issue conElectivee;
+		conElectivee.issueLabel = CRITICAL;
+		conElectivee.issueInfo = "there are a missing courses of the Major Electives ";
+		pRules->Issues->planIssues.push_back(conElectivee);
+	}
 
 
 
