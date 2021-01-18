@@ -1,8 +1,24 @@
 #include "Course.h"
 #include "../GUI/GUI.h"
 
+Course::Course()
+{
+	show = true;
+}
+
+void Course::setShowCourse(bool show)
+{
+	this->show = show;
+}
+
+bool Course::getShowCourse() const
+{
+	return show;
+}
+
 Course::Course(Course_Code r_code, string r_title, int crd):code(r_code),Title(r_title)
 {
+	show = true;
 	credits = crd;
 	Info = new CourseInfo;
 }

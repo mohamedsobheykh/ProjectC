@@ -68,6 +68,8 @@ void GUI::CreateMenu() const
 	MenuItemImages[ITM_Reorder] = "GUI\\Images\\Menu\\Menu_Reorder.jpg";
 	MenuItemImages[ITM_GPA] = "GUI\\Images\\Menu\\Menu_GPA.jpg";
 	MenuItemImages[ITM_STATUS] = "GUI\\Images\\Menu\\Menu_CourseStatus.jpg";
+	MenuItemImages[ITM_DoubleMajor] = "GUI\\Images\\Menu\\Menu_double_major.jpg";
+	MenuItemImages[ITM_Filter] = "GUI\\Images\\Menu\\Menu_filter.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list done
 
@@ -159,187 +161,189 @@ void GUI::UpdateInterface() const
 ////////////////////////    Drawing functions    ///////////////////
 void GUI::DrawCourse(const Course* pCrs)
 {
-	if (pCrs->isSelected())
-		pWind->SetPen(HiColor, 2);
-	else
-	pWind->SetPen(DrawColor, 2);
-	pWind->SetBrush(FillColor);
-	graphicsInfo gInfo = pCrs->getGfxInfo();
-	
-	//abedal
-	if (gInfo.y < 150) // to be in the drawing part away from the menu and words years and semesters
+	if (pCrs->getShowCourse() == 1)
 	{
-	}
-	else
-	{
-		 // to order courses below each other 
-		// determining whuch semester and year the user click
-		//gInfo.x is the x cordinate of the click
-		
-		
-		if (gInfo.x < 80)
-		{
-			
-			gInfo.x = 0;
-		}
-		else if ((gInfo.x > 86.7)& (gInfo.x < 166))
-		{
-			
+		if (pCrs->isSelected())
+			pWind->SetPen(HiColor, 2);
+		else
+			pWind->SetPen(DrawColor, 2);
+		pWind->SetBrush(FillColor);
+		graphicsInfo gInfo = pCrs->getGfxInfo();
 
-
-			gInfo.x = 86.7;
-		}
-		else if ((gInfo.x > 166)& (gInfo.x < 253))
-		{
-			
-			
-			gInfo.x = 177;
-		}
-
-
-		//FOR THE SECIND YEAR
-		else if ((gInfo.x > 260.2)& (gInfo.x < 340.2))// 0.2 TO PASS THE PORDERS
-		{
-			
-			
-			gInfo.x = 260.2;
-		}
-		else if ((gInfo.x > 346.8)& (gInfo.x < 420.6))
-		{
-			
-			
-			gInfo.x = 346.8;
-		}
-		else if ((gInfo.x > 427.2)& (gInfo.x < 507.2))
-		{
-			
-			
-			gInfo.x = 435;
-		}
-		//FOR THE THIRD YEAR
-		else if ((gInfo.x > 507.2)& (gInfo.x < 593.8)) // 0.2 TO PASS THE PORDERS
-		{
-			
-			
-			gInfo.x = 520;
-		}
-		else if ((gInfo.x > 600.4)& (gInfo.x < 680.4))
-		{
-			
-			
-			gInfo.x = 610;
-		}
-		else if ((gInfo.x > 687)& (gInfo.x < 767))
-		{
-			
-			
-			gInfo.x = 695;
-		}
-
-		//FOR THE 4TH YAER
-		else if ((gInfo.x > 773.6)& (gInfo.x < 853.6)) // 0.2 TO PASS THE PORDERS
-		{
-			
-			
-			gInfo.x = 782;
-		}
-		else if ((gInfo.x > 860.2)& (gInfo.x < 940.2))
-		{
-			
-			
-			gInfo.x = 871;
-		}
-		else if ((gInfo.x > 946.8)& (gInfo.x < 1026.8))
-		{
-			
-			
-			gInfo.x = 955;
-		}
-
-		//FOR THE 5TH YEAR
-		else if ((gInfo.x > 1033.4)& (gInfo.x < 1113.4)) // 0.2 TO PASS THE PORDERS
-		{
-			
-			
-			gInfo.x = 1042;
-		}
-		else if ((gInfo.x > 1120) & (gInfo.x < 1200))
-		{
-		    
-			
-			gInfo.x = 1130;
-		}
-		
-		else if ((gInfo.x > 1206.6)& (gInfo.x < 1286.6))
-		{
-		
-			
-			gInfo.x = 1215;
-		}
-		//y cordinate
-
-		/*if (gInfo.y < 190)
-		{
-			gInfo.y = 150;
-		}
-		else if ((gInfo.y > 190) & (gInfo.y < 240))
-		{
-			gInfo.y = 200;
-		}
-		else if ((gInfo.y > 240)& (gInfo.y < 280))
-		{
-			gInfo.y = 247;
-		}
-		else if ((gInfo.y > 280)& (gInfo.y < 320))
-		{
-			gInfo.y = 295;
-		}
-		else if ((gInfo.y > 320)& (gInfo.y < 380))
-		{
-			gInfo.y = 342;
-		}
-		else if ((gInfo.y > 380)& (gInfo.y < 420))
-		{
-			gInfo.y = 389;
-		}
-		else if ((gInfo.y > 420)& (gInfo.y < 480))
-		{
-			gInfo.y = 437;
-		}
-		else if ((gInfo.y > 480)& (gInfo.y < 520))
-		{
-			gInfo.y = 485;
-		}
-		else if ((gInfo.y > 520)& (gInfo.y < 578))
-		{
-			gInfo.y = 530;
-		}
-		else if ((gInfo.y > 600)& (gInfo.y < 680))
-		{
-			gInfo.y = 580;
-		}*/
-		/*else if ((gInfo.y >= 620))
-		{
-			gInfo.y = -1;
-		}*/
-		
-		
 		//abedal
-		pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
-		pWind->DrawLine(gInfo.x, gInfo.y + CRS_HEIGHT / 2, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT / 2);
-	
-		//Write the course code and credit hours.
-		int Code_x = gInfo.x + CRS_WIDTH * 0.15;
-		int Code_y = gInfo.y + CRS_HEIGHT * 0.05;
-		pWind->SetFont(CRS_HEIGHT * 0.4, BOLD , BY_NAME, "Gramound");
-		pWind->SetPen(MsgColor);
-
-		ostringstream crd;
-		crd<< "crd:" << pCrs->getCredits();
-		pWind->DrawString(Code_x, Code_y, pCrs->getCode());
-		pWind->DrawString(Code_x, Code_y + CRS_HEIGHT/2, crd.str());
+		if (gInfo.y < 150) // to be in the drawing part away from the menu and words years and semesters
+		{
 		}
-	 
+		else
+		{
+			// to order courses below each other 
+		   // determining whuch semester and year the user click
+		   //gInfo.x is the x cordinate of the click
+
+
+			if (gInfo.x < 80)
+			{
+
+				gInfo.x = 0;
+			}
+			else if ((gInfo.x > 86.7) & (gInfo.x < 166))
+			{
+
+
+
+				gInfo.x = 86.7;
+			}
+			else if ((gInfo.x > 166) & (gInfo.x < 253))
+			{
+
+
+				gInfo.x = 177;
+			}
+
+
+			//FOR THE SECIND YEAR
+			else if ((gInfo.x > 260.2) & (gInfo.x < 340.2))// 0.2 TO PASS THE PORDERS
+			{
+
+
+				gInfo.x = 260.2;
+			}
+			else if ((gInfo.x > 346.8) & (gInfo.x < 420.6))
+			{
+
+
+				gInfo.x = 346.8;
+			}
+			else if ((gInfo.x > 427.2) & (gInfo.x < 507.2))
+			{
+
+
+				gInfo.x = 435;
+			}
+			//FOR THE THIRD YEAR
+			else if ((gInfo.x > 507.2) & (gInfo.x < 593.8)) // 0.2 TO PASS THE PORDERS
+			{
+
+
+				gInfo.x = 520;
+			}
+			else if ((gInfo.x > 600.4) & (gInfo.x < 680.4))
+			{
+
+
+				gInfo.x = 610;
+			}
+			else if ((gInfo.x > 687) & (gInfo.x < 767))
+			{
+
+
+				gInfo.x = 695;
+			}
+
+			//FOR THE 4TH YAER
+			else if ((gInfo.x > 773.6) & (gInfo.x < 853.6)) // 0.2 TO PASS THE PORDERS
+			{
+
+
+				gInfo.x = 782;
+			}
+			else if ((gInfo.x > 860.2) & (gInfo.x < 940.2))
+			{
+
+
+				gInfo.x = 871;
+			}
+			else if ((gInfo.x > 946.8) & (gInfo.x < 1026.8))
+			{
+
+
+				gInfo.x = 955;
+			}
+
+			//FOR THE 5TH YEAR
+			else if ((gInfo.x > 1033.4) & (gInfo.x < 1113.4)) // 0.2 TO PASS THE PORDERS
+			{
+
+
+				gInfo.x = 1042;
+			}
+			else if ((gInfo.x > 1120) & (gInfo.x < 1200))
+			{
+
+
+				gInfo.x = 1130;
+			}
+
+			else if ((gInfo.x > 1206.6) & (gInfo.x < 1286.6))
+			{
+
+
+				gInfo.x = 1215;
+			}
+			//y cordinate
+
+			/*if (gInfo.y < 190)
+			{
+				gInfo.y = 150;
+			}
+			else if ((gInfo.y > 190) & (gInfo.y < 240))
+			{
+				gInfo.y = 200;
+			}
+			else if ((gInfo.y > 240)& (gInfo.y < 280))
+			{
+				gInfo.y = 247;
+			}
+			else if ((gInfo.y > 280)& (gInfo.y < 320))
+			{
+				gInfo.y = 295;
+			}
+			else if ((gInfo.y > 320)& (gInfo.y < 380))
+			{
+				gInfo.y = 342;
+			}
+			else if ((gInfo.y > 380)& (gInfo.y < 420))
+			{
+				gInfo.y = 389;
+			}
+			else if ((gInfo.y > 420)& (gInfo.y < 480))
+			{
+				gInfo.y = 437;
+			}
+			else if ((gInfo.y > 480)& (gInfo.y < 520))
+			{
+				gInfo.y = 485;
+			}
+			else if ((gInfo.y > 520)& (gInfo.y < 578))
+			{
+				gInfo.y = 530;
+			}
+			else if ((gInfo.y > 600)& (gInfo.y < 680))
+			{
+				gInfo.y = 580;
+			}*/
+			/*else if ((gInfo.y >= 620))
+			{
+				gInfo.y = -1;
+			}*/
+
+
+			//abedal
+			pWind->DrawRectangle(gInfo.x, gInfo.y, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT);
+			pWind->DrawLine(gInfo.x, gInfo.y + CRS_HEIGHT / 2, gInfo.x + CRS_WIDTH, gInfo.y + CRS_HEIGHT / 2);
+
+			//Write the course code and credit hours.
+			int Code_x = gInfo.x + CRS_WIDTH * 0.15;
+			int Code_y = gInfo.y + CRS_HEIGHT * 0.05;
+			pWind->SetFont(CRS_HEIGHT * 0.4, BOLD, BY_NAME, "Gramound");
+			pWind->SetPen(MsgColor);
+
+			ostringstream crd;
+			crd << "crd:" << pCrs->getCredits();
+			pWind->DrawString(Code_x, Code_y, pCrs->getCode());
+			pWind->DrawString(Code_x, Code_y + CRS_HEIGHT / 2, crd.str());
+		}
+	}
 }
 
 void GUI::DrawAcademicYear(const AcademicYear* pY) 
@@ -451,7 +455,8 @@ ActionData GUI::GetUserAction(string msg) const
 				case ITM_Reorder: return ActionData{ REORDER };
 				case ITM_GPA:return ActionData{ CalculateGPA };
 				case ITM_STATUS:return ActionData{ CourseStatus };
-
+				case ITM_DoubleMajor:return ActionData{ DoubleMajor};
+				case ITM_Filter:return ActionData{ Filter };
 				default: return ActionData{ MENU_BAR };	//A click on empty place in menu bar
 				}
 			}

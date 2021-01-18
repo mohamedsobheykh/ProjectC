@@ -120,6 +120,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionCalculateGPA.cpp" />
+    <ClCompile Include="ActionDisplayFilter.cpp" />
+    <ClCompile Include="ActionDoubleMajor.cpp" />
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
     <ClCompile Include="Actions\ActionAddCourse.cpp" />
     <ClCompile Include="Actions\ActionAddNotes.cpp" />
@@ -178,7 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionCalculateGPA.h" />
+    <ClInclude Include="ActionDisplayFilter.h" />
     <ClInclude Include="ActionDisplayStudentLevel.h" />
+    <ClInclude Include="ActionDoubleMajor.h" />
     <ClInclude Include="ActionSelectCourseStatus.h" />
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddCourse.h" />

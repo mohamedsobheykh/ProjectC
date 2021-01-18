@@ -14,7 +14,8 @@
 #include"ActionCalculateGPA.h"
 #include"ActionSelectCourseStatus.h"
 #include "Actions/ActionReorderCourses.h"
-
+#include"ActionDoubleMajor.h"
+#include"ActionDisplayFilter.h"
 
 using namespace std;
 
@@ -244,8 +245,14 @@ StudyPlan* Registrar::getStudyPlay() const
 
 Rules* Registrar::getRules() const
 {
+	//return &pRules;
 	return pRules;
 }
+
+/*Rules* Registrar::getRulesOfDoubleMajor() const
+{
+	return pRules;
+}*/
 
 
 Action* Registrar::CreateRequiredAction() 
@@ -294,6 +301,12 @@ Action* Registrar::CreateRequiredAction()
 	case CourseStatus:
 		RequiredAction = new ActionSelectCourseStatus(this);
 		break;
+	case DoubleMajor:
+		RequiredAction = new ActionDoubleMajor(this);
+		break;
+	case Filter:
+		RequiredAction = new ActionDisplayFilter(this);
+		break;
 
 	//TODO: Add case for each action
 	
@@ -326,6 +339,7 @@ void Registrar::Run()
 		{
 			if (ExecuteAction(pAct))	//if action is not cancelled
 			{
+				
 				UpdateInterface();
 			}
 		}
