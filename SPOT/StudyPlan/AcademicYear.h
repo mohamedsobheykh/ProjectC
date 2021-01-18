@@ -30,6 +30,9 @@ public:
 	
 	Course* getCourse(SEMESTER, int);
 
+	//Course* getallCourses();
+	vector<Course*> getAllCourses(); //progreq...........................................
+
 	void virtual DrawMe(GUI*) const;
 	void SaveMe(fstream*, int);
 	virtual void ImportMe(fstream*, int);

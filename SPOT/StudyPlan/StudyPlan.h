@@ -13,7 +13,7 @@ class StudyPlan:public Drawable
 		TotalMinorCredits=0;
 
 	vector<AcademicYear*> plan;	//plan is a list of academic years
-
+	//vector<Course*> AllCourses;
 	string PlanNotes;
 public:
 	StudyPlan();
@@ -24,6 +24,8 @@ public:
 	virtual void SaveMe(fstream*);
 	virtual void ImportMe(fstream*);
 	virtual Course* getCourse(int, SEMESTER, int);
+
+	virtual vector<Course*> getAllCourses(); //progreq...........................................
 
 	bool checkRules(Rules* pRules);
 	virtual ~StudyPlan();

@@ -12,9 +12,14 @@ ActionImportReq::ActionImportReq(Registrar* p) :Action(p)
 {
 }
 
+//Rules* ActionImportReq:: getRule() {
+//    return Rule;
+//}
+
 bool ActionImportReq::Execute()
 {
 	GUI* pGUI = pReg->getGUI();
+     
     Rule1 = pReg->getRules();
 	//ActionData actData = pGUI->GetUserAction("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ] ");
 	pGUI->PrintMsg("choose your major please! [ CIE / AEROSPACE / RENEWABLE / NANOTECH / ENVAIROMENTAL ]");

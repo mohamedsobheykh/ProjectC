@@ -12,6 +12,6 @@ public:
 	ActionImportReq(Registrar*);
 	bool virtual Execute();
 	virtual ~ActionImportReq();
-
+	//Rules* getRule();
 };
 
