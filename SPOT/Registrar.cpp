@@ -14,6 +14,8 @@
 #include"ActionCalculateGPA.h"
 #include"ActionSelectCourseStatus.h"
 #include "Actions/ActionReorderCourses.h"
+#include "Actions/ActionDoubleConcentration.h"
+#include "Actions/ActionMinor.h"
 
 #include"ActionDoubleMajor.h"
 #include"ActionDisplayFilter.h"
@@ -317,6 +319,13 @@ Action* Registrar::CreateRequiredAction()
 	case CourseStatus:
 		RequiredAction = new ActionSelectCourseStatus(this);
 		break;
+	case DoubleConcentration:
+		RequiredAction = new ActionDoubleConcentration(this);
+		break;
+	case Minor:
+		RequiredAction = new ActionMinor(this);
+		break;
+
 
 	case DoubleMajor:
 		RequiredAction = new ActionDoubleMajor(this);

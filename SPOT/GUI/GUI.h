@@ -37,7 +37,8 @@ class GUI
 		ITM_Filter,// display filter
 		ITM_Report,
 		ITM_EXIT,		//Exit item
-
+		ITM_DoubleConcentration,
+		ITM_Minor,
 		ITM_CNT			//no. of menu items ==> This should be the last line in this enum
 
 	};
