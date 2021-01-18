@@ -57,7 +57,7 @@ bool StudyPlan::DeleteCourse(int courseOrder, int year, SEMESTER sem)
 }
 
 void StudyPlan::DrawMe(GUI* pGUI) const
-{
+{ 
 	//Plan draws all year inside it.
 	for (int i = 0; i < plan.size(); i++)
 		plan[i]->DrawMe(pGUI);
@@ -107,7 +107,9 @@ vector<Course*> StudyPlan::getAllCourses() {
 }
 
 
+
 bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
+
 {
 	bool issuesStatus = true;
 

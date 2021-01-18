@@ -42,6 +42,8 @@ enum ActionType
 	DRAW_AREA,	//A click in the drawing area
 	CalculateGPA, // enter the letter grade to each course and calculate the weighted gpa
 	CourseStatus,// choose the course status ( done / pending / in progress )
+	DoubleMajor,// choose the second major
+	Filter,//display filter
 	CANCEL,		//ESC key is pressed
 
 	//TODO: Add more action types
