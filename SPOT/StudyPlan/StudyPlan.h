@@ -29,7 +29,8 @@ public:
 	virtual vector<Course*> getAllCourses(); //progreq...........................................
 
 
-	bool checkRules(Rules* pRules);
+	bool checkRules(Rules* pRules,GUI* pGUI);
+
 	virtual ~StudyPlan();
 };
 

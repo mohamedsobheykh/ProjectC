@@ -212,10 +212,13 @@ void AcademicYear::ImportMe(fstream* pFile, int yearNumber )
 
 bool AcademicYear::checkCredits(Rules* pRules)
 {
-	int semCrCount = 0;
+	string semesterNames[3] = { "Fall", "Spring", "Summer" };
+	
 	bool issuesStatus = true;
 	for (int sem = FALL; sem < SUMMER; sem++)
 	{
+		int semCrCount = 0;
+
 		for (auto it = YearCourses[sem].begin(); it != YearCourses[sem].end(); ++it)
 		{
 			semCrCount += (*it)->getCredits();	//call DrawMe for each course in this semester
@@ -226,7 +229,7 @@ bool AcademicYear::checkCredits(Rules* pRules)
 		{
 			Issue minCredit;
 			minCredit.issueLabel = MODERATE;
-			minCredit.issueInfo = "Semesters minimum credits are unvalid";
+			minCredit.issueInfo = semesterNames[sem] + " minimum credits have not been acheived";
 			pRules->Issues->planIssues.push_back(minCredit);
 
 			issuesStatus = false;
@@ -236,7 +239,7 @@ bool AcademicYear::checkCredits(Rules* pRules)
 		{
 			Issue maxCredit;
 			maxCredit.issueLabel = MODERATE;
-			maxCredit.issueInfo = "Semester maximum credits unvalid";
+			maxCredit.issueInfo = semesterNames[sem] + " maximum credits have been exceeded";
 			pRules->Issues->planIssues.push_back(maxCredit);
 
 			issuesStatus = false;

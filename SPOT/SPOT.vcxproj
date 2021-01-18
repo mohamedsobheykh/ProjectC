@@ -133,6 +133,7 @@
     <ClCompile Include="Actions\ActionImportPlan.cpp" />
     <ClCompile Include="Actions\ActionReorderCourses.cpp" />
     <ClCompile Include="Actions\ActionreplaceCourse.cpp" />
+    <ClCompile Include="Actions\ActionReport.cpp" />
     <ClCompile Include="Actions\ActionSavePlan.cpp" />
     <ClCompile Include="Actions\ActionImportReq.cpp" />
     <ClCompile Include="Courses\Course.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Actions\ActionImportPlan.h" />
     <ClInclude Include="Actions\ActionReorderCourses.h" />
     <ClInclude Include="Actions\ActionreplaceCourse.h" />
+    <ClInclude Include="Actions\ActionReport.h" />
     <ClInclude Include="Actions\ActionSavePlan.h" />
     <ClInclude Include="Actions\ActionImportReq.h" />
     <ClInclude Include="Courses\Course.h" />

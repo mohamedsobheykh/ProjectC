@@ -19,6 +19,7 @@ class Course : public Drawable
 	list<Course_Code> CoReq;	//list of prerequisites
 	bool show;
 	CourseInfo* Info;
+	IssueLabel issueState;
 public:
 	Course();
 	void setShowCourse(bool show);
@@ -28,6 +29,8 @@ public:
 	string getCode() const;
 	int getCredits() const;
 	CourseInfo* getInfo();
+	void setIssueState(IssueLabel);
+	IssueLabel getIssueState() const;
 	void setInfo(CourseInfo* Info);
 	void DrawMe(GUI*) const;
 	void SaveMe(fstream*);
