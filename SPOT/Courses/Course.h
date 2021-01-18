@@ -19,12 +19,15 @@ class Course : public Drawable
 	list<Course_Code> CoReq;	//list of prerequisites
 
 	CourseInfo* Info;
+	IssueLabel issueState;
 public:
 	Course(Course_Code r_code,string r_title, int crd);
 	string getTitle() const;
 	string getCode() const;
 	int getCredits() const;
 	CourseInfo* getInfo();
+	void setIssueState(IssueLabel);
+	IssueLabel getIssueState() const;
 	void setInfo(CourseInfo* Info);
 	void DrawMe(GUI*) const;
 	void SaveMe(fstream*);

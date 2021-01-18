@@ -48,7 +48,7 @@ class GUI
 
 	color DrawColor = BLACK;		//Drawing color
 	color FillColor = YELLOW;		//Filling color (for courses)
-	color HiColor = RED;			//Highlighting color
+	color HiColor = BLUE;			//Highlighting color
 	color ConnColor = GREEN;		//Connector color
 	color MsgColor = BLACK;			//Messages color
 	color BkGrndColor = LIGHTGRAY;	//Background color

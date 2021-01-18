@@ -161,6 +161,10 @@ void GUI::DrawCourse(const Course* pCrs)
 {
 	if (pCrs->isSelected())
 		pWind->SetPen(HiColor, 2);
+	else if (pCrs->getIssueState() != CLEAN)
+	{
+		pCrs->getIssueState() == CRITICAL ? pWind->SetPen(RED, 2) : pWind->SetPen(ORANGE, 2);
+	}
 	else
 	pWind->SetPen(DrawColor, 2);
 	pWind->SetBrush(FillColor);
