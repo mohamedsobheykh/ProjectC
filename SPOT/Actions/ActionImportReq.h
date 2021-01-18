@@ -6,6 +6,7 @@ using namespace std;
 class ActionImportReq :
 	public Action
 {
+
 	fstream majorrules;
 	Rules* Rule1;
 public:

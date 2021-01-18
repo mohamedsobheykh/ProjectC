@@ -44,6 +44,8 @@ struct Rules	//contains all objects for registrations rules
 
 	vector<CourseInfo> CourseCatalog;	//List of ALL courses with full info
 	vector<AcademicYearOfferings> OffringsList;	//all offerings for all acedmic years
+	int totalCredits;
+
 
 	int SemMinCredit = 12;		//min no. of credit hours per semester
 	int SemMaxCredit = 18;		//max no. of credit hours per semester
@@ -81,6 +83,10 @@ struct Rules	//contains all objects for registrations rules
 	vector<Course_Code> consentration4_com;	//consentration 4 courses comp
 	vector<Course_Code> consentration4_ele;	//consentration 4 courses electives
 
+	vector<Course_Code> Tconsentration_com;// the choosen consentration's courses comp
+	vector<Course_Code> Tconsentration_ele;//the choosen consentration's courses  electives
+	int Tcon_ele;
+	int Tcon_com;
 	
 	Issues* Issues = nullptr;
 };
