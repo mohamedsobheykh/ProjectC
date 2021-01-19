@@ -108,29 +108,7 @@ void Registrar::ImportCourseCat()
 					counter++;
 				}
 				counter--;
-				/* cutting = strtok_s(NULL, ",", &context);
-				counter++;
-				//g
-				//cout << cutting << " ";
-				if (cutting != " ")
-				{
-					s.PreReqList.push_back(cutting);
-				}
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-
-				//cout << cutting << " ";
-				if (cutting != " ")
-				{
-					s.PreReqList.push_back(cutting);
-				}
-				cutting = strtok_s(NULL, ",", &context);
-				counter++;
-
-				//e = cutting;
-				//cout << cutting << " ";
-				cutting = strtok_s(NULL, ",", &context);
-				*/
+				
 			}
 			
 			//cout << endl;
@@ -172,9 +150,7 @@ void Registrar::ImportCourseOfferings()
 				cout << endl;
 				d.Offerings[d.semester - 1].push_back(cutting);
 				cutting = strtok_s(NULL, ",", &context);
-				
-				//d.Offerings[0].push_back(cutting);
-				//d.Offerings[d.semester].push_back(cutting);
+
 			}
 			
 			cout << endl;
@@ -185,16 +161,6 @@ void Registrar::ImportCourseOfferings()
 			pRules->OffringsList.push_back(d);
 			
 		}
-		//RegRules.OffringsList.push_back(d);
-		//cout << d.Offerings[0][0];
-		
-
-
-		//cutting = strtok_s(line, ",", &context);
-		//s->PreReqList.push_back(cutting);
-		//cout << cutting;
-		//s.Code = اللي هنقطعه لها ;
-		//RegRules.CourseCatalog.push_back(s);
 	}
 	 //cout << pRules->OffringsList.size(); // to see if it add the offerings to its vector
 }
@@ -229,7 +195,7 @@ CourseInfo* Registrar::GetCourseInfo(Course_Code code)
 	}
 }
 
-Course* Registrar::NewCourse(Course_Code code)
+Course* Registrar::NewCourse(Course_Code code) // to look for the chosed course in the catalog of courses
 {
 	CourseInfo* info = nullptr;
 	for (int i = 0; i < pRules->CourseCatalog.size(); i++)
@@ -240,12 +206,12 @@ Course* Registrar::NewCourse(Course_Code code)
 			info = &pRules->CourseCatalog[i];
 		}
 	}
-	if (!info)
+	if (!info)  // if the course does not exist 
 		return nullptr;
 
-	Course* pC = new Course(info->Code, info->Title, info->Credits);
+	Course* pC = new Course(info->Code, info->Title, info->Credits);// to get the course information 
 	pC->setInfo(info);
-	for (Course_Code i : info->PreReqList)
+	for (Course_Code i : info->PreReqList) // to check the pre for each course 
 		cout << "/////////////" << info->Code << " prereq " << i << endl;
 	return pC;
 }
@@ -417,54 +383,3 @@ Registrar::~Registrar()
 	delete pGUI;
 }
 // here
-////cutting = strtok_s(NULL, ",", &context);
-//				/*a = cutting;
-//				cout << cutting << " ";
-//				cutting = strtok_s(NULL, ",", &context);
-//				counter++;*/
-//				//CourseInfo* s = new CourseInfo;
-//
-//if (counter == 0)
-//{
-//	//s.Code = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 1)
-//{
-//	//s.Title = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 2)
-//{
-//	//s.Credits = stoi(cutting);
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 3)
-//{
-//	//s.CoReqList.push_back(cutting);
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 4)
-//{
-//	e = cutting;
-//	cout << e << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-//else if (counter == 5)
-//{
-//	//e = cutting;
-//	cout << cutting << " ";
-//	cutting = strtok_s(NULL, ",", &context);
-//	counter++;
-//}
-////s->Code = cutting;
-////cout << "gfd";

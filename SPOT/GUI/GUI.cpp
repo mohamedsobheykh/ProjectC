@@ -196,7 +196,7 @@ void GUI::PrintNotes(string msg) const
 {
 	//ClearStatusBar();	//Clear Status bar to print message on it
 						// Set the Message offset from the Status Bar
-	int MsgX = 980;
+	int MsgX = 880;
 	int MsgY = 50;
 
 	// printting the note
