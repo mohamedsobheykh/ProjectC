@@ -15,6 +15,8 @@ ActionDoubleConcentration::ActionDoubleConcentration(Registrar* p) :Action(p)
 
 bool ActionDoubleConcentration::Execute()
 {
+	R = pReg->getRules();
+	R->ReqUnivCredits = R->ReqUnivCredits + 6;
 	GUI* pGUI = pReg->getGUI();
 	//getting a pointer to reach GUI and interact with the user
 	pGUI->PrintMsg("Enter(a) for Nano-FABRICATION , Enter(b) for Nano-VLSI or Enter (c) for Nano-PHOTONICS:");
@@ -42,6 +44,7 @@ bool ActionDoubleConcentration::Execute()
 		char* context = nullptr;
 		const int size = 500;
 		char line[size];
+		
 		//AcademicYearOfferings d;
 		while (openFile.getline(line, size))
 		{
@@ -51,7 +54,7 @@ bool ActionDoubleConcentration::Execute()
 			while (cutting != NULL && (i < 11))
 			{
 				cutting = strtok_s(NULL, ",", &context);
-
+				//R->DoubleCon1.push_back(cutting);
 			}
 			i++;
 			//cout << endl;
@@ -60,14 +63,17 @@ bool ActionDoubleConcentration::Execute()
 				if ((i == 12) && (Cocentration == "a"))
 				{
 					cout << cutting << " 1st" << endl;
+					R->DoubleCon1.push_back(cutting);
 				}
 				if ((i == 14) && (Cocentration == "b"))
 				{
 					cout << cutting << " 2nd" << endl;
+					R->DoubleCon2.push_back(cutting);
 				}
 				if ((i == 16) && (Cocentration == "c"))
 				{
 					cout << cutting << " 3rd" << endl;
+					R->DoubleCon3.push_back(cutting);
 				}
 				//cutting = strtok_s(line, ",", &context);(i == 16)
 
