@@ -9,7 +9,7 @@ class ActionDoubleConcentration :
 	public Action
 {
 	fstream openFile;
-	Rules* Rule1;
+	Rules* R;
 public:
 	ActionDoubleConcentration(Registrar*);
 	bool virtual Execute();
