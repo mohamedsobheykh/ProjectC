@@ -180,13 +180,9 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="ActionCalculateGPA.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\ActionDoubleConcentration.cpp" />
     <ClCompile Include="Actions\ActionMinor.cpp" />
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="ActionSelectCourseStatus.cpp" />
     <ClCompile Include="ActionDoubleMajor.cpp" />
     <ClCompile Include="ActionDisplayFilter.cpp" />
