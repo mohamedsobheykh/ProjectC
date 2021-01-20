@@ -292,7 +292,7 @@ Action* Registrar::CreateRequiredAction()
 		RequiredAction = new ActionMinor(this);
 		break;
 
-
+		
 	case DoubleMajor:
 		RequiredAction = new ActionDoubleMajor(this);
 		break;

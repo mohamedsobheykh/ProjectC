@@ -69,7 +69,8 @@ bool ActionDoubleConcentration::Execute()
 					if ((i == 12) && (Cocentration == "a"))
 					{
 						cout << cutting << " 1st" << endl;
-						R->DoubleCon1.push_back(cutting);
+						//R->Tconsentration_com.push_back(cutting);
+						R->consentration1_com.push_back(cutting);
 					}
 					if ((i == 14) && (Cocentration == "b"))
 					{
