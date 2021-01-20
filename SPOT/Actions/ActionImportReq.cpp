@@ -65,7 +65,7 @@ bool ActionImportReq::Execute()
 
     char* t;
     char* context = nullptr;
-    const int size = 100;
+    const int size = 500;
     char line[size];
 
     while (majorrules.getline(line, size)) {

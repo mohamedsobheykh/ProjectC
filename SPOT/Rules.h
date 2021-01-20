@@ -65,7 +65,7 @@ struct Rules	//contains all objects for registrations rules
 	int no_concentration; // number of concentrations
 	vector<int> no_cr_concentrations; //concentration1 com cr, concentration1 elective cr,....
 	vector<Course_Code> Minor; // minor courses
-	vector<Course_Code> DoubleCon1;
+	vector<Course_Code> DoubleCon1;//TO SAVE THE DOUBLED CONCENTRATION
 	vector<Course_Code> DoubleCon2;
 	vector<Course_Code> DoubleCon3;
 	vector<Course_Code> UnivCompulsory;	//Univ Compulsory courses

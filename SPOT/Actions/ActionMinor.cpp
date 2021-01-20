@@ -14,11 +14,14 @@ ActionMinor::ActionMinor(Registrar* p) :Action(p)
 bool ActionMinor::Execute()
 {
 	R2 = pReg->getRules();
+	R2->totalCredits = R2->totalCredits + 15;
+	//cout << R2->totalCredits;
 	GUI* pGUI = pReg->getGUI();
 	//getting a pointer to reach GUI and interact with the user
 	pGUI->PrintMsg("What is your original major? CIE, SPC, NANO, RRE or ENV");
 	string orignial = pGUI->GetSrting();
-	pGUI->PrintMsg("Enter 5 courses: ");
+	pGUI->PrintMsg("What is the major u will take the 5 courses from ?: ");
+	string m = pGUI->GetSrting();
 	string course[5];
 	 
 	if (orignial != "SPC")
@@ -33,7 +36,8 @@ bool ActionMinor::Execute()
 	else
 	{
 		//string course[5];
-		pGUI->PrintMsg("Enter 5 courses: ");
+		//pGUI->PrintMsg("What is the major u will take the 5 courses from ?");
+		
 		for (int i = 0; i < 5; i++)
 		{
 			pGUI->PrintMsg("Enter a course: ");
@@ -48,7 +52,7 @@ bool ActionMinor::Execute()
 	}
 	for (int i = 0; i < 5; i++)
 	{
-		cout << course[i] << " ";
+		cout << course[i] << endl;
 		R2->Minor.push_back(course[i]);
 	}
 	// to be compeleted
