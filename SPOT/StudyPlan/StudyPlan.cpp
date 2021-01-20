@@ -157,7 +157,7 @@ vector<Course*> StudyPlan::getAllCourses() {
 */
 
 
-bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
+bool StudyPlan::checkRules(Rules* pRules, GUI* pGUI)
 
 {
 	bool issuesStatus = true;
@@ -165,11 +165,11 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	// check for total cr of the studyplan
 	vector<Course*> ALL = getAllCourses();
 	int TOTALCR = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	for (auto i : ALL )
 	{
 		//int TOTALCR = 0;
-		TOTALCR = (*(ALL.begin()+i))->getCredits() + TOTALCR;
-		
+		TOTALCR = i->getCredits() + TOTALCR;
+
 	}
 	int r = pRules->ReqUnivCredits;
 	if (TOTALCR >= r) {
@@ -186,17 +186,27 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check for UnivCompulsory 
 	int cUnivCompulsory = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->UnivCompulsory.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
-			string b = pRules->UnivCompulsory.at(j);
-			if (a == b ) {
-				cUnivCompulsory++;
+			//string b = pRules->UnivCompulsory.at(j);
+			if (a == pRules->UnivCompulsory.at(j)) {
+				cUnivCompulsory ++;
 			}
 		}
-	}
-	if (cUnivCompulsory == pRules->UnivCompulsory.size()) {
+	}*/
+		for (auto s : ALL)
+		{
+			//cout << pRules->UnivCompulsory.size();
+			for (auto p : pRules->UnivCompulsory) {
+
+				if (p == s->getCode()) {
+					cUnivCompulsory++;
+				}
+			}
+		}
+	if (cUnivCompulsory >= pRules->UnivCompulsory.size() ) {
 		issuesStatus = true;
 	}
 	else {
@@ -205,12 +215,11 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 		UnivCompulsoryy.issueLabel = CRITICAL;
 		UnivCompulsoryy.issueInfo = "there are a missing courses of the Univ Compulsory courses ";
 		pRules->Issues->planIssues.push_back(UnivCompulsoryy);
-	
 	}
 	//..................................................................................................
 	//check for UnivElective cr
 	int cUnivElective = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->UnivElective.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -220,7 +229,16 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 				
 			}
 		}
-	}
+	}*/
+		for (auto q : ALL)
+		{
+			for (auto o : pRules->UnivElective) {
+
+				if (o == q->getCode()) {
+					cUnivElective = cUnivElective + q->getCredits();
+				}
+			}
+		}
 	if (cUnivElective >= pRules->Uni_elective_cr) {
 		issuesStatus = true;
 	}
@@ -235,7 +253,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check TrackCompulsory
 	int cTrackCompulsory = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->TrackCompulsory.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -244,8 +262,17 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 				cTrackCompulsory++;
 			}
 		}
-	}
-	if (cTrackCompulsory == pRules->TrackCompulsory.size()) {
+	}*/
+		for (auto a : ALL)
+		{
+			for (auto b : pRules->TrackCompulsory) {
+
+				if (b == a->getCode()) {
+					cTrackCompulsory++;
+				}
+			}
+		}
+	if (cTrackCompulsory >= pRules->TrackCompulsory.size()) {
 		issuesStatus = true;
 	}
 	else {
@@ -260,7 +287,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check MajorCompulsory
 	int cMajorCompulsory = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->MajorCompulsory.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -269,8 +296,17 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 				cMajorCompulsory++;
 			}
 		}
-	}
-	if (cMajorCompulsory == pRules->MajorCompulsory.size()) {
+	}*/
+		for (auto d : ALL)
+		{
+			for (auto e : pRules->MajorCompulsory) {
+
+				if (e == d->getCode()) {
+					cMajorCompulsory++;
+				}
+			}
+		}
+	if (cMajorCompulsory >= pRules->MajorCompulsory.size()) {
 		issuesStatus = true;
 	}
 	else {
@@ -283,7 +319,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check for MajorElective cr
 	int cMajorElective = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->MajorElective.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -293,7 +329,16 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 
 			}
 		}
-	}
+	}*/
+		for (auto f : ALL)
+		{
+			for (auto g : pRules->MajorElective) {
+
+				if (g == f->getCode()) {
+					cMajorElective =  cMajorElective  + f->getCredits();
+				}
+			}
+		}
 	if (cMajorElective >= pRules->Major_elective_cr) {
 		issuesStatus = true;
 	}
@@ -307,7 +352,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check for consentration Compulsory cr
 	int cconCompulsory = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->Tconsentration_com.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -316,8 +361,18 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 				cconCompulsory++;
 			}
 		}
-	}
-	if (cconCompulsory == pRules->Tconsentration_com.size()) {
+	}*/
+		for (auto h : ALL)
+		{
+			for (auto k : pRules->Tconsentration_com) {
+
+				if (k == h->getCode()) {
+					cconCompulsory++;
+				}
+			}
+		}
+	
+	if (cconCompulsory >= pRules->Tconsentration_com.size()) {
 		issuesStatus = true;
 	}
 	else {
@@ -330,7 +385,7 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 	//..................................................................................................
 	//check for consentration Elective cr
 	int cconElective = 0;
-	for (int i = 0; i < ALL.size(); i++)
+	/*for (int i = 0; i < ALL.size(); i++)
 	{
 		for (int j = 0; j < pRules->Tconsentration_ele.size(); j++) {
 			string a = (*(ALL.begin() + i))->getCode();
@@ -340,7 +395,18 @@ bool StudyPlan::checkRules(Rules* pRules , GUI* pGUI)
 
 			}
 		}
-	}
+	}*/
+	
+		for (auto l : ALL)
+		{
+			for (auto m : pRules->Tconsentration_ele) {
+
+				if (m == l->getCode()) {
+					cconElective = cconElective + l->getCredits();
+				}
+			}
+		}
+	
 	if (cconElective >= pRules->Tcon_ele) {
 		issuesStatus = true;
 	}

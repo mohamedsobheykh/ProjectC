@@ -1,5 +1,9 @@
-Fall minimum credits have not been acheived
-Spring minimum credits have not been acheived
+there are a missing courses of the total courses of the studyplan 
+there are a missing courses of the Univ Compulsory courses 
+there are a missing courses of the Univ Electivee courses 
+there are a missing courses of the Track Compulsory courses 
+there are a missing courses of the Major Compulsory courses 
+there are a missing courses of the Major Electives 
 Fall minimum credits have not been acheived
 Spring minimum credits have not been acheived
 Fall minimum credits have not been acheived
@@ -9,4 +13,6 @@ Spring minimum credits have not been acheived
 Fall minimum credits have not been acheived
 Spring minimum credits have not been acheived
 MATH 101 is a missing Pre-Requisite for MATH 102
-CSCI 101 is a missing Pre-Requisite for CIE 202
+MATH 101 is a missing Pre-Requisite for PHYS 102
+CHEM 101  is a missing Pre-Requisite for ENGR 205
+MATH 201  is a missing Pre-Requisite for ENGR 207
